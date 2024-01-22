@@ -6,7 +6,7 @@ const RecentNeeds = (): React.ReactElement => {
     <RecentNeedsContainer>
       <RecentNeedsTitle>Останні потреби</RecentNeedsTitle>
       {[...Array(3)].map((_, index) => (
-        <RecentNeedsItem key={index} item={index} />
+        <RecentNeedsItem key={index} />
       ))}
     </RecentNeedsContainer>
   );

@@ -14,7 +14,7 @@ import {
   User,
 } from "@nextui-org/react";
 
-const RecentNeedsItem = ({ item }: { item: number }): React.ReactElement => {
+const RecentNeedsItem = (): React.ReactElement => {
   return (
     <Card shadow="sm">
       <RecentNeedsItemContainer>
@@ -41,18 +41,24 @@ const RecentNeedsItem = ({ item }: { item: number }): React.ReactElement => {
             dui congue, suscipit mi.
           </RecentNeedsItemText>
         </CardBody>
-        <CardFooter className="justify-between">
+        <CardFooter className="justify-between rounded-large">
           <User
             name="Jane Doe"
             avatarProps={{
-              src: `https://i.pravatar.cc/150?u=${item}`,
+              src: `https://i.pravatar.cc/150?u=${Math.random() * 20}`,
               size: "sm",
             }}
           />
           <RecentNeedsItemTags>
-            <Chip color="primary">Primary</Chip>
-            <Chip color="secondary">Secondary</Chip>
-            <Chip color="success">Success</Chip>
+            <Chip color="warning" variant="flat">
+              Одяг
+            </Chip>
+            <Chip color="secondary" variant="flat">
+              Спорядження
+            </Chip>
+            <Chip color="success" variant="flat">
+              Військові
+            </Chip>
           </RecentNeedsItemTags>
         </CardFooter>
       </RecentNeedsItemContainer>

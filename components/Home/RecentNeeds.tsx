@@ -1,13 +1,14 @@
+import { RecentNeedsContainer, RecentNeedsTitle } from "@/styles/HomeStyles";
 import { RecentNeedsItem } from "..";
 
 const RecentNeeds = (): React.ReactElement => {
   return (
-    <div>
-      <h2>Останні потреби</h2>
-      <RecentNeedsItem />
-      <RecentNeedsItem />
-      <RecentNeedsItem />
-    </div>
+    <RecentNeedsContainer>
+      <RecentNeedsTitle>Останні потреби</RecentNeedsTitle>
+      {[...Array(3)].map((_, index) => (
+        <RecentNeedsItem key={index} item={index} />
+      ))}
+    </RecentNeedsContainer>
   );
 };
 

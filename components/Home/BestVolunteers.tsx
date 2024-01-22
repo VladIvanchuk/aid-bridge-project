@@ -1,5 +1,7 @@
+import { BestVolunteersContainer } from "@/styles/HomeStyles";
+
 const BestVolunteers = (): React.ReactElement => {
-  return <div>BestVolunteers</div>;
+  return <BestVolunteersContainer>BestVolunteers</BestVolunteersContainer>;
 };
 
 export default BestVolunteers;

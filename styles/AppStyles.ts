@@ -8,6 +8,7 @@ export const AppWrapper = styled.div`
 `;
 export const PageWrapper = styled.main`
   width: 100%;
+  padding: 24px;
 `;
 
 export const Title = styled.h1`

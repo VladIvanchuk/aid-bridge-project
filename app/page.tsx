@@ -1,13 +1,12 @@
-import { Button } from "@nextui-org/react";
+import { RecentNeeds, BestVolunteers } from "@/components";
+import { HomeContainer } from "@/styles/HomeStyles";
 
 const Home = (): React.ReactElement => {
   return (
-    <div className="p-4">
-      <Button>Click me</Button>
-      <Button>Click me</Button>
-      <Button>Click me</Button>
-      <Button>Click me</Button>
-    </div>
+    <HomeContainer>
+      <RecentNeeds />
+      <BestVolunteers />
+    </HomeContainer>
   );
 };
 

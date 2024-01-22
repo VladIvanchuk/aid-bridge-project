@@ -1,5 +1,5 @@
 const Volunteers = (): React.ReactElement => {
-  return <main className="p-8">Volunteers</main>;
+  return <div className="p-8">Volunteers</div>;
 };
 
 export default Volunteers;

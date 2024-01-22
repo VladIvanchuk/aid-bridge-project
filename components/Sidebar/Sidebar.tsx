@@ -1,11 +1,16 @@
 import { User } from "@nextui-org/react";
 import { Navbar } from "..";
+import {
+  LogoContainer,
+  SidebarContainer,
+  SidebarWrapper,
+} from "@/styles/SidebarStyles";
 
 const Sidebar = (): React.ReactElement => {
   return (
-    <div className="w-64 shrink-0">
-      <div className="p-4 fixed h-full w-64 overflow-y-auto z-100 border-r-1 border-stone-300 bg-stone-100">
-        <div className="py-4 h-20 flex">Logo</div>
+    <SidebarWrapper>
+      <SidebarContainer className="border-r-1 border-stone-200 bg-stone-100">
+        <LogoContainer>Logo</LogoContainer>
         <Navbar />
         <div className="py-4 absolute bottom-0">
           <User
@@ -16,8 +21,8 @@ const Sidebar = (): React.ReactElement => {
             }}
           />
         </div>
-      </div>
-    </div>
+      </SidebarContainer>
+    </SidebarWrapper>
   );
 };
 

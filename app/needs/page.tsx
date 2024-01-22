@@ -1,5 +1,5 @@
 const Needs = (): React.ReactElement => {
-  return <main className="p-8">Needs</main>;
+  return <div className="p-8">Needs</div>;
 };
 
 export default Needs;

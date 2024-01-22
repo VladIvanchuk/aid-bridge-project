@@ -1,5 +1,5 @@
 const Opportunities = (): React.ReactElement => {
-  return <main className="p-8">Opportunities</main>;
+  return <div className="p-8">Opportunities</div>;
 };
 
 export default Opportunities;

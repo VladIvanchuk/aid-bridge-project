@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "@/styles/globals.css";
 import { Providers } from "@/lib/providers";
 import { Sidebar } from "@/components";
+import { AppWrapper, PageWrapper } from "@/styles/AppStyles";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,10 +21,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <div className="flex min-h-screen w-full">
+          <AppWrapper>
             <Sidebar />
-            <main>{children}</main>
-          </div>
+            <PageWrapper>{children}</PageWrapper>
+          </AppWrapper>
         </Providers>
       </body>
     </html>

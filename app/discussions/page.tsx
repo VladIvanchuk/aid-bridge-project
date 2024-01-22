@@ -1,5 +1,5 @@
 const Discussions = (): React.ReactElement => {
-  return <main className="p-8">Discussions</main>;
+  return <div className="p-8">Discussions</div>;
 };
 
 export default Discussions;

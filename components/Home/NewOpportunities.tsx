@@ -4,6 +4,8 @@ import {
   NewOppItemsContainer,
 } from "@/styles/HomeStyles";
 import { NewOppItem } from "..";
+import { LinkContainer } from "@/styles/UiStyles";
+import Link from "next/link";
 
 const NewOpportunities = (): React.ReactElement => {
   return (
@@ -14,6 +16,9 @@ const NewOpportunities = (): React.ReactElement => {
           <NewOppItem key={index} />
         ))}
       </NewOppItemsContainer>
+      <LinkContainer>
+        <Link href="/opportunities">Переглянути більше</Link>
+      </LinkContainer>
     </NewOppContainer>
   );
 };

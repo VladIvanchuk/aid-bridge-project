@@ -1,4 +1,4 @@
-import { NewOppItemContainer } from "@/styles/HomeStyles";
+import { NewOppItemContainer, NewOppItemText } from "@/styles/HomeStyles";
 import {
   Card,
   CardHeader,
@@ -12,7 +12,7 @@ import {
 
 const NewOppItem = (): React.ReactElement => {
   return (
-    <Card shadow="sm">
+    <Card shadow="sm" className="flex-1">
       <NewOppItemContainer>
         <CardHeader className="flex gap-3">
           <User
@@ -25,7 +25,11 @@ const NewOppItem = (): React.ReactElement => {
         </CardHeader>
         <Divider />
         <CardBody>
-          <p>Make beautiful websites regardless of your design experience.</p>
+          <NewOppItemText>
+            Make beautiful websites regardless of your design experience. Make
+            beautiful websites regardless of your design experience. beautiful
+            websites regardless of your design experience.
+          </NewOppItemText>
         </CardBody>
         <Divider />
         <CardFooter>
@@ -34,7 +38,7 @@ const NewOppItem = (): React.ReactElement => {
             showAnchorIcon
             href="https://github.com/nextui-org/nextui"
           >
-            Visit source code on GitHub.
+            Зв&apos;язатися з волонтером
           </Link>
         </CardFooter>
       </NewOppItemContainer>

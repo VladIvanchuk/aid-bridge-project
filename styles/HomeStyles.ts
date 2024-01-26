@@ -88,16 +88,23 @@ export const BestVolunteersListRate = styled.div`
 export const NewOppContainer = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 16px;
 `;
 export const NewOppItemsContainer = styled.div`
   display: flex;
   gap: 24px;
-
-  margin-top: 48px;
 `;
 export const NewOppItemContainer = styled.div`
+  width: 100% !important;
   display: flex;
   flex-direction: column;
-  padding: 8 px;
+  padding: 8px;
   width: 320px;
+`;
+export const NewOppItemText = styled.p`
+  font-size: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;

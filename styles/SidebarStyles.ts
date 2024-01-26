@@ -4,7 +4,7 @@ import { User } from "@nextui-org/react";
 
 export const SidebarWrapper = styled.div`
   flex-shrink: 0;
-  width: 256px;
+  width: 240px;
 `;
 export const SidebarContainer = styled.div`
   width: 256px;
@@ -19,7 +19,7 @@ export const SidebarContainer = styled.div`
 export const LogoContainer = styled.div`
   margin: 24px 0;
   border-radius: 24px;
-  padding: 16px;
+  padding: 16px 20px;
   background-color: var(--background-light50);
   color: var(--text-background);
   font-weight: 600;

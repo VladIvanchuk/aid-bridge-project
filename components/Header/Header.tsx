@@ -26,7 +26,7 @@ const Header = (): React.ReactElement => {
             src: "https://i.pravatar.cc/150?u=a04258114e29026702d",
           }}
         />
-        <Button isIconOnly color="primary">
+        <Button isIconOnly color="primary" variant="flat">
           <CiBellOn />
         </Button>
       </UserContainer>

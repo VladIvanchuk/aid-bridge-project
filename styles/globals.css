@@ -4,7 +4,7 @@
 
 :root {
   --background-light: #fff;
-  --background-light50: #ebf1f4;
+  --background-light50: rgba(204, 226, 252, 0.5);
 
   --base-accent: #318bf1;
 
@@ -27,6 +27,7 @@
 
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
   background-color: #fff;
 }
 

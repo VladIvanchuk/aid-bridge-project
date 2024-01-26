@@ -13,18 +13,16 @@ export const SidebarContainer = styled.div`
   padding: 16px 24px;
   height: 100%;
   position: fixed;
+  background-color: var(--background-light);
 `;
 
 export const LogoContainer = styled.div`
   margin: 24px 0;
-  background-color: #fff;
   border-radius: 24px;
   padding: 16px;
-`;
-export const UserContainer = styled.div`
-  padding: 24px 0;
-  position: absolute;
-  bottom: 0;
+  background-color: var(--background-light50);
+  color: var(--text-background);
+  font-weight: 600;
 `;
 
 export const NavContainer = styled.div`

@@ -1,11 +1,14 @@
-import { RecentNeeds, BestVolunteers } from "@/components";
-import { HomeContainer } from "@/styles/HomeStyles";
+import { RecentNeeds, BestVolunteers, NewOpportunities } from "@/components";
+import { HomeContainer, HomeTopContainer } from "@/styles/HomeStyles";
 
 const Home = (): React.ReactElement => {
   return (
     <HomeContainer>
-      <RecentNeeds />
-      <BestVolunteers />
+      <HomeTopContainer>
+        <RecentNeeds />
+        <BestVolunteers />
+      </HomeTopContainer>
+      <NewOpportunities />
     </HomeContainer>
   );
 };

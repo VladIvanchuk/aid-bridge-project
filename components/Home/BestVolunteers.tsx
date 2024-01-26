@@ -5,12 +5,12 @@ import {
   BestVolunteersListRate,
   BestVolunteersTitle,
 } from "@/styles/HomeStyles";
-import { Card, CardBody, CardHeader, User } from "@nextui-org/react";
+import { Card, CardHeader, User } from "@nextui-org/react";
 import { FaStar } from "react-icons/fa";
 
 const BestVolunteers = (): React.ReactElement => {
   return (
-    <Card shadow="sm" className="flex-1 bg-[#c4daf3]">
+    <Card shadow="sm" className="flex-1 bg-[var(--background-light)] w-10">
       <BestVolunteersContainer>
         <CardHeader className="flex items-start justify-center">
           <BestVolunteersTitle>Кращі волонтери місяця</BestVolunteersTitle>
@@ -27,7 +27,7 @@ const BestVolunteers = (): React.ReactElement => {
               />
               <BestVolunteersListRate>
                 {(Math.random() * index).toFixed(1)}/10
-                <FaStar fill="#318bf1" />
+                <FaStar fill="var(--base-accent)" />
               </BestVolunteersListRate>
             </BestVolunteersListItem>
           ))}

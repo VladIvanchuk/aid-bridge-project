@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Mulish } from "next/font/google";
 import "@/styles/globals.css";
 import { Providers } from "@/lib/providers";
-import { Sidebar } from "@/components";
+import { Header, Sidebar } from "@/components";
 import { AppWrapper, PageWrapper } from "@/styles/AppStyles";
 
-const inter = Inter({ subsets: ["latin"] });
+const mulish = Mulish({ subsets: ["cyrillic-ext"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,11 +19,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={mulish.className}>
         <Providers>
           <AppWrapper>
             <Sidebar />
-            <PageWrapper>{children}</PageWrapper>
+            <PageWrapper>
+              <Header />
+              {children}
+            </PageWrapper>
           </AppWrapper>
         </Providers>
       </body>

@@ -3,18 +3,26 @@ import styled from "styled-components";
 
 export const HomeContainer = styled.div`
   display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 48px;
+`;
+export const HomeTopContainer = styled.div`
+  display: flex;
   width: 100%;
   gap: 16px;
 `;
+
+export const HomeTitle = styled.h2`
+  font-weight: bold;
+  font-size: 1.3rem;
+`;
+
 export const RecentNeedsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
   flex: 3;
-`;
-export const RecentNeedsTitle = styled.h2`
-  font-weight: bold;
-  font-size: 1.3rem;
 `;
 
 export const RecentNeedsItemContainer = styled.div`
@@ -52,12 +60,13 @@ export const BestVolunteersContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 16px 0;
+  padding: 8px 4px;
 `;
 export const BestVolunteersTitle = styled.h2`
   font-size: 1.3rem;
   font-weight: 500;
   margin-bottom: 16px;
+  padding: 0 4px;
 `;
 export const BestVolunteersList = styled.div`
   display: flex;
@@ -75,4 +84,20 @@ export const BestVolunteersListItem = styled.div`
 export const BestVolunteersListRate = styled.div`
   display: flex;
   gap: 10px;
+`;
+export const NewOppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const NewOppItemsContainer = styled.div`
+  display: flex;
+  gap: 24px;
+
+  margin-top: 48px;
+`;
+export const NewOppItemContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 8 px;
+  width: 320px;
 `;

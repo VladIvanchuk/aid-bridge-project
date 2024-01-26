@@ -33,7 +33,7 @@ const Navbar = (): React.ReactElement => {
           as={Link}
           color="primary"
           variant={isActive(path) ? "solid" : "light"}
-          className="justify-start"
+          className="justify-start font-bold"
           startContent={icon}
         >
           {name}

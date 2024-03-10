@@ -13,7 +13,7 @@ const BestVolunteers = (): React.ReactElement => {
     <Card shadow="sm" className="flex-1 bg-[var(--background-light)] w-10">
       <BestVolunteersContainer>
         <CardHeader className="flex items-start justify-center">
-          <BestVolunteersTitle>Кращі волонтери місяця</BestVolunteersTitle>
+          <BestVolunteersTitle>Кращі волонтери</BestVolunteersTitle>
         </CardHeader>
         <BestVolunteersList>
           {[...Array(13)].map((_, index) => (

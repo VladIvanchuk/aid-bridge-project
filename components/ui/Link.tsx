@@ -12,7 +12,7 @@ const LinkComponent = ({
 }: LinkComponentProps): React.ReactElement => {
   return (
     <LinkContainer>
-      <Link href={`/{to}`}>{text}</Link>
+      <Link href={`/${to}`}>{text}</Link>
     </LinkContainer>
   );
 };

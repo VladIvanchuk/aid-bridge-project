@@ -7,17 +7,17 @@ export const SidebarWrapper = styled.div`
   width: 240px;
 `;
 export const SidebarContainer = styled.div`
-  width: 256px;
+  width: 250px;
   overflow-y: auto;
   z-index: 100;
-  padding: 16px 24px;
+  padding: 14px 12px 14px 24px;
   height: 100%;
   position: fixed;
   background-color: var(--background-light);
 `;
 
 export const LogoContainer = styled.div`
-  margin: 24px 0;
+  margin: 0 0 24px;
   border-radius: 24px;
   padding: 16px 20px;
   background-color: var(--background-light50);

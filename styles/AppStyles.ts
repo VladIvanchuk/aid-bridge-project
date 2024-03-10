@@ -13,7 +13,7 @@ export const PageWrapper = styled.main`
   background-color: var(--background-light50);
   color: var(--text-background);
   border-radius: 16px;
-  margin: 12px 12px 12px;
+  margin: 12px;
 `;
 
 export const Title = styled.h1`

@@ -24,6 +24,11 @@ export const RecentNeedsContainer = styled.div`
   gap: 16px;
   flex: 3;
 `;
+export const HomeSectionHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 export const RecentNeedsItemContainer = styled.div`
   display: flex;
@@ -107,4 +112,17 @@ export const NewOppItemText = styled.p`
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+`;
+export const NewOppItemLocation = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: -4px;
+  gap: 4px;
+  svg {
+    fill: var(--base-accent);
+  }
+`;
+export const NewOppItemLocationText = styled(NewOppItemText)`
+  font-weight: 600;
+  color: var(--base-accent);
 `;

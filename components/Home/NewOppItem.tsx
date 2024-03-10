@@ -1,14 +1,19 @@
-import { NewOppItemContainer, NewOppItemText } from "@/styles/HomeStyles";
+import {
+  NewOppItemContainer,
+  NewOppItemLocation,
+  NewOppItemLocationText,
+  NewOppItemText,
+} from "@/styles/HomeStyles";
 import {
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
+  CardHeader,
   Divider,
   Link,
-  Image,
   User,
 } from "@nextui-org/react";
+import { MdLocationPin } from "react-icons/md";
 
 const NewOppItem = (): React.ReactElement => {
   return (
@@ -25,6 +30,10 @@ const NewOppItem = (): React.ReactElement => {
         </CardHeader>
         <Divider />
         <CardBody>
+          <NewOppItemLocation>
+            <MdLocationPin />
+            <NewOppItemLocationText>Lviv city center</NewOppItemLocationText>
+          </NewOppItemLocation>
           <NewOppItemText>
             Make beautiful websites regardless of your design experience. Make
             beautiful websites regardless of your design experience. beautiful
@@ -33,11 +42,7 @@ const NewOppItem = (): React.ReactElement => {
         </CardBody>
         <Divider />
         <CardFooter>
-          <Link
-            isExternal
-            showAnchorIcon
-            href="https://github.com/nextui-org/nextui"
-          >
+          <Link isExternal showAnchorIcon href="">
             Зв&apos;язатися з волонтером
           </Link>
         </CardFooter>

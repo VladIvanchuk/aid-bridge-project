@@ -1,25 +1,30 @@
 "use client";
-import { usePathname } from "next/navigation";
 import { NavContainer } from "@/styles/SidebarStyles";
-import { AiFillHome } from "react-icons/ai";
-import { MdEmergencyShare } from "react-icons/md";
-import { FaPeopleGroup } from "react-icons/fa6";
-import { IoMdChatbubbles } from "react-icons/io";
-import { FaAddressBook } from "react-icons/fa";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { AiFillHome } from "react-icons/ai";
+import { BsFillGearFill, BsStars } from "react-icons/bs";
+import { FaPeopleGroup } from "react-icons/fa6";
+import { IoMdChatbubbles } from "react-icons/io";
+import { MdEmergencyShare } from "react-icons/md";
 
 const Navbar = (): React.ReactElement => {
   const menuItems = [
     { name: "Головна", path: "/", icon: <AiFillHome /> },
+    { name: "Для вас", path: "/for-you", icon: <BsStars /> },
     { name: "Потреби", path: "/needs", icon: <MdEmergencyShare /> },
-    { name: "Можливості", path: "/opportunities", icon: <FaAddressBook /> },
+    { name: "Волонтери", path: "/volunteers", icon: <FaPeopleGroup /> },
     {
-      name: "Обговорення",
-      path: "/discussions",
+      name: "Новини та події",
+      path: "/news",
       icon: <IoMdChatbubbles />,
     },
-    { name: "Волонтери", path: "/volunteers", icon: <FaPeopleGroup /> },
+    {
+      name: "Налаштування",
+      path: "/settings",
+      icon: <BsFillGearFill />,
+    },
   ];
   const pathname = usePathname();
   const isActive = (path: string) => pathname === path;

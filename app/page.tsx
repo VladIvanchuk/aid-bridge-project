@@ -1,4 +1,10 @@
-import { RecentNeeds, BestVolunteers, NewOpportunities } from "@/components";
+import {
+  RecentNeeds,
+  BestVolunteers,
+  NewOpportunities,
+  MapBanner,
+  News,
+} from "@/components";
 import { HomeContainer, HomeTopContainer } from "@/styles/HomeStyles";
 
 const Home = (): React.ReactElement => {
@@ -9,6 +15,8 @@ const Home = (): React.ReactElement => {
         <BestVolunteers />
       </HomeTopContainer>
       <NewOpportunities />
+      <MapBanner />
+      <News />
     </HomeContainer>
   );
 };

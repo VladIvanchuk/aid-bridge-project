@@ -5,7 +5,7 @@ export const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 48px;
+  gap: 68px;
 `;
 export const HomeTopContainer = styled.div`
   display: flex;
@@ -15,7 +15,7 @@ export const HomeTopContainer = styled.div`
 
 export const HomeTitle = styled.h2`
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 `;
 
 export const RecentNeedsContainer = styled.div`
@@ -35,6 +35,7 @@ export const RecentNeedsItemContainer = styled.div`
   flex-direction: column;
   flex: 1;
   padding: 16px 24px;
+  cursor: pointer;
 `;
 
 export const RecentNeedsItemTitle = styled.p`
@@ -100,11 +101,11 @@ export const NewOppItemsContainer = styled.div`
   gap: 24px;
 `;
 export const NewOppItemContainer = styled.div`
-  width: 100% !important;
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 8px;
-  width: 320px;
+  cursor: pointer;
 `;
 export const NewOppItemText = styled.p`
   font-size: 1rem;
@@ -125,4 +126,60 @@ export const NewOppItemLocation = styled.div`
 export const NewOppItemLocationText = styled(NewOppItemText)`
   font-weight: 600;
   color: var(--base-accent);
+`;
+export const MapBannerContainer = styled.div`
+  height: 500px;
+  background-image: url("/images/Banner_map.webp");
+  background-position: 100%;
+  background-size: cover;
+  border-radius: 30px;
+  padding-top: 48px;
+  padding-bottom: 64px;
+  padding-left: 48px;
+  transition: box-shadow 0.2s ease-in;
+  width: 98%;
+  margin: 24px auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+`;
+export const MapBannerText = styled.p`
+  color: var(--text-light);
+  font-size: 2.4rem;
+  font-weight: 600;
+  width: 45%;
+`;
+export const MapBannerButton = styled.div`
+  background-color: #fff;
+  color: var(--base-accent);
+  font-size: 1rem;
+  font-weight: 700;
+  width: 46%;
+  border-radius: 500px;
+  padding: 14px 28px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  svg {
+    fill: var(--base-accent);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  transition: 0.2s ease-out;
+  &:hover {
+    transform: scale(1.05);
+    transition: 0.15s ease-in;
+  }
+`;
+export const NewsContainer = styled(NewOppContainer)`
+  margin-bottom: 24px;
+`;
+
+export const NewsItemsContainer = styled.div`
+  display: flex;
+  gap: 18px;
 `;

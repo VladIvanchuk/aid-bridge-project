@@ -37,6 +37,7 @@ export const UserContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-shrink: 0;
   svg {
     width: 28px;
     height: 28px;

@@ -7,3 +7,9 @@ export const LinkContainer = styled.div`
   font-weight: 600;
   text-align: center;
 `;
+export const LoaderContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-content: center;
+`;

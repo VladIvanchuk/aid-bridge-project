@@ -1,5 +1,6 @@
 import { HeaderContainer, UserContainer } from "@/styles/AppStyles";
 import { Input, User, Button } from "@nextui-org/react";
+import { Link } from "@nextui-org/react";
 import { CiSearch, CiBellOn } from "react-icons/ci";
 
 const Header = (): React.ReactElement => {
@@ -18,18 +19,20 @@ const Header = (): React.ReactElement => {
           <CiSearch className="pointer-events-none flex-shrink-0" />
         }
       />
-      <UserContainer className="shadow-sm">
-        <User
-          name="Jane Doe"
-          description="Volunteer"
-          avatarProps={{
-            src: "https://i.pravatar.cc/150?u=a04258114e29026702d",
-          }}
-        />
-        <Button isIconOnly color="primary" variant="flat">
-          <CiBellOn />
-        </Button>
-      </UserContainer>
+      <Link href="profile">
+        <UserContainer className="shadow-sm">
+          <User
+            name="Jane Doe"
+            description="Volunteer"
+            avatarProps={{
+              src: "https://i.pravatar.cc/150?u=a04258114e29026702d",
+            }}
+          />
+          <Button isIconOnly color="primary" variant="flat">
+            <CiBellOn />
+          </Button>
+        </UserContainer>
+      </Link>
     </HeaderContainer>
   );
 };

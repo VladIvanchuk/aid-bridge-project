@@ -28,5 +28,9 @@ export { default as ProfileOpportunities } from "./Profile/ProfileOpportunities"
 export { default as ProfileReviews } from "./Profile/ProfileReviews";
 export { default as ProfileReviewsItem } from "./Profile/ProfileReviewsItem";
 
+export { default as Auth } from "./Auth/Auth";
+export { default as SignUpForm } from "./Auth/SignUpForm";
+export { default as LoginForm } from "./Auth/LoginForm";
+
 export { default as Link } from "./ui/Link";
 export { default as Loader } from "./ui/Loader";

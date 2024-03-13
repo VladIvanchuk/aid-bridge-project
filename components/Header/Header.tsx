@@ -1,9 +1,12 @@
-import { HeaderContainer, UserContainer } from "@/styles/AppStyles";
-import { Input, User, Button } from "@nextui-org/react";
-import { Link } from "@nextui-org/react";
-import { CiSearch, CiBellOn } from "react-icons/ci";
+"use client";
+import { useAuth } from "@/contexts/AuthContext";
+import { HeaderContainer } from "@/styles/AppStyles";
+import { Button, Card, Input, Link } from "@nextui-org/react";
+import { CiSearch } from "react-icons/ci";
 
-const Header = (): React.ReactElement => {
+const Header = (): React.ReactElement | null => {
+  const isAuthPage = useAuth();
+  if (isAuthPage) return null;
   return (
     <HeaderContainer>
       <Input
@@ -19,7 +22,7 @@ const Header = (): React.ReactElement => {
           <CiSearch className="pointer-events-none flex-shrink-0" />
         }
       />
-      <Link href="profile">
+      {/* <Link href="profile">
         <UserContainer className="shadow-sm">
           <User
             name="Jane Doe"
@@ -32,7 +35,15 @@ const Header = (): React.ReactElement => {
             <CiBellOn />
           </Button>
         </UserContainer>
-      </Link>
+      </Link> */}
+      <Card shadow="sm" className="flex-row gap-2 py-2 px-4 w-72">
+        <Button as={Link} href="/auth/login" color="primary">
+          Увійти
+        </Button>
+        <Button as={Link} href="/auth/sign-up" color="primary" variant="flat">
+          Приєднатись
+        </Button>
+      </Card>
     </HeaderContainer>
   );
 };

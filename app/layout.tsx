@@ -1,9 +1,9 @@
+import { Header, Sidebar } from "@/components";
+import { Providers } from "@/lib/providers";
+import { AppWrapper, PageWrapper } from "@/styles/AppStyles";
+import "@/styles/globals.css";
 import type { Metadata } from "next";
 import { Mulish } from "next/font/google";
-import "@/styles/globals.css";
-import { Providers } from "@/lib/providers";
-import { Header, Sidebar } from "@/components";
-import { AppWrapper, PageWrapper } from "@/styles/AppStyles";
 
 const mulish = Mulish({ subsets: ["cyrillic-ext"] });
 

@@ -8,7 +8,7 @@ import {
 import { Navbar } from "..";
 
 const Sidebar = (): React.ReactElement | null => {
-  const isAuthPage = useAuth();
+  const { isAuthPage } = useAuth();
   if (isAuthPage) return null;
   return (
     <SidebarWrapper>

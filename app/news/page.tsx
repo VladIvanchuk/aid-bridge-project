@@ -1,5 +1,16 @@
+import { ListPageWrapper, NewsItem } from "@/components";
+import { NewsContainer } from "@/styles/NewsStyles";
+
 const News = (): React.ReactElement => {
-  return <div className="p-8">News</div>;
+  return (
+    <ListPageWrapper>
+      <NewsContainer>
+        {[...Array(10)].map((_, index) => (
+          <NewsItem key={index} />
+        ))}
+      </NewsContainer>
+    </ListPageWrapper>
+  );
 };
 
 export default News;

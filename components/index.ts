@@ -17,4 +17,7 @@ export { default as VolunteersItem } from "./Volunteers/VolunteersItem";
 
 export { default as Header } from "./Header/Header";
 
+export { default as ListPageHeader } from "./ListPage/ListPageHeader";
+export { default as ListPageWrapper } from "./ListPage/ListPageWrapper";
+
 export { default as Link } from "./ui/Link";

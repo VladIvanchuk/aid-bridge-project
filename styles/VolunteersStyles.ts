@@ -1,25 +1,12 @@
 "use client";
 import styled from "styled-components";
 
-export const VolunteersWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-`;
 export const VolunteersContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 14px;
 `;
 
-export const VolunteersFilter = styled.div`
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  div {
-    cursor: pointer;
-  }
-`;
 export const VolunteersItemContainer = styled.div`
   width: 100%;
   display: flex;

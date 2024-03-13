@@ -1,12 +1,17 @@
 "use client";
 import styled from "styled-components";
 
+export const NewsContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+`;
+
 export const NewsItemContainer = styled.div`
-  width: 100% !important;
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 18px;
-  width: 320px;
   cursor: pointer;
   gap: 10px;
 `;

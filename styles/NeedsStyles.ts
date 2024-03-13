@@ -1,11 +1,6 @@
 "use client";
 import styled from "styled-components";
 
-export const NeedsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-`;
 export const NeedsContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -42,14 +37,6 @@ export const NeedsItemText = styled.p`
 export const NeedsItemTags = styled.div`
   display: flex;
   gap: 8px;
-`;
-export const NeedsFilter = styled.div`
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  div {
-    cursor: pointer;
-  }
 `;
 
 export const NeedsItemBody = styled.div`

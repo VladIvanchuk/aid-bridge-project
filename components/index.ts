@@ -25,6 +25,8 @@ export { default as ProfileBody } from "./Profile/ProfileBody";
 export { default as ProfileAside } from "./Profile/ProfileAside";
 export { default as ProfileTabs } from "./Profile/ProfileTabs";
 export { default as ProfileOpportunities } from "./Profile/ProfileOpportunities";
+export { default as ProfileReviews } from "./Profile/ProfileReviews";
+export { default as ProfileReviewsItem } from "./Profile/ProfileReviewsItem";
 
 export { default as Link } from "./ui/Link";
 export { default as Loader } from "./ui/Loader";

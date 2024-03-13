@@ -1,7 +1,7 @@
 "use client";
 import { Tab, Tabs } from "@nextui-org/react";
 import { useEffect, useState } from "react";
-import { ProfileOpportunities } from "..";
+import { ProfileOpportunities, ProfileReviews } from "..";
 import {
   ProfileTabItemContainer,
   ProfileTabsContainer,
@@ -29,8 +29,7 @@ const ProfileTabs = (): React.ReactElement => {
         </Tab>
         <Tab key="reviews" title="Відгуки">
           <ProfileTabItemContainer>
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-            officia deserunt mollit anim id est laborum.
+            <ProfileReviews />
           </ProfileTabItemContainer>
         </Tab>
       </Tabs>

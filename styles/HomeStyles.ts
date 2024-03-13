@@ -58,6 +58,14 @@ export const BestVolunteersListItem = styled.div`
 export const BestVolunteersListRate = styled.div`
   display: flex;
   gap: 10px;
+  align-items: center;
+  color: var(--text-background);
+  svg {
+    fill: var(--base-accent);
+    width: 16px;
+    height: 16px;
+    margin-top: -2px;
+  }
 `;
 export const NewOppContainer = styled.div`
   display: flex;

@@ -30,8 +30,8 @@ const ProfileHeader = (): React.ReactElement => {
       </ProfileHeaderContainer>
       <ProfileHeaderRight>
         <BestVolunteersListRate>
-          {(Math.random() * 10).toFixed(1)}/10
-          <FaStar fill="var(--base-accent)" />
+          <p>{(Math.random() * 5).toFixed(1)}/5</p>
+          <FaStar />
         </BestVolunteersListRate>
         <Button color="primary" endContent={<FaPencilAlt />}>
           Edit Profile

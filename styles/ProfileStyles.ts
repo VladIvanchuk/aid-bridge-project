@@ -30,6 +30,7 @@ export const ProfileText = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  color: var(--text-background);
 `;
 
 export const ProfileName = styled.p`
@@ -73,6 +74,7 @@ export const ProfileAsideContainer = styled.div`
 export const ProfileTitle = styled.p`
   font-size: 1.1rem;
   font-weight: 500;
+  color: var(--text-background);
 `;
 export const ProfileAsideItems = styled.div`
   display: flex;
@@ -85,6 +87,9 @@ export const ProfileAsideItem = styled.div`
   justify-content: space-between;
   gap: 24px;
   align-items: center;
+  svg {
+    fill: var(--text-background);
+  }
 `;
 export const ProfileAsideItemLabel = styled.div`
   display: flex;
@@ -108,4 +113,19 @@ export const ProfileOppContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+`;
+export const ReviewsRating = styled.div`
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+  svg {
+    fill: var(--base-accent);
+    width: 18px;
+    height: 18px;
+  }
+`;
+export const ProfileReviewsTitle = styled.p`
+  color: var(--text-background);
+  font-weight: 600;
+  font-size: 1rem;
 `;

@@ -11,7 +11,7 @@ export const PageWrapper = styled.main`
   width: 100%;
   padding: 24px;
   background-color: var(--background-light50);
-  color: var(--text-background);
+  color: var(--text-normal);
   border-radius: 16px;
   margin: 12px;
 `;

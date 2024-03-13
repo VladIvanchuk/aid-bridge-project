@@ -26,8 +26,8 @@ const BestVolunteers = (): React.ReactElement => {
                 }}
               />
               <BestVolunteersListRate>
-                {(Math.random() * index).toFixed(1)}/10
-                <FaStar fill="var(--base-accent)" />
+                <p>{(Math.random() * 5).toFixed(1)}/5</p>
+                <FaStar />
               </BestVolunteersListRate>
             </BestVolunteersListItem>
           ))}

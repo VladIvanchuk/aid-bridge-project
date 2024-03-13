@@ -4,6 +4,7 @@ import {
   NewOpportunities,
   MapBanner,
   News,
+  Questions,
 } from "@/components";
 import { HomeContainer, HomeTopContainer } from "@/styles/HomeStyles";
 
@@ -17,6 +18,7 @@ const Home = (): React.ReactElement => {
       <NewOpportunities />
       <MapBanner />
       <News />
+      <Questions />
     </HomeContainer>
   );
 };

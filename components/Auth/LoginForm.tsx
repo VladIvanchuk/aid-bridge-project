@@ -7,24 +7,30 @@ const LoginForm = ({ setSelected }: FormProps): React.ReactElement => {
       <Input
         isRequired
         label="Email"
-        placeholder="Enter your email"
+        placeholder="Введіть свою електронну адресу"
         type="email"
       />
       <Input
         isRequired
-        label="Password"
-        placeholder="Enter your password"
+        label="Пароль"
+        placeholder="Введіть свій пароль"
         type="password"
       />
-      <p className="text-center text-small">
-        Need to create an account?
-        <Link size="sm" onPress={() => setSelected("sign-up")}>
-          Sign up
+      <div className="flex flex-col items-center gap-1">
+        <p className="text-center text-small">
+          Потрібно створити обліковий запис?
+        </p>
+        <Link
+          className="cursor-pointer"
+          size="sm"
+          onPress={() => setSelected("sign-up")}
+        >
+          Зареєструватися
         </Link>
-      </p>
+      </div>
       <div className="flex gap-2 justify-end">
         <Button fullWidth color="primary">
-          Login
+          Увійти
         </Button>
       </div>
     </form>

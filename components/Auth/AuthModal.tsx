@@ -14,16 +14,13 @@ import { AuthPage } from "@/types/AuthTypes";
 import { TRANSITION_EASINGS } from "@nextui-org/framer-transitions";
 
 const AuthModal = (): React.ReactElement => {
-  const { isOpen, onOpenChange,  setAuthType } = useAuth();
-
-
+  const { isOpen, onOpenChange, setAuthType } = useAuth();
 
   return (
     <>
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        placement="top"
         motionProps={{
           variants: {
             enter: {
@@ -61,7 +58,9 @@ const AuthModal = (): React.ReactElement => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Auth</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">
+                Авторизація
+              </ModalHeader>
               <ModalBody>
                 <Auth />
               </ModalBody>

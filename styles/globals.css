@@ -37,6 +37,10 @@
   background-color: var(--text-background);
 }
 
+[data-focus-visible="true"] {
+  outline: none !important;
+}
+
 body {
   color: var(--text-normal);
   background: var(--background-light);

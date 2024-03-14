@@ -3,34 +3,38 @@ import { Button, Input, Link } from "@nextui-org/react";
 
 const SignUpForm = ({ setSelected }: FormProps): React.ReactElement => {
   return (
-    <form className="flex flex-col gap-4 h-[300px]">
+    <form className="flex flex-col gap-4">
       <Input
         isRequired
-        label="Name"
-        placeholder="Enter your name"
+        label="Ім'я"
+        placeholder="Введіть своє ім'я"
         type="name"
       />
       <Input
         isRequired
         label="Email"
-        placeholder="Enter your email"
+        placeholder="Введіть свою електронну адресу"
         type="email"
       />
       <Input
         isRequired
-        label="Password"
-        placeholder="Enter your password"
+        label="Пароль"
+        placeholder="Введіть свій пароль"
         type="password"
       />
-      <p className="text-center text-small">
-        Already have an account?
-        <Link size="sm" onPress={() => setSelected("login")}>
-          Login
+      <div className="flex justify-center gap-1">
+        <p className="text-center text-small">Вже маєте обліковий запис?</p>
+        <Link
+          className="cursor-pointer"
+          size="sm"
+          onPress={() => setSelected("login")}
+        >
+          Увійти
         </Link>
-      </p>
+      </div>
       <div className="flex gap-2 justify-end">
         <Button fullWidth color="primary">
-          Sign up
+          Зареєструватися
         </Button>
       </div>
     </form>

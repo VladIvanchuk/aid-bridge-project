@@ -20,10 +20,10 @@ const Auth = (): React.ReactElement => {
       selectedKey={authType}
       onSelectionChange={handleSelectionChange}
     >
-      <Tab key="login" title="Login">
+      <Tab key="login" title="Вхід">
         <LoginForm setSelected={setAuthType} />
       </Tab>
-      <Tab key="sign-up" title="Sign up">
+      <Tab key="sign-up" title="Реєстрація">
         <SignUpForm setSelected={setAuthType} />
       </Tab>
     </Tabs>

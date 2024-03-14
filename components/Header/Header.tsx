@@ -4,9 +4,8 @@ import { HeaderContainer, UserContainer } from "@/styles/AppStyles";
 import { Button, Card, Input, Link, User } from "@nextui-org/react";
 import { CiBellOn, CiSearch } from "react-icons/ci";
 
-const Header = (): React.ReactElement | null => {
-  const { isAuthPage, isAuthorized } = useAuth();
-  if (isAuthPage) return null;
+const Header = (): React.ReactElement => {
+  const { isAuthorized, handleOpenAuth } = useAuth();
   return (
     <HeaderContainer>
       <Input
@@ -39,10 +38,14 @@ const Header = (): React.ReactElement | null => {
         </Link>
       ) : (
         <Card shadow="sm" className="flex-row gap-2 py-2 px-4 w-72">
-          <Button as={Link} href="/auth/login" color="primary">
+          <Button onClick={() => handleOpenAuth("login")} color="primary">
             Увійти
           </Button>
-          <Button as={Link} href="/auth/sign-up" color="primary" variant="flat">
+          <Button
+            onClick={() => handleOpenAuth("sign-up")}
+            color="primary"
+            variant="flat"
+          >
             Приєднатись
           </Button>
         </Card>

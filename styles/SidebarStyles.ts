@@ -9,7 +9,7 @@ export const SidebarWrapper = styled.div`
 export const SidebarContainer = styled.div`
   width: 250px;
   overflow-y: auto;
-  z-index: 100;
+  z-index: 10;
   padding: 14px 12px 14px 24px;
   height: 100%;
   position: fixed;

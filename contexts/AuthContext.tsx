@@ -1,26 +1,40 @@
 "use client";
 
+import { AuthPage } from "@/types/AuthTypes";
+import { useDisclosure } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import React, { createContext, useContext, useState } from "react";
 
 interface AuthContextType {
-  isAuthPage: boolean;
   isAuthorized: boolean;
   setIsAuthorized: React.Dispatch<React.SetStateAction<boolean>>;
+  isOpen: boolean;
+  onOpenChange: () => void;
+  authType: AuthPage;
+  setAuthType: React.Dispatch<React.SetStateAction<AuthPage>>;
+  handleOpenAuth: (type: AuthPage) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isAuthorized, setIsAuthorized] = useState(false);
+  const [authType, setAuthType] = useState<AuthPage>("login");
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const pathname = usePathname();
-  const isAuthPage = pathname.startsWith("/auth");
+  const handleOpenAuth = (type: AuthPage) => {
+    onOpen();
+    setAuthType(type);
+  };
 
   const contextValue = {
-    isAuthPage,
     isAuthorized,
     setIsAuthorized,
+    isOpen,
+    onOpenChange,
+    authType,
+    setAuthType,
+    handleOpenAuth,
   };
 
   return (

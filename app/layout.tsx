@@ -1,4 +1,4 @@
-import { Header, Sidebar } from "@/components";
+import { AuthModal, Header, Sidebar } from "@/components";
 import { Providers } from "@/lib/providers";
 import { AppWrapper, PageWrapper } from "@/styles/AppStyles";
 import "@/styles/globals.css";

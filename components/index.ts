@@ -11,7 +11,8 @@ export { default as Questions } from "./Home/Questions";
 
 export { default as NewsItem } from "./News/NewsItem";
 
-export { default as RecentNeedsItem } from "./Needs/NeedsItem";
+export { default as NeedsItem } from "./Needs/NeedsItem";
+export { default as NeedsShortItem } from "./Needs/NeedsShortItem";
 
 export { default as VolunteersItem } from "./Volunteers/VolunteersItem";
 
@@ -32,6 +33,9 @@ export { default as AuthModal } from "./Auth/AuthModal";
 export { default as Auth } from "./Auth/Auth";
 export { default as SignUpForm } from "./Auth/SignUpForm";
 export { default as LoginForm } from "./Auth/LoginForm";
+
+export { default as RecommendationItem } from "./ForYou/RecommendationItem";
+export { default as Recommendations } from "./ForYou/Recommendations";
 
 export { default as Link } from "./ui/Link";
 export { default as Loader } from "./ui/Loader";

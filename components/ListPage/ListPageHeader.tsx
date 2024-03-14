@@ -5,7 +5,11 @@ import {
 import { Chip, Button } from "@nextui-org/react";
 import { FaPlus } from "react-icons/fa6";
 
-const PageHeader = (): React.ReactElement => {
+const PageHeader = ({
+  buttonTitle,
+}: {
+  buttonTitle: string;
+}): React.ReactElement => {
   return (
     <ListPageHeaderContainer>
       <ListPageHeaderFilter>
@@ -20,7 +24,7 @@ const PageHeader = (): React.ReactElement => {
         </Chip>
       </ListPageHeaderFilter>
       <Button color="primary" endContent={<FaPlus />}>
-        Додати
+        {buttonTitle}
       </Button>
     </ListPageHeaderContainer>
   );

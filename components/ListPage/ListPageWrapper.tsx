@@ -3,12 +3,14 @@ import { ListPageHeader } from "..";
 
 const ListPageWrapper = ({
   children,
+  buttonTitle,
 }: {
   children: React.ReactNode;
+  buttonTitle: string;
 }): React.ReactElement => {
   return (
     <ListPageContainer>
-      <ListPageHeader />
+      <ListPageHeader buttonTitle={buttonTitle} />
       {children}
     </ListPageContainer>
   );

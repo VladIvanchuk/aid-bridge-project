@@ -18,7 +18,7 @@ const NewOpportunities = (): React.ReactElement => {
         <LinkContainer>
           <Button
             as={Link}
-            href="opportunities"
+            href="/volunteers"
             color="primary"
             endContent={<MdArrowOutward />}
           >

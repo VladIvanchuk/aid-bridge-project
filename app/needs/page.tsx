@@ -3,7 +3,7 @@ import { NeedsContainer } from "@/styles/NeedsStyles";
 
 const Needs = (): React.ReactElement => {
   return (
-    <ListPageWrapper>
+    <ListPageWrapper buttonTitle="Додати потребу">
       <NeedsContainer>
         {[...Array(3)].map((_, index) => (
           <RecentNeedsItem key={index} />

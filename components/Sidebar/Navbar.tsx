@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AiFillHome } from "react-icons/ai";
 import { BsFillGearFill, BsStars } from "react-icons/bs";
-import { FaPeopleGroup } from "react-icons/fa6";
+import { FaMap, FaPeopleGroup } from "react-icons/fa6";
 import { IoMdChatbubbles } from "react-icons/io";
 import { MdEmergencyShare } from "react-icons/md";
 
@@ -13,13 +13,18 @@ const Navbar = (): React.ReactElement => {
   const menuItems = [
     { name: "Головна", path: "/", icon: <AiFillHome /> },
     { name: "Для вас", path: "/for-you", icon: <BsStars /> },
-    { name: "Потреби", path: "/needs", icon: <MdEmergencyShare /> },
-    { name: "Волонтери", path: "/volunteers", icon: <FaPeopleGroup /> },
+    {
+      name: "Карта",
+      path: "/map",
+      icon: <FaMap />,
+    },
     {
       name: "Новини та події",
       path: "/news",
       icon: <IoMdChatbubbles />,
     },
+    { name: "Потреби", path: "/needs", icon: <MdEmergencyShare /> },
+    { name: "Волонтери", path: "/volunteers", icon: <FaPeopleGroup /> },
     {
       name: "Налаштування",
       path: "/settings",

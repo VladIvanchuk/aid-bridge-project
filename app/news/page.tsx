@@ -3,7 +3,7 @@ import { NewsContainer } from "@/styles/NewsStyles";
 
 const News = (): React.ReactElement => {
   return (
-    <ListPageWrapper>
+    <ListPageWrapper buttonTitle="Створити статтю">
       <NewsContainer>
         {[...Array(10)].map((_, index) => (
           <NewsItem key={index} />

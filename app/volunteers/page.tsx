@@ -3,7 +3,7 @@ import { VolunteersContainer } from "@/styles/VolunteersStyles";
 
 const Volunteers = (): React.ReactElement => {
   return (
-    <ListPageWrapper>
+    <ListPageWrapper buttonTitle="Створити можливість">
       <VolunteersContainer>
         {[...Array(13)].map((_, index) => (
           <VolunteersItem key={index} />

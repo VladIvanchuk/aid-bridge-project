@@ -1,4 +1,4 @@
-import { ListPageWrapper, RecentNeedsItem } from "@/components";
+import { ListPageWrapper, NeedsItem } from "@/components";
 import { NeedsContainer } from "@/styles/NeedsStyles";
 
 const Needs = (): React.ReactElement => {
@@ -6,7 +6,7 @@ const Needs = (): React.ReactElement => {
     <ListPageWrapper buttonTitle="Додати потребу">
       <NeedsContainer>
         {[...Array(3)].map((_, index) => (
-          <RecentNeedsItem key={index} />
+          <NeedsItem key={index} />
         ))}
       </NeedsContainer>
     </ListPageWrapper>

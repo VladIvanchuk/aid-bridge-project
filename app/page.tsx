@@ -1,10 +1,10 @@
 import {
-  RecentNeeds,
   BestVolunteers,
-  NewOpportunities,
   MapBanner,
+  NewOpportunities,
   News,
   Questions,
+  RecentNeeds,
 } from "@/components";
 import { HomeContainer, HomeTopContainer } from "@/styles/HomeStyles";
 

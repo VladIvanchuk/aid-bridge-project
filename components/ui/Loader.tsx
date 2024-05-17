@@ -2,9 +2,9 @@ import { LoaderContainer } from "@/styles/UiStyles";
 import { Spinner } from "@nextui-org/react";
 
 const Loader = ({
-  isFullscreen,
+  isFullscreen = false,
 }: {
-  isFullscreen: boolean;
+  isFullscreen?: boolean;
 }): React.ReactElement => {
   return (
     <LoaderContainer $isFullscreen={isFullscreen}>

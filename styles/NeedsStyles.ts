@@ -63,6 +63,7 @@ export const NeedsShortItemBody = styled.div`
 `;
 export const NeedsItemImage = styled.div<{ $url: string }>`
   width: 150px;
+  min-height: 100px;
   background-color: #f5f5f5;
   flex-shrink: 0;
   border-radius: 10px;

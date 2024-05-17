@@ -4,9 +4,10 @@ import { NeedsContainer } from "@/styles/NeedsStyles";
 import { useEffect, useState } from "react";
 import NeedsItem from "./NeedsItem";
 import Loader from "../ui/Loader";
+import { INeed } from "@/models/need";
 
 const NeedsList = () => {
-  const [data, setData] = useState([]);
+  const [needs, setData] = useState<INeed[]>([]);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -16,13 +17,13 @@ const NeedsList = () => {
     });
   }, []);
 
-  if (isLoading) return <Loader />;
-  if (!data) return <p>No profile data</p>;
+  if (isLoading) return <Loader isFullscreen={true} />;
+  if (!needs) return <p>No needs data</p>;
 
   return (
     <NeedsContainer>
-      {data.map((need: { id: string }) => (
-        <NeedsItem key={need.id} />
+      {needs.map((need) => (
+        <NeedsItem key={need.id} {...need} />
       ))}
     </NeedsContainer>
   );

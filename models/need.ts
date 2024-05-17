@@ -1,15 +1,30 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
+import { Schema, Document, Model } from "mongoose";
 
-const needSchema = new Schema({
+export interface INeed extends Document {
+  title: string;
+  author: string;
+  body: string;
+  location: string;
+  comments: Array<{
+    body: string;
+    date: Date;
+  }>;
+  createdAt: Date;
+  hidden?: boolean;
+}
+
+const needSchema = new Schema<INeed>({
   title: { type: String, required: true },
   author: { type: String, required: true },
   body: { type: String, required: true },
   location: { type: String, required: true },
   comments: [{ body: String, date: Date }],
-  cratedAt: { type: Date, default: Date.now, required: true },
+  createdAt: { type: Date, default: Date.now, required: true },
   hidden: Boolean,
 });
 
-const Need = mongoose.models.Need || mongoose.model("Need", needSchema);
+const Need: Model<INeed> =
+  mongoose.models.Need || mongoose.model<INeed>("Need", needSchema);
 
 export default Need;

@@ -1,23 +1,11 @@
-import dbConnect from "@/lib/mongodb";
 import Need from "@/models/need";
-import type { NextApiRequest, NextApiResponse } from "next";
+import { createHandler, getAllHandler } from "@/utils/crudHandlers";
+import { NextRequest } from "next/server";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
-  await dbConnect();
+export async function POST(req: NextRequest) {
+  return createHandler(req, Need);
+}
 
-  if (req.method === "GET") {
-    try {
-      const needs = await Need.find({});
-      res.status(200).json(needs);
-    } catch (err: any) {
-      res.status(500).json({ error: err.message });
-    }
-  } else {
-    // Optionally handle other methods or send a method not allowed response
-    res.setHeader("Allow", ["GET"]);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
-  }
+export async function GET() {
+  return getAllHandler(Need);
 }

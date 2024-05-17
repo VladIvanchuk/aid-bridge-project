@@ -13,6 +13,7 @@ export { default as NewsItem } from "./News/NewsItem";
 
 export { default as NeedsItem } from "./Needs/NeedsItem";
 export { default as NeedsShortItem } from "./Needs/NeedsShortItem";
+export { default as NeedsList } from "./Needs/NeedsList";
 
 export { default as VolunteersItem } from "./Volunteers/VolunteersItem";
 

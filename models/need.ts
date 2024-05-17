@@ -10,6 +10,6 @@ const needSchema = new Schema({
   hidden: Boolean,
 });
 
-const Need = mongoose.model("Need", needSchema);
+const Need = mongoose.models.Need || mongoose.model("Need", needSchema);
 
 export default Need;

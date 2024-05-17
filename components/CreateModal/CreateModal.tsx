@@ -1,12 +1,16 @@
-"use client";
-
-import { useAuth } from "@/contexts/AuthContext";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  useDisclosure,
+} from "@nextui-org/react";
+import Auth from "../Auth/Auth";
 import { TRANSITION_EASINGS } from "@nextui-org/framer-transitions";
-import { Modal, ModalBody, ModalContent, ModalHeader } from "@nextui-org/react";
-import { Auth } from "..";
 
-const AuthModal = (): React.ReactElement => {
-  const { isOpen, onOpenChange } = useAuth();
+const CreateModal = (): React.ReactElement => {
+  const { isOpen, onOpenChange } = useDisclosure();
+
   return (
     <>
       <Modal
@@ -50,7 +54,7 @@ const AuthModal = (): React.ReactElement => {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Авторизація
+                Створити
               </ModalHeader>
               <ModalBody>
                 <Auth />
@@ -63,4 +67,4 @@ const AuthModal = (): React.ReactElement => {
   );
 };
 
-export default AuthModal;
+export default CreateModal;

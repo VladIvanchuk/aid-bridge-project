@@ -2,7 +2,6 @@
 
 import { AuthPage } from "@/types/AuthTypes";
 import { useDisclosure } from "@nextui-org/react";
-import { usePathname } from "next/navigation";
 import React, { createContext, useContext, useState } from "react";
 
 interface AuthContextType {
@@ -18,7 +17,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isAuthorized, setIsAuthorized] = useState(true);
+  const [isAuthorized, setIsAuthorized] = useState(false);
   const [authType, setAuthType] = useState<AuthPage>("login");
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -42,10 +41,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export const useAuth = (): AuthContextType => {
+export function useAuth(): AuthContextType {
   const context = useContext(AuthContext);
   if (!context) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
-};
+}

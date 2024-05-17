@@ -9,7 +9,7 @@ export const LinkContainer = styled.div`
 `;
 export const LoaderContainer = styled.div<{ $isFullscreen: boolean }>`
   width: 100%;
-  height: ${(props) => (props.$isFullscreen ? "100vh" : "100%")};
+  height: ${(props) => (props.$isFullscreen ? "50vh" : "100%")};
   display: grid;
   align-content: center;
 `;

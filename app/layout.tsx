@@ -25,6 +25,7 @@ export default function RootLayout({
             <Sidebar />
             <PageWrapper>
               <Header />
+              <AuthModal />
               {children}
             </PageWrapper>
           </AppWrapper>

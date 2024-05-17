@@ -1,21 +1,25 @@
-import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  useDisclosure,
-} from "@nextui-org/react";
-import Auth from "../Auth/Auth";
 import { TRANSITION_EASINGS } from "@nextui-org/framer-transitions";
+import { Modal, ModalBody, ModalContent, ModalHeader } from "@nextui-org/react";
 
-const CreateModal = (): React.ReactElement => {
-  const { isOpen, onOpenChange } = useDisclosure();
+interface CreateModalProps {
+  children: React.ReactNode;
+  isOpen: boolean;
+  onOpenChange: () => void;
+  title: string;
+}
 
+const CreateModal = ({
+  children,
+  isOpen,
+  onOpenChange,
+  title,
+}: CreateModalProps): React.ReactElement => {
   return (
     <>
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
+        size="5xl"
         motionProps={{
           variants: {
             enter: {
@@ -53,12 +57,8 @@ const CreateModal = (): React.ReactElement => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">
-                Створити
-              </ModalHeader>
-              <ModalBody>
-                <Auth />
-              </ModalBody>
+              <ModalHeader className="flex flex-col gap-1">{title}</ModalHeader>
+              <ModalBody>{children}</ModalBody>
             </>
           )}
         </ModalContent>

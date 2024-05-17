@@ -75,3 +75,32 @@ export const NeedsShortItemImage = styled(NeedsItemImage)`
   width: 100%;
   height: 200px;
 `;
+export const CreateNeedContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+export const CreateNeedContainerHeader = styled.div`
+  display: flex;
+  gap: 16px;
+  align-items: end;
+  margin-bottom: 8px;
+`;
+export const ImagePickerContainer = styled.div`
+  width: 300px;
+  height: 150px;
+  background-color: var(--background-light50);
+  border-radius: 14px;
+`;
+export const CreateNeedContainerRow = styled.div`
+  display: flex;
+  gap: 16px;
+`;
+export const CreateNeedContainerFooter = styled.div`
+  display: flex;
+  gap: 16px;
+  justify-content: end;
+  margin-bottom: 8px;
+`;

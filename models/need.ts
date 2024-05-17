@@ -11,7 +11,6 @@ export interface INeed extends Document {
     date: Date;
   }>;
   createdAt: Date;
-  hidden?: boolean;
 }
 
 const needSchema = new Schema<INeed>({
@@ -21,7 +20,6 @@ const needSchema = new Schema<INeed>({
   location: { type: String, required: true },
   comments: [{ body: String, date: Date }],
   createdAt: { type: Date, default: Date.now, required: true },
-  hidden: Boolean,
 });
 
 const Need: Model<INeed> =

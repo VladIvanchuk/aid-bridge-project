@@ -7,8 +7,10 @@ import { FaPlus } from "react-icons/fa6";
 
 const PageHeader = ({
   buttonTitle,
+  onClick,
 }: {
   buttonTitle: string;
+  onClick?: () => void;
 }): React.ReactElement => {
   return (
     <ListPageHeaderContainer>
@@ -23,7 +25,7 @@ const PageHeader = ({
           Військові
         </Chip>
       </ListPageHeaderFilter>
-      <Button color="primary" endContent={<FaPlus />}>
+      <Button color="primary" endContent={<FaPlus />} onClick={onClick}>
         {buttonTitle}
       </Button>
     </ListPageHeaderContainer>

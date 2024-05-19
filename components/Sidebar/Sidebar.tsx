@@ -11,7 +11,7 @@ const Sidebar = (): React.ReactElement => {
     <>
       <SidebarWrapper>
         <SidebarContainer>
-          <LogoContainer>Logo</LogoContainer>
+          <LogoContainer>AidBridge</LogoContainer>
           <Navbar />
         </SidebarContainer>
       </SidebarWrapper>

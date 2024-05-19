@@ -9,7 +9,8 @@ import {
 import { CreateModal } from "..";
 import { Button, Input, Select, SelectItem, Textarea } from "@nextui-org/react";
 import { createNeed } from "@/lib/api";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import Image from "next/image";
 
 export const categories = [
   { value: "category1", label: "Category 1" },
@@ -29,7 +30,12 @@ const CreateNeed = ({
     body: "",
     location: "",
     author: "Name",
+    image: null,
   });
+
+  const [imageURL, setImageURL] = useState<string>("");
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedOptions = Array.from(
@@ -52,6 +58,19 @@ const CreateNeed = ({
     }));
   };
 
+  const handleImageSelect = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+      const url = URL.createObjectURL(file);
+      setImageURL(url);
+    }
+  };
+  console.log(imageURL);
+
   const handleSubmit = async () => {
     try {
       const response = await createNeed(formData);
@@ -70,8 +89,25 @@ const CreateNeed = ({
     >
       <CreateNeedContainer>
         <CreateNeedContainerHeader>
-          <ImagePickerContainer>
-            <Input type="file" />
+          <ImagePickerContainer onClick={handleImageSelect}>
+            {imageURL ? (
+              <Image
+                src={imageURL}
+                alt="Фото потреби"
+                width={300}
+                height={150}
+              />
+            ) : (
+              <>
+                <span>Натисніть для завантаження зображення</span>
+                <Input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                  className="hidden"
+                />
+              </>
+            )}
           </ImagePickerContainer>
           <Input
             type="text"

@@ -6,10 +6,9 @@ export interface INeed extends Document {
   author: string;
   body: string;
   location: string;
-  comments: Array<{
-    body: string;
-    date: Date;
-  }>;
+  categories: mongoose.Types.ObjectId[];
+  completed: boolean;
+  ImageURL: string;
   createdAt: Date;
 }
 
@@ -18,7 +17,9 @@ const needSchema = new Schema<INeed>({
   author: { type: String, required: true },
   body: { type: String, required: true },
   location: { type: String, required: true },
-  comments: [{ body: String, date: Date }],
+  categories: [{ type: mongoose.Schema.Types.ObjectId, ref: "Category" }],
+  completed: { type: Boolean },
+  ImageURL: { type: String, required: true },
   createdAt: { type: Date, default: Date.now, required: true },
 });
 

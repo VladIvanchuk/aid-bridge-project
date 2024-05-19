@@ -4,14 +4,20 @@ import { Button } from "@nextui-org/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AiFillHome } from "react-icons/ai";
+import { BiMessageAlt } from "react-icons/bi";
 import { BsFillGearFill, BsStars } from "react-icons/bs";
-import { FaMap, FaPeopleGroup } from "react-icons/fa6";
+import { FaEnvelope, FaMap, FaPeopleGroup } from "react-icons/fa6";
 import { IoMdChatbubbles } from "react-icons/io";
 import { MdEmergencyShare } from "react-icons/md";
 
 const Navbar = (): React.ReactElement => {
   const menuItems = [
     { name: "Головна", path: "/", icon: <AiFillHome /> },
+    {
+      name: "Повіломлення",
+      path: "/settings",
+      icon: <FaEnvelope />,
+    },
     { name: "Для вас", path: "/for-you", icon: <BsStars /> },
     {
       name: "Карта",
@@ -25,11 +31,6 @@ const Navbar = (): React.ReactElement => {
     },
     { name: "Потреби", path: "/needs", icon: <MdEmergencyShare /> },
     { name: "Волонтери", path: "/volunteers", icon: <FaPeopleGroup /> },
-    {
-      name: "Налаштування",
-      path: "/settings",
-      icon: <BsFillGearFill />,
-    },
   ];
   const pathname = usePathname();
   const isActive = (path: string) => pathname === path;

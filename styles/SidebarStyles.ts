@@ -1,6 +1,5 @@
 "use client";
 import styled from "styled-components";
-import { User } from "@nextui-org/react";
 
 export const SidebarWrapper = styled.div`
   flex-shrink: 0;
@@ -23,6 +22,7 @@ export const LogoContainer = styled.div`
   background-color: var(--background-light50);
   color: var(--text-background);
   font-weight: 600;
+  text-align: center;
 `;
 
 export const NavContainer = styled.div`

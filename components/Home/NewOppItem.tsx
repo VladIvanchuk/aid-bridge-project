@@ -32,12 +32,11 @@ const NewOppItem = (): React.ReactElement => {
         <CardBody>
           <NewOppItemLocation>
             <MdLocationPin />
-            <NewOppItemLocationText>Lviv city center</NewOppItemLocationText>
+            <NewOppItemLocationText>Львів</NewOppItemLocationText>
           </NewOppItemLocation>
           <NewOppItemText>
-            Make beautiful websites regardless of your design experience. Make
-            beautiful websites regardless of your design experience. beautiful
-            websites regardless of your design experience.
+            Готовий допомагати військовим. Є модливість привезти авто з за
+            кордону. Медичне забезпечення та інші необхідні речі.
           </NewOppItemText>
         </CardBody>
         <Divider />

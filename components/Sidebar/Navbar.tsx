@@ -15,7 +15,7 @@ const Navbar = (): React.ReactElement => {
     { name: "Головна", path: "/", icon: <AiFillHome /> },
     {
       name: "Повіломлення",
-      path: "/settings",
+      path: "/messages",
       icon: <FaEnvelope />,
     },
     { name: "Для вас", path: "/for-you", icon: <BsStars /> },

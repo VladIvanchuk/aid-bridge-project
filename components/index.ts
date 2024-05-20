@@ -41,6 +41,9 @@ export { default as LoginForm } from "./Auth/LoginForm";
 export { default as RecommendationItem } from "./ForYou/RecommendationItem";
 export { default as Recommendations } from "./ForYou/Recommendations";
 
+export { default as ChatList } from "./Messages/ChatList";
+export { default as ChatWindow } from "./Messages/ChatWindow";
+
 export { default as Link } from "./ui/Link";
 export { default as Loader } from "./ui/Loader";
 export { default as DateFormatter } from "./ui/DateFormatter";

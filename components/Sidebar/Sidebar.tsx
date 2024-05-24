@@ -15,7 +15,6 @@ const Sidebar = (): React.ReactElement => {
           <Navbar />
         </SidebarContainer>
       </SidebarWrapper>
-      {/* <AuthModal /> */}
     </>
   );
 };

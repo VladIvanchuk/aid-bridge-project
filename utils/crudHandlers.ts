@@ -1,6 +1,6 @@
 import dbConnect from "@/lib/mongodb";
-import { NextRequest, NextResponse } from "next/server";
 import { Model } from "mongoose";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function createHandler(req: NextRequest, Model: Model<any>) {
   await dbConnect();

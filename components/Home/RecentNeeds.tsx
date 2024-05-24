@@ -1,18 +1,18 @@
 "use client";
-import {
-  RecentNeedsContainer,
-  HomeTitle,
-  HomeSectionHeader,
-} from "@/styles/HomeStyles";
-import { Loader, NeedsItem } from "..";
-import { LinkContainer } from "@/styles/UiStyles";
-import Link from "next/link";
-import { Button, useDisclosure } from "@nextui-org/react";
-import { MdArrowOutward } from "react-icons/md";
-import { getNeeds } from "@/lib/api";
+import { getNeeds } from "@/lib/need/api";
 import { INeed } from "@/models/need";
+import {
+  HomeSectionHeader,
+  HomeTitle,
+  RecentNeedsContainer,
+} from "@/styles/HomeStyles";
 import { NeedsContainer } from "@/styles/NeedsStyles";
-import { useState, useEffect } from "react";
+import { LinkContainer } from "@/styles/UiStyles";
+import { Button } from "@nextui-org/react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { MdArrowOutward } from "react-icons/md";
+import { Loader, NeedsItem } from "..";
 
 const RecentNeeds = (): React.ReactElement => {
   const [needs, setData] = useState<INeed[]>([]);

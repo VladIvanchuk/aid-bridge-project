@@ -1,7 +1,7 @@
 "use client";
 
 import { DateFormatter } from "@/components";
-import { getNeedById } from "@/lib/api";
+import { getNeedById } from "@/lib/need/api";
 import { INeed } from "@/models/need";
 import {
   NeedDetailBody,

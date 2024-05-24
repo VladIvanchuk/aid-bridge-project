@@ -1,5 +1,5 @@
 "use client";
-import { getNeeds } from "@/lib/api";
+import { getNeeds } from "@/lib/need/api";
 import { NeedsContainer } from "@/styles/NeedsStyles";
 import { useEffect, useState } from "react";
 import NeedsItem from "./NeedsItem";

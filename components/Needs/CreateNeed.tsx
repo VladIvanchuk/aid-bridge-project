@@ -8,7 +8,7 @@ import {
 } from "@/styles/NeedsStyles";
 import { CreateModal } from "..";
 import { Button, Input, Select, SelectItem, Textarea } from "@nextui-org/react";
-import { createNeed } from "@/lib/api";
+import { createNeed } from "@/lib/need/api";
 import { useRef, useState } from "react";
 import Image from "next/image";
 

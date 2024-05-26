@@ -24,7 +24,7 @@ export async function registerHandler(req: NextRequest, User: Model<IUser>) {
     const newUser = await User.create({
       email,
       password: hashedPassword,
-      profile: {
+      userProfile: {
         username: name,
       },
     });

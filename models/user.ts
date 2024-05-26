@@ -22,8 +22,8 @@ const userSchema = new Schema<IUser>({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   userProfile: {
-    username: { type: String },
-    location: { type: String },
+    username: { type: String, default: "" },
+    location: { type: String, default: "" },
     role: { type: String, enum: ["volunteer", "beneficiary"] },
     needs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Need" }],
     opportunities: [

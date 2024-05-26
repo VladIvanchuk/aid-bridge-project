@@ -3,13 +3,14 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { TRANSITION_EASINGS } from "@nextui-org/framer-transitions";
 import { Modal, ModalBody, ModalContent, ModalHeader } from "@nextui-org/react";
-import { Auth } from "..";
+import { Auth, CreateProfile } from "..";
 
 const AuthModal = (): React.ReactElement => {
-  const { isOpen, onOpenChange } = useAuth();
+  const { isOpen, onOpenChange, createProfile } = useAuth();
   return (
     <>
       <Modal
+        size={createProfile ? "full" : "lg"}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         motionProps={{
@@ -50,10 +51,10 @@ const AuthModal = (): React.ReactElement => {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Авторизація
+                {createProfile ? "Створіть профіль" : "Авторизація"}
               </ModalHeader>
               <ModalBody>
-                <Auth />
+                {createProfile ? <CreateProfile /> : <Auth />}
               </ModalBody>
             </>
           )}

@@ -24,6 +24,9 @@ interface AuthContextType {
   handleLogout: () => void;
   error: string | null;
   loading: boolean;
+  createProfile: boolean;
+  setCreateProfile: React.Dispatch<React.SetStateAction<boolean>>;
+  user: IUser | null;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -33,6 +36,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [user, setUser] = useState<IUser | null>(null);
+  const [createProfile, setCreateProfile] = useState(false);
   const [authType, setAuthType] = useState<AuthPage>("login");
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -46,6 +50,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       await loginUser({ email, password });
       setIsAuthorized(true);
+      onOpenChange();
     } catch (err) {
       setError("Login failed");
     } finally {
@@ -66,6 +71,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       await registerUser({ name, email, password });
       setIsAuthorized(true);
+      setCreateProfile(true);
     } catch (err) {
       setError("Registration failed");
     } finally {
@@ -107,6 +113,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     handleLogout,
     loading,
     error,
+    createProfile,
+    setCreateProfile,
+    user,
   };
 
   return (

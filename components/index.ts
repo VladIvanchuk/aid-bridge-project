@@ -37,6 +37,7 @@ export { default as AuthModal } from "./Auth/AuthModal";
 export { default as Auth } from "./Auth/Auth";
 export { default as SignUpForm } from "./Auth/SignUpForm";
 export { default as LoginForm } from "./Auth/LoginForm";
+export { default as CreateProfile } from "./Auth/CreateProfile";
 
 export { default as RecommendationItem } from "./ForYou/RecommendationItem";
 export { default as Recommendations } from "./ForYou/Recommendations";

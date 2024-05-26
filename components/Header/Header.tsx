@@ -5,7 +5,7 @@ import { Button, Card, Input, Link, User } from "@nextui-org/react";
 import { CiBellOn, CiSearch } from "react-icons/ci";
 
 const Header = (): React.ReactElement => {
-  const { isAuthorized, handleOpenAuth } = useAuth();
+  const { isAuthorized, handleOpenAuth, user } = useAuth();
   return (
     <HeaderContainer>
       <Input
@@ -25,10 +25,10 @@ const Header = (): React.ReactElement => {
         <Link href="profile">
           <UserContainer className="shadow-sm">
             <User
-              name="Jane Doe"
-              description="Volunteer"
+              name={user?.userProfile.username}
+              description={user?.userProfile.role}
               avatarProps={{
-                src: "https://i.pravatar.cc/150?u=a04258114e29026702d",
+                src: user?.userProfile.profilePhoto,
               }}
             />
             <Button isIconOnly color="primary" variant="flat">

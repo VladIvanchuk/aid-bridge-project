@@ -2,10 +2,12 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { HeaderContainer, UserContainer } from "@/styles/AppStyles";
 import { Button, Card, Input, Link, User } from "@nextui-org/react";
+import React, { useState, useEffect } from "react";
 import { CiBellOn, CiSearch } from "react-icons/ci";
 
 const Header = (): React.ReactElement => {
   const { isAuthorized, handleOpenAuth, user } = useAuth();
+
   return (
     <HeaderContainer>
       <Input
@@ -54,4 +56,4 @@ const Header = (): React.ReactElement => {
   );
 };
 
-export default Header;
+export default React.memo(Header);

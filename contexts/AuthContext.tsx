@@ -1,5 +1,6 @@
 "use client";
 
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { loginUser, registerUser } from "@/lib/auth/api";
 import { getUserData } from "@/lib/user/api";
 import { IUser } from "@/models/user";
@@ -32,7 +33,10 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isAuthorized, setIsAuthorized] = useState<boolean>(false);
+  const [isAuthorized, setIsAuthorized] = useLocalStorage<boolean>(
+    "isAuthorized",
+    false,
+  );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [user, setUser] = useState<IUser | null>(null);
@@ -98,7 +102,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     if (isAuthorized) {
       fetchData();
     }
-  }, [isAuthorized]);
+  }, [isAuthorized, setIsAuthorized]);
 
   const contextValue = {
     isAuthorized,

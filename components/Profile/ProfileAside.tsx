@@ -1,3 +1,6 @@
+"use client";
+import { useAuth } from "@/contexts/AuthContext";
+
 import {
   ProfileAsideContainer,
   ProfileAsideItem,
@@ -11,6 +14,8 @@ import {
 import { FaClock, FaLocationDot, FaUser } from "react-icons/fa6";
 
 const ProfileAside = (): React.ReactElement => {
+  const { user } = useAuth();
+
   return (
     <ProfileAsideWrapper>
       <ProfileAsideContainer>

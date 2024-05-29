@@ -1,22 +1,26 @@
+"use client";
+
+import { useAuth } from "@/contexts/AuthContext";
 import { BestVolunteersListRate } from "@/styles/HomeStyles";
 import {
-  ProfileHeaderWrapper,
   ProfileHeaderContainer,
-  ProfileDescription,
-  ProfileName,
-  ProfileText,
-  ProfileRole,
   ProfileHeaderRight,
+  ProfileHeaderWrapper,
+  ProfileName,
+  ProfileRole,
+  ProfileText,
 } from "@/styles/ProfileStyles";
 import { Avatar, Button } from "@nextui-org/react";
 import { FaPencilAlt, FaStar } from "react-icons/fa";
 
 const ProfileHeader = (): React.ReactElement => {
+  const { user } = useAuth();
+
   return (
     <ProfileHeaderWrapper>
       <ProfileHeaderContainer>
         <Avatar
-          src="https://i.pravatar.cc/150?u=a04258114e29026702d"
+          src={user?.userProfile.profilePhoto}
           className="w-38 h-38"
           showFallback
           classNames={{
@@ -24,8 +28,8 @@ const ProfileHeader = (): React.ReactElement => {
           }}
         />
         <ProfileText>
-          <ProfileName>Jane Doe</ProfileName>
-          <ProfileRole>Volunteer</ProfileRole>
+          <ProfileName>{user?.userProfile.username}</ProfileName>
+          <ProfileRole>{user?.userProfile.role}</ProfileRole>
         </ProfileText>
       </ProfileHeaderContainer>
       <ProfileHeaderRight>

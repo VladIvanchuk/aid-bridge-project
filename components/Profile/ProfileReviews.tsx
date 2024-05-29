@@ -4,21 +4,11 @@ import {
   ProfileOppContainer,
   ProfileReviewsTitle,
 } from "@/styles/ProfileStyles";
-import { useState, useEffect } from "react";
-import { Loader, ProfileReviewsItem } from "..";
 import { Button, Card } from "@nextui-org/react";
 import { FaPlus } from "react-icons/fa6";
+import { ProfileReviewsItem } from "..";
 
 const ProfileReviews = (): React.ReactElement => {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return <Loader />;
-  }
   return (
     <ProfileOppContainer>
       <Card

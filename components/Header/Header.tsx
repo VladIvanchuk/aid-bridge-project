@@ -7,6 +7,11 @@ import { CiBellOn, CiSearch } from "react-icons/ci";
 
 const Header = (): React.ReactElement => {
   const { isAuthorized, handleOpenAuth, user } = useAuth();
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
 
   return (
     <HeaderContainer>
@@ -23,34 +28,38 @@ const Header = (): React.ReactElement => {
           <CiSearch className="pointer-events-none flex-shrink-0" />
         }
       />
-      {isAuthorized ? (
-        <Link href="profile">
-          <UserContainer className="shadow-sm">
-            <User
-              name={user?.userProfile.username}
-              description={user?.userProfile.role}
-              avatarProps={{
-                src: user?.userProfile.profilePhoto,
-              }}
-            />
-            <Button isIconOnly color="primary" variant="flat">
-              <CiBellOn />
-            </Button>
-          </UserContainer>
-        </Link>
-      ) : (
-        <Card shadow="sm" className="flex-row gap-2 py-2 px-4 w-72">
-          <Button onClick={() => handleOpenAuth("login")} color="primary">
-            Увійти
-          </Button>
-          <Button
-            onClick={() => handleOpenAuth("sign-up")}
-            color="primary"
-            variant="flat"
-          >
-            Приєднатись
-          </Button>
-        </Card>
+      {hydrated && (
+        <>
+          {isAuthorized ? (
+            <Link href="profile">
+              <UserContainer className="shadow-sm">
+                <User
+                  name={user?.userProfile.username}
+                  description={user?.userProfile.role}
+                  avatarProps={{
+                    src: user?.userProfile.profilePhoto,
+                  }}
+                />
+                <Button isIconOnly color="primary" variant="flat">
+                  <CiBellOn />
+                </Button>
+              </UserContainer>
+            </Link>
+          ) : (
+            <Card shadow="sm" className="flex-row gap-2 py-2 px-4 w-72">
+              <Button onClick={() => handleOpenAuth("login")} color="primary">
+                Увійти
+              </Button>
+              <Button
+                onClick={() => handleOpenAuth("sign-up")}
+                color="primary"
+                variant="flat"
+              >
+                Приєднатись
+              </Button>
+            </Card>
+          )}
+        </>
       )}
     </HeaderContainer>
   );

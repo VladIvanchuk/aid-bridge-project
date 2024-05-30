@@ -6,12 +6,12 @@ import React, { useState, useEffect } from "react";
 import { CiBellOn, CiSearch } from "react-icons/ci";
 
 const Header = (): React.ReactElement => {
-  const { isAuthorized, handleOpenAuth, user } = useAuth();
-  const [hydrated, setHydrated] = useState(false);
+  const { handleOpenAuth } = useAuth();
+  // const [hydrated, setHydrated] = useState(false);
 
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
+  // useEffect(() => {
+  //   setHydrated(true);
+  // }, []);
 
   return (
     <HeaderContainer>
@@ -28,7 +28,7 @@ const Header = (): React.ReactElement => {
           <CiSearch className="pointer-events-none flex-shrink-0" />
         }
       />
-      {hydrated && (
+      {/* {hydrated && (
         <>
           {isAuthorized ? (
             <Link href="profile">
@@ -60,7 +60,7 @@ const Header = (): React.ReactElement => {
             </Card>
           )}
         </>
-      )}
+      )} */}
     </HeaderContainer>
   );
 };

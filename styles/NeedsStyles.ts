@@ -159,3 +159,10 @@ export const NeedDetailBody = styled.p`
   font-size: 20px;
   color: var(--text-normal);
 `;
+export const MapPageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+`;

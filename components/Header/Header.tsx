@@ -1,17 +1,18 @@
 "use client";
 import { useAuth } from "@/contexts/AuthContext";
 import { HeaderContainer, UserContainer } from "@/styles/AppStyles";
-import { Button, Card, Input, Link, User } from "@nextui-org/react";
+import { Button, Card, Input, User } from "@nextui-org/react";
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { CiBellOn, CiSearch } from "react-icons/ci";
 
 const Header = (): React.ReactElement => {
-  const { handleOpenAuth } = useAuth();
-  // const [hydrated, setHydrated] = useState(false);
+  const { handleOpenAuth, isAuthorized, user } = useAuth();
+  const [hydrated, setHydrated] = useState(false);
 
-  // useEffect(() => {
-  //   setHydrated(true);
-  // }, []);
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
 
   return (
     <HeaderContainer>
@@ -28,7 +29,7 @@ const Header = (): React.ReactElement => {
           <CiSearch className="pointer-events-none flex-shrink-0" />
         }
       />
-      {/* {hydrated && (
+      {hydrated && (
         <>
           {isAuthorized ? (
             <Link href="profile">
@@ -60,7 +61,7 @@ const Header = (): React.ReactElement => {
             </Card>
           )}
         </>
-      )} */}
+      )}
     </HeaderContainer>
   );
 };

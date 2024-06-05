@@ -83,26 +83,26 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       const data = await getUserData();
-  //       setUser(data.user);
-  //     } catch (err: unknown) {
-  //       if (err instanceof Error) {
-  //         setError(err.message);
-  //       } else {
-  //         setError("An unexpected error occurred");
-  //       }
-  //       setIsAuthorized(false);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   }
-  //   if (isAuthorized) {
-  //     fetchData();
-  //   }
-  // }, [isAuthorized, setIsAuthorized]);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await getUserData();
+        setUser(data.user);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("An unexpected error occurred");
+        }
+        setIsAuthorized(false);
+      } finally {
+        setLoading(false);
+      }
+    }
+    if (isAuthorized && !user) {
+      fetchData();
+    }
+  }, [isAuthorized, setIsAuthorized, user]);
 
   const contextValue = {
     isAuthorized,

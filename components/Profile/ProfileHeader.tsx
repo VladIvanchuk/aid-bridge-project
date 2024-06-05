@@ -34,8 +34,16 @@ const ProfileHeader = (): React.ReactElement => {
       </ProfileHeaderContainer>
       <ProfileHeaderRight>
         <BestVolunteersListRate>
-          <p>{(Math.random() * 5).toFixed(1)}/5</p>
-          <FaStar />
+          {user?.userProfile.rating ? (
+            <>
+              <p>{user?.userProfile.rating}/5</p>
+              <FaStar />
+            </>
+          ) : (
+            <>
+              <p>У вас поки немає рейтенгу</p>
+            </>
+          )}
         </BestVolunteersListRate>
         <Button color="primary" endContent={<FaPencilAlt />}>
           Edit Profile

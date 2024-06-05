@@ -3,11 +3,9 @@ import {
   MapBanner,
   NewOpportunities,
   News,
-  Questions,
   RecentNeeds,
 } from "@/components";
 import { HomeContainer, HomeTopContainer } from "@/styles/HomeStyles";
-
 const Home = (): React.ReactElement => {
   return (
     <HomeContainer>
@@ -18,7 +16,6 @@ const Home = (): React.ReactElement => {
       <NewOpportunities />
       <MapBanner />
       <News />
-      <Questions />
     </HomeContainer>
   );
 };

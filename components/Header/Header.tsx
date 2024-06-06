@@ -33,8 +33,8 @@ const Header = (): React.ReactElement => {
       {hydrated && (
         <>
           {isAuthorized ? (
-            <Link href="profile">
-              <UserContainer className="shadow-sm">
+            <UserContainer className="shadow-sm">
+              <Link href="profile">
                 <User
                   name={user?.userProfile.username}
                   description={user?.userProfile.role}
@@ -42,19 +42,16 @@ const Header = (): React.ReactElement => {
                     src: user?.userProfile.profilePhoto,
                   }}
                 />
-                <Button
-                  isIconOnly
-                  color="primary"
-                  variant="flat"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleLogout();
-                  }}
-                >
-                  <IoIosLogOut />
-                </Button>
-              </UserContainer>
-            </Link>
+              </Link>
+              <Button
+                isIconOnly
+                color="primary"
+                variant="flat"
+                onClick={handleLogout}
+              >
+                <IoIosLogOut />
+              </Button>
+            </UserContainer>
           ) : (
             <Card shadow="sm" className="flex-row gap-2 py-2 px-4 w-72">
               <Button onClick={() => handleOpenAuth("login")} color="primary">

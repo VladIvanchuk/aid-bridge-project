@@ -7,7 +7,7 @@ const ListPageWrapper = ({
   onClick,
 }: {
   children: React.ReactNode;
-  buttonTitle: string;
+  buttonTitle?: string;
   onClick?: () => void;
 }): React.ReactElement => {
   return (

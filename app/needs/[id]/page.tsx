@@ -1,8 +1,10 @@
 "use client";
 
-import { DateFormatter } from "@/components";
+import { DateFormatter, Loader } from "@/components";
 import { getNeedById } from "@/lib/need/api";
+import { getUserById } from "@/lib/user/api";
 import { INeed } from "@/models/need";
+import { IUser } from "@/models/user";
 import {
   NeedDetailBody,
   NeedDetailContainer,
@@ -23,6 +25,7 @@ const NeedDetail = ({
   params: { id: string };
 }): React.ReactElement => {
   const [need, setData] = useState<INeed | null>(null);
+  const [user, setUser] = useState<IUser | null>(null);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -32,6 +35,18 @@ const NeedDetail = ({
     });
   }, [params.id]);
 
+  useEffect(() => {
+    if (need === null) return;
+    async function fetchData() {
+      const data = await getUserById(need.author?.toString());
+      setUser(data.data);
+    }
+    if (!user) {
+      fetchData();
+    }
+  }, [setUser, user, need]);
+
+  if (isLoading) return <Loader isFullscreen={true} />;
   if (!need) return <p>No need data</p>;
   return (
     <NeedDetailContainer>
@@ -41,9 +56,9 @@ const NeedDetail = ({
           <NeedDetailTitle>{need.title}</NeedDetailTitle>
           <NeedDetailHeaderBottom>
             <User
-              name={need.author}
+              name={user?.userProfile?.username ?? ""}
               avatarProps={{
-                src: `https://i.pravatar.cc/150?u=${Math.random() * 20}`,
+                src: user?.userProfile.profilePhoto ?? "",
                 size: "md",
               }}
             />

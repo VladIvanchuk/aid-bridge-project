@@ -7,24 +7,40 @@ import Loader from "../ui/Loader";
 import { INeed } from "@/models/need";
 import { CreateNeed, ListPageWrapper } from "..";
 import { useDisclosure } from "@nextui-org/react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const NeedsList = () => {
-  const [needs, setData] = useState<INeed[]>([]);
+  const [needs, setNeeds] = useState<INeed[]>([]);
   const [isLoading, setLoading] = useState(true);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [updateList, setUpdateList] = useState(false);
+  const { user } = useAuth();
+  const isVolunteer = user?.userProfile.role === "Волонтер";
 
   useEffect(() => {
+    setLoading(true);
     getNeeds().then((data) => {
-      setData(data.data);
+      const sortedNeeds = data.data.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+      );
+      setNeeds(sortedNeeds);
       setLoading(false);
     });
-  }, []);
+  }, [updateList]);
+
+  const handleAddNeed = () => {
+    onOpen();
+    setUpdateList((current) => !current);
+  };
 
   if (!needs) return <p>No needs data</p>;
 
   return (
     <>
-      <ListPageWrapper buttonTitle="Додати потребу" onClick={onOpen}>
+      <ListPageWrapper
+        buttonTitle={!isVolunteer ? "Додати потребу" : undefined}
+        onClick={onOpen}
+      >
         {isLoading ? (
           <Loader isFullscreen={true} />
         ) : (

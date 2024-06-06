@@ -9,7 +9,7 @@ const PageHeader = ({
   buttonTitle,
   onClick,
 }: {
-  buttonTitle: string;
+  buttonTitle?: string;
   onClick?: () => void;
 }): React.ReactElement => {
   return (
@@ -25,9 +25,11 @@ const PageHeader = ({
           Військові
         </Chip>
       </ListPageHeaderFilter>
-      <Button color="primary" endContent={<FaPlus />} onClick={onClick}>
-        {buttonTitle}
-      </Button>
+      {buttonTitle && (
+        <Button color="primary" endContent={<FaPlus />} onClick={onClick}>
+          {buttonTitle}
+        </Button>
+      )}
     </ListPageHeaderContainer>
   );
 };

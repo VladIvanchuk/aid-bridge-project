@@ -3,24 +3,24 @@ import { Schema, Document, Model } from "mongoose";
 
 export interface INeed extends Document {
   title: string;
-  author: string;
+  author: mongoose.Types.ObjectId;
   body: string;
   location: string;
-  categories: mongoose.Types.ObjectId[];
-  completed: boolean;
+  categories: string[];
   ImageURL: string;
-  createdAt: Date;
+  completed?: boolean;
+  createdAt?: Date;
 }
 
 const needSchema = new Schema<INeed>({
   title: { type: String, required: true },
-  author: { type: String, required: true },
+  author: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   body: { type: String, required: true },
   location: { type: String, required: true },
-  categories: [{ type: mongoose.Schema.Types.ObjectId, ref: "Category" }],
+  categories: [{ type: String }],
   completed: { type: Boolean },
-  ImageURL: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now, required: true },
+  ImageURL: { type: String },
+  createdAt: { type: Date, default: Date.now },
 });
 
 const Need: Model<INeed> =

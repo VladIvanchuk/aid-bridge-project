@@ -29,8 +29,8 @@ const NeedsList = () => {
           <Loader isFullscreen={true} />
         ) : (
           <NeedsContainer>
-            {needs.map((need) => (
-              <NeedsItem key={need.id} {...need} />
+            {needs.map((need, idx) => (
+              <NeedsItem key={idx} {...need} />
             ))}
           </NeedsContainer>
         )}

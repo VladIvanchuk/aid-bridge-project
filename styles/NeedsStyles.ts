@@ -40,7 +40,7 @@ export const NeedsItemDate = styled.p`
   flex-shrink: 0;
 `;
 export const NeedsItemText = styled.p`
-  font-size: 0.9rem;
+  font-size: 1rem;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;

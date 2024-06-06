@@ -32,3 +32,16 @@ export async function updateUserData(data: any) {
     throw err;
   }
 }
+export async function getUserById(userId: string) {
+  const response = await fetch(`/api/user/${userId}`, {
+    method: "GET",
+    credentials: "include",
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error || "Failed to fetch user data");
+  }
+
+  return response.json();
+}

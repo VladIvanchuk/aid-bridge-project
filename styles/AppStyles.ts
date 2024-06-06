@@ -30,7 +30,7 @@ export const HeaderContainer = styled.div`
 export const UserContainer = styled.div`
   height: 60px;
   padding: 0 18px;
-  gap: 48px;
+  gap: 24px;
   flex-shrink: 0;
   border-radius: 14px;
   background-color: var(--background-light);
@@ -41,5 +41,8 @@ export const UserContainer = styled.div`
   svg {
     width: 28px;
     height: 28px;
+  }
+  span {
+    flex-shrink: 0;
   }
 `;

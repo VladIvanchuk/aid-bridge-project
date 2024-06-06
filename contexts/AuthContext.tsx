@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [user, setUser] = useState<IUser | null>(null);
+  const [user, setUser] = useLocalStorage<IUser | null>("user", null);
   const [createProfile, setCreateProfile] = useState(false);
   const [authType, setAuthType] = useState<AuthPage>("login");
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -64,6 +64,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const handleLogout = () => {
     setIsAuthorized(false);
+    setUser(null);
   };
 
   const handleRegister = async (

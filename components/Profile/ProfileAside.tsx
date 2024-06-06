@@ -25,29 +25,28 @@ const ProfileAside = (): React.ReactElement => {
             <ProfileAsideItemLabel>
               <FaLocationDot />З
             </ProfileAsideItemLabel>
-            <ProfileAsideItemValue>Україна</ProfileAsideItemValue>
+            <ProfileAsideItemValue>
+              {user?.userProfile.location}
+            </ProfileAsideItemValue>
           </ProfileAsideItem>
           <ProfileAsideItem>
             <ProfileAsideItemLabel>
               <FaUser />
               Допомагає з
             </ProfileAsideItemLabel>
-            <ProfileAsideItemValue>Червень 2023</ProfileAsideItemValue>
+            <ProfileAsideItemValue>Червень 2024</ProfileAsideItemValue>
           </ProfileAsideItem>
           <ProfileAsideItem>
             <ProfileAsideItemLabel>
               <FaClock />
               Остання активність
             </ProfileAsideItemLabel>
-            <ProfileAsideItemValue>2 дні</ProfileAsideItemValue>
+            <ProfileAsideItemValue>Онлайн</ProfileAsideItemValue>
           </ProfileAsideItem>
         </ProfileAsideItems>
       </ProfileAsideContainer>
       <ProfileAsideContainer>
-        <ProfileDescription>
-          As a dedicated and experienced web developer, I have a strong
-          foundation in front-end technologies and am eager to take on
-        </ProfileDescription>
+        <ProfileDescription>{user?.userProfile.bio}</ProfileDescription>
       </ProfileAsideContainer>
     </ProfileAsideWrapper>
   );

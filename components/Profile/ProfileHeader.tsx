@@ -21,6 +21,7 @@ const ProfileHeader = (): React.ReactElement => {
       <ProfileHeaderContainer>
         <Avatar
           src={user?.userProfile.profilePhoto}
+          style={{ width: "150px", height: "150px" }}
           className="w-38 h-38"
           showFallback
           classNames={{
@@ -41,13 +42,14 @@ const ProfileHeader = (): React.ReactElement => {
             </>
           ) : (
             <>
-              <p>У вас поки немає рейтенгу</p>
+              <p>5/5</p>
+              <FaStar />
             </>
           )}
         </BestVolunteersListRate>
-        <Button color="primary" endContent={<FaPencilAlt />}>
+        {/* <Button color="primary" endContent={<FaPencilAlt />}>
           Edit Profile
-        </Button>
+        </Button> */}
       </ProfileHeaderRight>
     </ProfileHeaderWrapper>
   );

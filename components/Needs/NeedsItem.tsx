@@ -1,4 +1,7 @@
+"use client";
+import { getUserById } from "@/lib/user/api";
 import { INeed } from "@/models/need";
+import { IUser } from "@/models/user";
 import {
   NeedsItemBody,
   NeedsItemContainer,
@@ -17,6 +20,7 @@ import {
   User,
 } from "@nextui-org/react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { DateFormatter } from "..";
 
 const NeedsItem = ({
@@ -28,6 +32,19 @@ const NeedsItem = ({
   author,
   createdAt,
 }: Partial<INeed>): React.ReactElement => {
+  const [user, setUser] = useState<IUser | null>(null);
+
+  useEffect(() => {
+    if (!author) return;
+    async function fetchData() {
+      const data = await getUserById(author?.toString());
+      setUser(data.data);
+    }
+    if (!user) {
+      fetchData();
+    }
+  }, [setUser, user, author]);
+
   return (
     <Card shadow="sm" as={Link} href={`needs/${_id}`}>
       <NeedsItemContainer>
@@ -45,9 +62,9 @@ const NeedsItem = ({
         </CardBody>
         <CardFooter className="justify-between rounded-large">
           <User
-            name={author ?? ""}
+            name={user?.userProfile?.username ?? ""}
             avatarProps={{
-              src: `https://i.pravatar.cc/150?u=${Math.random() * 20}`,
+              src: user?.userProfile.profilePhoto ?? "",
               size: "sm",
             }}
           />

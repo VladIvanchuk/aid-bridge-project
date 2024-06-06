@@ -1,4 +1,6 @@
 "use client";
+import { useAuth } from "@/contexts/AuthContext";
+import { createNeed } from "@/lib/need/api";
 import {
   CreateNeedContainer,
   CreateNeedContainerFooter,
@@ -6,16 +8,24 @@ import {
   CreateNeedContainerRow,
   ImagePickerContainer,
 } from "@/styles/NeedsStyles";
-import { CreateModal } from "..";
 import { Button, Input, Select, SelectItem, Textarea } from "@nextui-org/react";
-import { createNeed } from "@/lib/need/api";
-import { useRef, useState } from "react";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { CreateModal } from "..";
 
 export const categories = [
   { value: "category1", label: "Category 1" },
   { value: "category2", label: "Category 2" },
 ];
+
+interface FormData {
+  title: string;
+  body: string;
+  location: string;
+  author: string | undefined;
+  categories: string[];
+  ImageURL: string;
+}
 
 interface CreateNeedProps {
   isOpen: boolean;
@@ -25,12 +35,14 @@ const CreateNeed = ({
   isOpen,
   onOpenChange,
 }: CreateNeedProps): React.ReactElement => {
-  const [formData, setFormData] = useState({
+  const { user } = useAuth();
+  const [formData, setFormData] = useState<FormData>({
     title: "",
     body: "",
     location: "",
-    author: "Name",
-    image: null,
+    author: user?._id,
+    categories: [],
+    ImageURL: "123",
   });
 
   const [imageURL, setImageURL] = useState<string>("");
@@ -38,13 +50,10 @@ const CreateNeed = ({
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedOptions = Array.from(
-      e.target.selectedOptions,
-      (option) => option.value,
-    );
+    const newValue = e.target.value;
     setFormData((prev) => ({
       ...prev,
-      selectedCategories: selectedOptions,
+      categories: [newValue],
     }));
   };
 
@@ -69,7 +78,6 @@ const CreateNeed = ({
       setImageURL(url);
     }
   };
-  console.log(imageURL);
 
   const handleSubmit = async () => {
     try {
@@ -80,6 +88,13 @@ const CreateNeed = ({
       console.error("Error creating need:", error);
     }
   };
+
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      author: user?._id,
+    }));
+  }, [user]);
 
   return (
     <CreateModal
@@ -136,7 +151,7 @@ const CreateNeed = ({
             label="Категорії"
             name="categories"
             placeholder="Оберіть категорії"
-            selectionMode="multiple"
+            multiple
             onChange={handleCategoryChange}
           >
             {categories.map((category) => (

@@ -3,11 +3,12 @@ import { useAuth } from "@/contexts/AuthContext";
 import { HeaderContainer, UserContainer } from "@/styles/AppStyles";
 import { Button, Card, Input, User } from "@nextui-org/react";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
-import { CiBellOn, CiSearch } from "react-icons/ci";
+import React, { useEffect, useState } from "react";
+import { CiSearch } from "react-icons/ci";
+import { IoIosLogOut } from "react-icons/io";
 
 const Header = (): React.ReactElement => {
-  const { handleOpenAuth, isAuthorized, user } = useAuth();
+  const { handleOpenAuth, isAuthorized, user, handleLogout } = useAuth();
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
@@ -41,8 +42,16 @@ const Header = (): React.ReactElement => {
                     src: user?.userProfile.profilePhoto,
                   }}
                 />
-                <Button isIconOnly color="primary" variant="flat">
-                  <CiBellOn />
+                <Button
+                  isIconOnly
+                  color="primary"
+                  variant="flat"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleLogout();
+                  }}
+                >
+                  <IoIosLogOut />
                 </Button>
               </UserContainer>
             </Link>

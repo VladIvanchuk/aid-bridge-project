@@ -24,7 +24,6 @@ interface FormData {
   location: string;
   author: string | undefined;
   categories: string[];
-  ImageURL: string;
 }
 
 interface CreateOpportunityProps {
@@ -44,7 +43,6 @@ const CreateOpportunity = ({
     location: "",
     author: user?._id,
     categories: [],
-    ImageURL: "123",
   });
 
   const [imageURL, setImageURL] = useState<string>("");
@@ -67,10 +65,6 @@ const CreateOpportunity = ({
       ...prev,
       [name]: value,
     }));
-  };
-
-  const handleImageSelect = () => {
-    fileInputRef.current?.click();
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -107,26 +101,6 @@ const CreateOpportunity = ({
     >
       <CreateNeedContainer>
         <CreateNeedContainerHeader>
-          <ImagePickerContainer onClick={handleImageSelect}>
-            {imageURL ? (
-              <Image
-                src={imageURL}
-                alt="Фото потреби"
-                width={300}
-                height={150}
-              />
-            ) : (
-              <>
-                <span>Натисніть для завантаження зображення</span>
-                <Input
-                  type="file"
-                  ref={fileInputRef}
-                  onChange={handleFileChange}
-                  className="hidden"
-                />
-              </>
-            )}
-          </ImagePickerContainer>
           <Input
             type="text"
             name="title"

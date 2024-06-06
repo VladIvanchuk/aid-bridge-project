@@ -6,7 +6,6 @@ export interface IOpportunity extends Document {
   body: string;
   location: string;
   categories: string[];
-  ImageURL: string;
   createdAt: Date;
 }
 
@@ -15,7 +14,6 @@ const opportunitySchema = new Schema<IOpportunity>({
   author: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   body: { type: String, required: true },
   location: { type: String, required: true },
-  ImageURL: { type: String, required: true },
   categories: [{ type: String }],
   createdAt: { type: Date, default: Date.now, required: true },
 });

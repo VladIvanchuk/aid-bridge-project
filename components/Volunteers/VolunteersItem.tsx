@@ -1,3 +1,7 @@
+"use client";
+import { getUserById } from "@/lib/user/api";
+import { IOpportunity } from "@/models/opportunity";
+import { IUser } from "@/models/user";
 import { BestVolunteersListRate } from "@/styles/HomeStyles";
 import {
   VolunteersItemContainer,
@@ -5,32 +9,41 @@ import {
   VolunteersItemLocationText,
   VolunteersItemText,
 } from "@/styles/VolunteersStyles";
-import {
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Divider,
-  Link,
-  User,
-} from "@nextui-org/react";
+import { Card, CardBody, CardHeader, Divider, User } from "@nextui-org/react";
+import React, { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa6";
 import { MdLocationPin } from "react-icons/md";
 
-const VolunteersItem = (): React.ReactElement => {
+const VolunteersItem = ({
+  title,
+  location,
+  author,
+}: Partial<IOpportunity>): React.ReactElement => {
+  const [user, setUser] = useState<IUser | null>(null);
+
+  useEffect(() => {
+    if (!author) return;
+    async function fetchData() {
+      const data = await getUserById(author?.toString());
+      setUser(data.data);
+    }
+    if (!user) {
+      fetchData();
+    }
+  }, [setUser, user, author]);
   return (
     <Card shadow="sm" className="flex-1">
       <VolunteersItemContainer>
         <CardHeader className="flex gap-3 justify-between">
           <User
-            name="Jane Doe"
-            description="Volunteer"
+            name={user?.userProfile?.username ?? ""}
+            description={user?.userProfile?.role ?? ""}
             avatarProps={{
-              src: `https://i.pravatar.cc/150?u=${Math.random() * 10}`,
+              src: user?.userProfile.profilePhoto ?? "",
             }}
           />
           <BestVolunteersListRate>
-            <p>{(Math.random() * 5).toFixed(1)}/5</p>
+            <p>{user?.userProfile?.rating ?? ""}/5</p>
             <FaStar fill="var(--base-accent)" />
           </BestVolunteersListRate>
         </CardHeader>
@@ -38,15 +51,9 @@ const VolunteersItem = (): React.ReactElement => {
         <CardBody>
           <VolunteersItemLocation>
             <MdLocationPin />
-            <VolunteersItemLocationText>
-              Lviv city center
-            </VolunteersItemLocationText>
+            <VolunteersItemLocationText>{location}</VolunteersItemLocationText>
           </VolunteersItemLocation>
-          <VolunteersItemText>
-            Make beautiful websites regardless of your design experience. Make
-            beautiful websites regardless of your design experience. beautiful
-            websites regardless of your design experience.
-          </VolunteersItemText>
+          <VolunteersItemText>{title}</VolunteersItemText>
         </CardBody>
       </VolunteersItemContainer>
     </Card>

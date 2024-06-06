@@ -1,16 +1,7 @@
-import { ListPageWrapper, VolunteersItem } from "@/components";
-import { VolunteersContainer } from "@/styles/VolunteersStyles";
+import VolunteersList from "@/components/Volunteers/VolunteersList";
 
 const Volunteers = (): React.ReactElement => {
-  return (
-    <ListPageWrapper buttonTitle="Створити можливість">
-      <VolunteersContainer>
-        {[...Array(13)].map((_, index) => (
-          <VolunteersItem key={index} />
-        ))}
-      </VolunteersContainer>
-    </ListPageWrapper>
-  );
+  return <VolunteersList />;
 };
 
 export default Volunteers;

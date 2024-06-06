@@ -28,11 +28,6 @@ const NeedsList = () => {
     });
   }, [updateList]);
 
-  const handleAddNeed = () => {
-    onOpen();
-    setUpdateList((current) => !current);
-  };
-
   if (!needs) return <p>No needs data</p>;
 
   return (
@@ -51,7 +46,11 @@ const NeedsList = () => {
           </NeedsContainer>
         )}
       </ListPageWrapper>
-      <CreateNeed isOpen={isOpen} onOpenChange={onOpenChange} />
+      <CreateNeed
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        setUpdateList={setUpdateList}
+      />
     </>
   );
 };

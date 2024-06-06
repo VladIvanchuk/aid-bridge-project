@@ -1,6 +1,6 @@
 "use client";
 import { useAuth } from "@/contexts/AuthContext";
-import { createNeed } from "@/lib/need/api";
+import { createOpportunity } from "@/lib/opportunity/api";
 import {
   CreateNeedContainer,
   CreateNeedContainerFooter,
@@ -27,16 +27,16 @@ interface FormData {
   ImageURL: string;
 }
 
-interface CreateNeedProps {
+interface CreateOpportunityProps {
   isOpen: boolean;
   onOpenChange: () => void;
   setUpdateList: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const CreateNeed = ({
+const CreateOpportunity = ({
   isOpen,
   onOpenChange,
   setUpdateList,
-}: CreateNeedProps): React.ReactElement => {
+}: CreateOpportunityProps): React.ReactElement => {
   const { user } = useAuth();
   const [formData, setFormData] = useState<FormData>({
     title: "",
@@ -83,10 +83,10 @@ const CreateNeed = ({
 
   const handleSubmit = async () => {
     try {
-      const response = await createNeed(formData);
-      console.log("Need created:", response);
+      const response = await createOpportunity(formData);
+      console.log("Opportunity created:", response);
       onOpenChange();
-      setUpdateList(true)
+      setUpdateList(true);
     } catch (error) {
       console.error("Error creating need:", error);
     }
@@ -177,4 +177,4 @@ const CreateNeed = ({
   );
 };
 
-export default CreateNeed;
+export default CreateOpportunity;

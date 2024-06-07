@@ -31,15 +31,17 @@ const NeedsItem = ({
   ImageURL,
   author,
   createdAt,
+  categories,
 }: Partial<INeed>): React.ReactElement => {
   const [user, setUser] = useState<IUser | null>(null);
 
   useEffect(() => {
-    if (!author) return;
-    async function fetchData() {
-      const data = await getUserById(author?.toString());
-      setUser(data.data);
-    }
+    const fetchData = async () => {
+      if (author) {
+        const data = await getUserById(author.toString());
+        setUser(data.data);
+      }
+    };
     if (!user) {
       fetchData();
     }

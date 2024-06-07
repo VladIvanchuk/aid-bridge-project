@@ -8,7 +8,14 @@ import {
   CreateNeedContainerRow,
   ImagePickerContainer,
 } from "@/styles/NeedsStyles";
-import { Button, Input, Select, SelectItem, Textarea } from "@nextui-org/react";
+import {
+  Button,
+  Input,
+  Select,
+  SelectItem,
+  Textarea,
+  Selection,
+} from "@nextui-org/react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { CreateModal } from "..";
@@ -36,6 +43,9 @@ const CreateNeed = ({
 }: CreateNeedProps): React.ReactElement => {
   const { user } = useAuth();
   const [categories, setCategories] = useState<ICategory[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<Selection>(
+    new Set([]),
+  );
   const [formData, setFormData] = useState<FormData>({
     title: "",
     body: "",
@@ -48,14 +58,6 @@ const CreateNeed = ({
   const [imageURL, setImageURL] = useState<string>("");
 
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newValue = e.target.value;
-    setFormData((prev) => ({
-      ...prev,
-      categories: [newValue],
-    }));
-  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -89,6 +91,16 @@ const CreateNeed = ({
       console.error("Error creating need:", error);
     }
   };
+
+  useEffect(() => {
+    const categoryIds = Array.from(selectedCategories).map((key) =>
+      String(key),
+    );
+    setFormData((prev) => ({
+      ...prev,
+      categories: categoryIds,
+    }));
+  }, [selectedCategories]);
 
   useEffect(() => {
     getCategories().then((data) => {
@@ -159,11 +171,11 @@ const CreateNeed = ({
             name="categories"
             placeholder="Оберіть категорії"
             selectionMode="multiple"
-            onChange={handleCategoryChange}
+            onSelectionChange={setSelectedCategories}
             value={formData.categories}
           >
             {categories.map((category) => (
-              <SelectItem key={category.id} value={category.name}>
+              <SelectItem key={category._id} value={category.name}>
                 {category.name}
               </SelectItem>
             ))}

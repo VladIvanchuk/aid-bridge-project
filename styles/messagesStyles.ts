@@ -28,6 +28,8 @@ export const MessageList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  height: 60vh;
+  overflow-y: auto;
 `;
 export const MessageItem = styled.div<{ $isSender?: boolean }>`
   display: flex;
@@ -48,7 +50,7 @@ export const ChatListContainer = styled.div`
   flex-direction: column;
   gap: 8px;
 `;
-export const ChatListItem = styled.div<{ $isActive?: boolean }>`
+export const ChatListItemContainer = styled.div<{ $isActive?: boolean }>`
   display: flex;
   width: 100%;
   padding: 8px 16px;
@@ -56,4 +58,5 @@ export const ChatListItem = styled.div<{ $isActive?: boolean }>`
     props.$isActive ? "var(--base-accent)" : "#f5f5f5"};
   height: fit-content;
   border-radius: 15px;
+  cursor: pointer;
 `;

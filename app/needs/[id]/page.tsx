@@ -1,6 +1,7 @@
 "use client";
 
 import { DateFormatter, Loader } from "@/components";
+import { useCreateChat } from "@/hooks/useCreateChat";
 import { getNeedById } from "@/lib/need/api";
 import { getUserById } from "@/lib/user/api";
 import { INeed } from "@/models/need";
@@ -27,6 +28,8 @@ const NeedDetail = ({
   const [need, setData] = useState<INeed | null>(null);
   const [user, setUser] = useState<IUser | null>(null);
   const [isLoading, setLoading] = useState(true);
+
+  const { handleCreate } = useCreateChat(user?._id);
 
   useEffect(() => {
     getNeedById(params.id).then((data) => {
@@ -66,7 +69,9 @@ const NeedDetail = ({
               <NeedsItemDate>
                 {need.location} - <DateFormatter date={need.createdAt} />
               </NeedsItemDate>
-              <Button color="primary">Відгукнутись</Button>
+              <Button color="primary" onClick={handleCreate}>
+                Відгукнутись
+              </Button>
             </NeedDetailHeaderRow>
           </NeedDetailHeaderBottom>
         </NeedDetailHeaderText>

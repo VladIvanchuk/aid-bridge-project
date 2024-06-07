@@ -6,8 +6,11 @@ export async function createHandler(req: NextRequest, Model: Model<any>) {
   await dbConnect();
   try {
     const data = await req.json();
-    await Model.create(data);
-    return NextResponse.json({ message: "Created" }, { status: 200 });
+    const record = await Model.create(data);
+    return NextResponse.json(
+      { message: "Created", data: record },
+      { status: 201 },
+    );
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });
   }

@@ -1,28 +1,52 @@
-import need from "@/models/need";
-import { ChatListContainer, ChatListItem } from "@/styles/messagesStyles";
-import { User } from "@nextui-org/react";
+"use client";
+import { useAuth } from "@/contexts/AuthContext";
+import { getChatRoomsByParticipant } from "@/lib/chat/api";
+import { IChatRoom } from "@/models/chatRoom";
+import { ChatListContainer } from "@/styles/messagesStyles";
+import { useEffect, useState } from "react";
+import Loader from "../ui/Loader";
+import ChatListItem from "./ChatListItem";
 
-const ChatList = (): React.ReactElement => {
+interface ChatListProps {
+  currentRoomId: string;
+  setCurrentRoomId: React.Dispatch<React.SetStateAction<string>>;
+}
+const ChatList = ({
+  currentRoomId,
+  setCurrentRoomId,
+}: ChatListProps): React.ReactElement => {
+  const [chatRooms, setChatRooms] = useState<IChatRoom[]>([]);
+  const [isLoading, setLoading] = useState(true);
+  const { user } = useAuth();
+
+  useEffect(() => {
+    setLoading(true);
+    getChatRoomsByParticipant(user?._id).then((data) => {
+      setChatRooms(data.data);
+      setLoading(false);
+    });
+  }, [user?._id]);
+
+  useEffect(() => {
+    if (!currentRoomId && chatRooms.length > 0) {
+      setCurrentRoomId(chatRooms[0]._id);
+    }
+  }, [chatRooms, currentRoomId, setCurrentRoomId]);
+
+  if (isLoading) return <Loader />;
+  if (!chatRooms) return <p>No needs data</p>;
+
   return (
     <ChatListContainer>
-      <ChatListItem $isActive>
-        <User
-          name="Марія Соловей"
-          avatarProps={{
-            src: `https://i.pravatar.cc/150?u=${Math.random() * 20}`,
-            size: "md",
-          }}
+      {chatRooms.map((chatRoom) => (
+        <ChatListItem
+          key={chatRoom._id}
+          {...chatRoom}
+          currentUser={user?._id}
+          currentRoomId={currentRoomId}
+          setCurrentRoomId={setCurrentRoomId}
         />
-      </ChatListItem>
-      <ChatListItem>
-        <User
-          name="Богдан Горобець"
-          avatarProps={{
-            src: `https://i.pravatar.cc/150?u=${Math.random() * 20}`,
-            size: "md",
-          }}
-        />
-      </ChatListItem>
+      ))}
     </ChatListContainer>
   );
 };

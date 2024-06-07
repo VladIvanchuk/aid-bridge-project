@@ -12,11 +12,8 @@ import { Button, Input, Select, SelectItem, Textarea } from "@nextui-org/react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { CreateModal } from "..";
-
-export const categories = [
-  { value: "category1", label: "Category 1" },
-  { value: "category2", label: "Category 2" },
-];
+import { ICategory } from "@/models/category";
+import { getCategories } from "@/lib/category/api";
 
 interface FormData {
   title: string;
@@ -38,6 +35,7 @@ const CreateNeed = ({
   setUpdateList,
 }: CreateNeedProps): React.ReactElement => {
   const { user } = useAuth();
+  const [categories, setCategories] = useState<ICategory[]>([]);
   const [formData, setFormData] = useState<FormData>({
     title: "",
     body: "",
@@ -86,11 +84,17 @@ const CreateNeed = ({
       const response = await createNeed(formData);
       console.log("Need created:", response);
       onOpenChange();
-      setUpdateList(true)
+      setUpdateList(true);
     } catch (error) {
       console.error("Error creating need:", error);
     }
   };
+
+  useEffect(() => {
+    getCategories().then((data) => {
+      setCategories(data.data);
+    });
+  }, []);
 
   useEffect(() => {
     setFormData((prev) => ({
@@ -154,12 +158,13 @@ const CreateNeed = ({
             label="Категорії"
             name="categories"
             placeholder="Оберіть категорії"
-            multiple
+            selectionMode="multiple"
             onChange={handleCategoryChange}
+            value={formData.categories}
           >
             {categories.map((category) => (
-              <SelectItem key={category.value} value={category.value}>
-                {category.label}
+              <SelectItem key={category.id} value={category.name}>
+                {category.name}
               </SelectItem>
             ))}
           </Select>

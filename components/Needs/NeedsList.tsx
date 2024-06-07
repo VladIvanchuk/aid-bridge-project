@@ -21,7 +21,9 @@ const NeedsList = () => {
     setLoading(true);
     getNeeds().then((data) => {
       const sortedNeeds = data.data.sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+        (a: INeed, b: INeed) =>
+          new Date(b.createdAt ?? 0).getTime() -
+          new Date(a.createdAt ?? 0).getTime(),
       );
       setNeeds(sortedNeeds);
       setLoading(false);
@@ -33,7 +35,7 @@ const NeedsList = () => {
   return (
     <>
       <ListPageWrapper
-        buttonTitle={!isVolunteer ? "Додати потребу" : undefined}
+        buttonTitle={isVolunteer ? "Додати потребу" : undefined}
         onClick={onOpen}
       >
         {isLoading ? (

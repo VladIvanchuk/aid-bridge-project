@@ -1,9 +1,14 @@
+"use client";
+import { getCategories } from "@/lib/category/api";
+import { ICategory } from "@/models/category";
 import {
   ListPageHeaderContainer,
   ListPageHeaderFilter,
 } from "@/styles/ListPageStyles";
-import { Chip, Button } from "@nextui-org/react";
+import { Button, Chip } from "@nextui-org/react";
+import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa6";
+import Loader from "../ui/Loader";
 
 const PageHeader = ({
   buttonTitle,
@@ -12,18 +17,26 @@ const PageHeader = ({
   buttonTitle?: string;
   onClick?: () => void;
 }): React.ReactElement => {
+  const [categories, setCategories] = useState<ICategory[]>([]);
+
+  useEffect(() => {
+    getCategories().then((data) => {
+      setCategories(data.data);
+    });
+  }, []);
+
   return (
     <ListPageHeaderContainer>
       <ListPageHeaderFilter>
-        <Chip color="warning" variant="flat">
-          Одяг
-        </Chip>
-        <Chip color="secondary" variant="flat">
-          Спорядження
-        </Chip>
-        <Chip color="success" variant="flat">
-          Військові
-        </Chip>
+        {categories.map(({ _id, color, name }) => (
+          <Chip
+            key={_id}
+            color={color as "primary" | "secondary"}
+            variant="flat"
+          >
+            {name}
+          </Chip>
+        ))}
       </ListPageHeaderFilter>
       {buttonTitle && (
         <Button color="primary" endContent={<FaPlus />} onClick={onClick}>

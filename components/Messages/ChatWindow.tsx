@@ -24,6 +24,7 @@ const ChatWindow = ({ currentRoomId }: ChatWindowProps): React.ReactElement => {
   const [messageContent, setMessageContent] = useState("");
   const { user } = useAuth();
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const POLL_INTERVAL = 3000;
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -50,6 +51,12 @@ const ChatWindow = ({ currentRoomId }: ChatWindowProps): React.ReactElement => {
 
   useEffect(() => {
     loadMessages();
+
+    const interval = setInterval(() => {
+      loadMessages();
+    }, POLL_INTERVAL);
+
+    return () => clearInterval(interval);
   }, [currentRoomId]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

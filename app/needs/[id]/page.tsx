@@ -29,6 +29,7 @@ const NeedDetail = ({
   const [user, setUser] = useState<IUser | null>(null);
   const [isLoading, setLoading] = useState(true);
 
+
   const { handleCreate } = useCreateChat(user?._id);
 
   useEffect(() => {
@@ -39,8 +40,8 @@ const NeedDetail = ({
   }, [params.id]);
 
   useEffect(() => {
-    if (need === null) return;
     async function fetchData() {
+      if (need === null) return;
       const data = await getUserById(need.author?.toString());
       setUser(data.data);
     }

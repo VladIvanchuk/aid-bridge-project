@@ -1,14 +1,21 @@
 "use client";
 import { ChatList, ChatWindow } from "@/components";
 import { MessagesWrapper } from "@/styles/messagesStyles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Messages = ({
   params,
 }: {
-  params: { id: string };
+  params: { id: string[] };
 }): React.ReactElement => {
-  const [currentRoomId, setCurrentRoomId] = useState(params.id);
+  const [currentRoomId, setCurrentRoomId] = useState("");
+
+  useEffect(() => {
+    if (params.id) {
+      setCurrentRoomId(params.id.join(","));
+    }
+  }, [params]);
+
   return (
     <MessagesWrapper>
       <ChatWindow currentRoomId={currentRoomId} />

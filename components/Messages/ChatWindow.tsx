@@ -12,7 +12,6 @@ import { Button, Input } from "@nextui-org/react";
 import mongoose from "mongoose";
 import { useEffect, useRef, useState } from "react";
 import { IoSend } from "react-icons/io5";
-import Loader from "../ui/Loader";
 
 interface ChatWindowProps {
   currentRoomId: string;
@@ -20,7 +19,6 @@ interface ChatWindowProps {
 
 const ChatWindow = ({ currentRoomId }: ChatWindowProps): React.ReactElement => {
   const [messages, setMessages] = useState<Partial<IMessage>[]>([]);
-  const [isLoading, setLoading] = useState(true);
   const [messageContent, setMessageContent] = useState("");
   const { user } = useAuth();
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -35,7 +33,6 @@ const ChatWindow = ({ currentRoomId }: ChatWindowProps): React.ReactElement => {
   }, [messages]);
 
   const loadMessages = async () => {
-    setLoading(true);
     try {
       const data = await getMessagesByChatRoom(currentRoomId);
       const sortedMessages = data.data.sort(
@@ -46,7 +43,6 @@ const ChatWindow = ({ currentRoomId }: ChatWindowProps): React.ReactElement => {
     } catch (error) {
       console.error("Error loading messages:", error);
     }
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -84,7 +80,6 @@ const ChatWindow = ({ currentRoomId }: ChatWindowProps): React.ReactElement => {
     }
   };
 
-  if (isLoading) return <Loader />;
   if (!messages) return <p>No needs data</p>;
 
   return (

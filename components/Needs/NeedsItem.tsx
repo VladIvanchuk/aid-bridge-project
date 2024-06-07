@@ -1,4 +1,5 @@
 "use client";
+import { getCategoriesByIds } from "@/lib/category/api";
 import { getUserById } from "@/lib/user/api";
 import { INeed } from "@/models/need";
 import { IUser } from "@/models/user";
@@ -34,18 +35,26 @@ const NeedsItem = ({
   categories,
 }: Partial<INeed>): React.ReactElement => {
   const [user, setUser] = useState<IUser | null>(null);
+  const [categoriesData, setCategoriesData] = useState<[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchUser = async () => {
       if (author) {
         const data = await getUserById(author.toString());
         setUser(data.data);
       }
     };
-    if (!user) {
-      fetchData();
-    }
-  }, [setUser, user, author]);
+
+    const fetchCategories = async () => {
+      if (categories && categories.length > 0) {
+        const data = await getCategoriesByIds(categories);
+        setCategoriesData(data.data);
+      }
+    };
+
+    fetchUser();
+    fetchCategories();
+  }, [author, categories]);
 
   return (
     <Card shadow="sm" as={Link} href={`needs/${_id}`}>
@@ -71,15 +80,15 @@ const NeedsItem = ({
             }}
           />
           <NeedsItemTags>
-            <Chip color="warning" variant="flat">
-              Одяг
-            </Chip>
-            <Chip color="secondary" variant="flat">
-              Спорядження
-            </Chip>
-            <Chip color="success" variant="flat">
-              Військові
-            </Chip>
+            {categoriesData.map(({ _id, color, name }) => (
+              <Chip
+                key={_id}
+                color={color as "primary" | "secondary"}
+                variant="flat"
+              >
+                {name}
+              </Chip>
+            ))}
           </NeedsItemTags>
         </CardFooter>
       </NeedsItemContainer>

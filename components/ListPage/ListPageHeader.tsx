@@ -13,9 +13,13 @@ import Loader from "../ui/Loader";
 const PageHeader = ({
   buttonTitle,
   onClick,
+  selectedCategoryId,
+  setSelectedCategoryId,
 }: {
   buttonTitle?: string;
   onClick?: () => void;
+  selectedCategoryId: string;
+  setSelectedCategoryId: React.Dispatch<React.SetStateAction<string>>;
 }): React.ReactElement => {
   const [categories, setCategories] = useState<ICategory[]>([]);
 
@@ -25,6 +29,14 @@ const PageHeader = ({
     });
   }, []);
 
+  const handleToggle = (id: string) => {
+    if (selectedCategoryId === id) {
+      setSelectedCategoryId("");
+    } else {
+      setSelectedCategoryId(id);
+    }
+  };
+
   return (
     <ListPageHeaderContainer>
       <ListPageHeaderFilter>
@@ -33,6 +45,8 @@ const PageHeader = ({
             key={_id}
             color={color as "primary" | "secondary"}
             variant="flat"
+            onClick={() => handleToggle(_id)}
+            className={selectedCategoryId === _id ? "bg-white" : ""}
           >
             {name}
           </Chip>

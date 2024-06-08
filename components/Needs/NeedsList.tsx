@@ -14,29 +14,38 @@ const NeedsList = () => {
   const [isLoading, setLoading] = useState(true);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [updateList, setUpdateList] = useState(false);
+  const [selectedCategoryId, setSelectedCategoryId] = useState("");
   const { user } = useAuth();
   const isVolunteer = user?.userProfile.role === "Волонтер";
 
   useEffect(() => {
     setLoading(true);
     getNeeds().then((data) => {
-      const sortedNeeds = data.data.sort(
-        (a: INeed, b: INeed) =>
-          new Date(b.createdAt ?? 0).getTime() -
-          new Date(a.createdAt ?? 0).getTime(),
-      );
-      setNeeds(sortedNeeds);
+      const filteredAndSortedNeeds = data.data
+        .filter((need: INeed) =>
+          selectedCategoryId
+            ? need.categories.includes(selectedCategoryId)
+            : true,
+        )
+        .sort(
+          (a: INeed, b: INeed) =>
+            new Date(b.createdAt ?? 0).getTime() -
+            new Date(a.createdAt ?? 0).getTime(),
+        );
+      setNeeds(filteredAndSortedNeeds);
       setLoading(false);
     });
-  }, [updateList]);
+  }, [updateList, selectedCategoryId]);
 
   if (!needs) return <p>No needs data</p>;
 
   return (
     <>
       <ListPageWrapper
-        buttonTitle={isVolunteer ? "Додати потребу" : undefined}
+        buttonTitle={!isVolunteer ? "Додати потребу" : undefined}
         onClick={onOpen}
+        selectedCategoryId={selectedCategoryId}
+        setSelectedCategoryId={setSelectedCategoryId}
       >
         {isLoading ? (
           <Loader isFullscreen={true} />

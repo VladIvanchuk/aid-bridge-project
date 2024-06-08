@@ -18,8 +18,8 @@ const PageHeader = ({
 }: {
   buttonTitle?: string;
   onClick?: () => void;
-  selectedCategoryId: string;
-  setSelectedCategoryId: React.Dispatch<React.SetStateAction<string>>;
+  selectedCategoryId?: string;
+  setSelectedCategoryId?: React.Dispatch<React.SetStateAction<string>>;
 }): React.ReactElement => {
   const [categories, setCategories] = useState<ICategory[]>([]);
 
@@ -30,6 +30,7 @@ const PageHeader = ({
   }, []);
 
   const handleToggle = (id: string) => {
+    if (!setSelectedCategoryId) return;
     if (selectedCategoryId === id) {
       setSelectedCategoryId("");
     } else {

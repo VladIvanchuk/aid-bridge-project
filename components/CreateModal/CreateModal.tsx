@@ -6,6 +6,17 @@ interface CreateModalProps {
   isOpen: boolean;
   onOpenChange: () => void;
   title: string;
+  size?:
+    | "5xl"
+    | "xs"
+    | "sm"
+    | "md"
+    | "lg"
+    | "xl"
+    | "2xl"
+    | "3xl"
+    | "4xl"
+    | "full";
 }
 
 const CreateModal = ({
@@ -13,13 +24,14 @@ const CreateModal = ({
   isOpen,
   onOpenChange,
   title,
+  size = "5xl",
 }: CreateModalProps): React.ReactElement => {
   return (
     <>
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        size="5xl"
+        size={size}
         motionProps={{
           variants: {
             enter: {

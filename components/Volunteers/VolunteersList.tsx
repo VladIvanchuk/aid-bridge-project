@@ -21,7 +21,9 @@ const VolunteersList = () => {
     setLoading(true);
     getOpportunities().then((data) => {
       const sortedOpportunities = data.data.sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+        (a: IOpportunity, b: IOpportunity) =>
+          new Date(b.createdAt ?? 0).getTime() -
+          new Date(a.createdAt ?? 0).getTime(),
       );
       setOpportunities(sortedOpportunities);
       setLoading(false);

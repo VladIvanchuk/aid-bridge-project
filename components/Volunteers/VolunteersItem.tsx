@@ -10,6 +10,7 @@ import {
   VolunteersItemText,
 } from "@/styles/VolunteersStyles";
 import { Card, CardBody, CardHeader, Divider, User } from "@nextui-org/react";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa6";
 import { MdLocationPin } from "react-icons/md";
@@ -34,7 +35,11 @@ const VolunteersItem = ({
   return (
     <Card shadow="sm" className="flex-1">
       <VolunteersItemContainer>
-        <CardHeader className="flex gap-3 justify-between">
+        <CardHeader
+          className="flex gap-3 justify-between"
+          as={Link}
+          href={`/profile/${user?._id}`}
+        >
           <User
             name={user?.userProfile?.username ?? ""}
             description={user?.userProfile?.role ?? ""}

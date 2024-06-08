@@ -1,5 +1,4 @@
-"use client";
-import { useAuth } from "@/contexts/AuthContext";
+import { IUser } from "@/models/user";
 
 import {
   ProfileAsideContainer,
@@ -13,9 +12,7 @@ import {
 } from "@/styles/ProfileStyles";
 import { FaClock, FaLocationDot, FaUser } from "react-icons/fa6";
 
-const ProfileAside = (): React.ReactElement => {
-  const { user } = useAuth();
-
+const ProfileAside = ({ userProfile }: Partial<IUser>): React.ReactElement => {
   return (
     <ProfileAsideWrapper>
       <ProfileAsideContainer>
@@ -26,7 +23,7 @@ const ProfileAside = (): React.ReactElement => {
               <FaLocationDot />З
             </ProfileAsideItemLabel>
             <ProfileAsideItemValue>
-              {user?.userProfile.location}
+              {userProfile?.location}
             </ProfileAsideItemValue>
           </ProfileAsideItem>
           <ProfileAsideItem>
@@ -46,7 +43,7 @@ const ProfileAside = (): React.ReactElement => {
         </ProfileAsideItems>
       </ProfileAsideContainer>
       <ProfileAsideContainer>
-        <ProfileDescription>{user?.userProfile.bio}</ProfileDescription>
+        <ProfileDescription>{userProfile?.bio}</ProfileDescription>
       </ProfileAsideContainer>
     </ProfileAsideWrapper>
   );

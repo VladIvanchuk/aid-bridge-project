@@ -1,16 +1,17 @@
+import { IUser } from "@/models/user";
 import {
   ProfileBodyContainer,
   ProfileBodyWrapper,
 } from "@/styles/ProfileStyles";
-import { ProfileTabs, ProfileAside } from "..";
+import { ProfileAside, ProfileTabs } from "..";
 
-const ProfileBody = (): React.ReactElement => {
+const ProfileBody = ({ user }: { user: IUser | null }): React.ReactElement => {
   return (
     <ProfileBodyWrapper>
       <ProfileBodyContainer>
         <ProfileTabs />
       </ProfileBodyContainer>
-      <ProfileAside />
+      <ProfileAside {...user} />
     </ProfileBodyWrapper>
   );
 };

@@ -1,6 +1,6 @@
 "use client";
-
 import { useAuth } from "@/contexts/AuthContext";
+import { IUser } from "@/models/user";
 import { BestVolunteersListRate } from "@/styles/HomeStyles";
 import {
   ProfileHeaderContainer,
@@ -11,16 +11,22 @@ import {
   ProfileText,
 } from "@/styles/ProfileStyles";
 import { Avatar, Button } from "@nextui-org/react";
-import { FaPencilAlt, FaStar } from "react-icons/fa";
+import Link from "next/link";
+import { FaEnvelope, FaStar } from "react-icons/fa";
 
-const ProfileHeader = (): React.ReactElement => {
+const ProfileHeader = ({
+  _id,
+  userProfile,
+}: Partial<IUser>): React.ReactElement => {
   const { user } = useAuth();
+
+  const isCurrentUser = user?._id === _id;
 
   return (
     <ProfileHeaderWrapper>
       <ProfileHeaderContainer>
         <Avatar
-          src={user?.userProfile.profilePhoto}
+          src={userProfile?.profilePhoto}
           style={{ width: "150px", height: "150px" }}
           className="w-38 h-38"
           showFallback
@@ -29,15 +35,15 @@ const ProfileHeader = (): React.ReactElement => {
           }}
         />
         <ProfileText>
-          <ProfileName>{user?.userProfile.username}</ProfileName>
-          <ProfileRole>{user?.userProfile.role}</ProfileRole>
+          <ProfileName>{userProfile?.username}</ProfileName>
+          <ProfileRole>{userProfile?.role}</ProfileRole>
         </ProfileText>
       </ProfileHeaderContainer>
       <ProfileHeaderRight>
         <BestVolunteersListRate>
-          {user?.userProfile.rating ? (
+          {userProfile?.rating ? (
             <>
-              <p>{user?.userProfile.rating}/5</p>
+              <p>{userProfile?.rating}/5</p>
               <FaStar />
             </>
           ) : (
@@ -50,6 +56,16 @@ const ProfileHeader = (): React.ReactElement => {
         {/* <Button color="primary" endContent={<FaPencilAlt />}>
           Edit Profile
         </Button> */}
+        {!isCurrentUser && (
+          <Button
+            color="primary"
+            endContent={<FaEnvelope />}
+            as={Link}
+            href={`/messages/${_id}`}
+          >
+            Надіслати повідомлення
+          </Button>
+        )}
       </ProfileHeaderRight>
     </ProfileHeaderWrapper>
   );

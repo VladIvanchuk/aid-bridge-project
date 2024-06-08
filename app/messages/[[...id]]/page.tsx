@@ -1,5 +1,6 @@
 "use client";
 import { ChatList, ChatWindow } from "@/components";
+import { getChatRoomsByParticipant } from "@/lib/chat/api";
 import { MessagesWrapper } from "@/styles/messagesStyles";
 import { useEffect, useState } from "react";
 
@@ -12,7 +13,9 @@ const Messages = ({
 
   useEffect(() => {
     if (params.id) {
-      setCurrentRoomId(params.id.join(","));
+      getChatRoomsByParticipant(params.id[0]).then((data) => {
+        setCurrentRoomId(data.data[0]._id);
+      });
     }
   }, [params]);
 

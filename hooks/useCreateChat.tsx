@@ -1,13 +1,21 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
-import { createChatRoom } from "@/lib/chat/api";
+import { createChatRoom, getChatRoomsByParticipant } from "@/lib/chat/api";
 import { IChatRoom } from "@/models/chatRoom";
 import { useRouter } from "next/navigation";
 
 export const useCreateChat = (authorId: string) => {
   const { user } = useAuth();
   const [data, setData] = useState<Partial<IChatRoom> | null>(null);
+  const [chatRooms, setChatRooms] = useState<IChatRoom[]>([]);
+
   const router = useRouter();
+
+  useEffect(() => {
+    getChatRoomsByParticipant(authorId).then((data) => {
+      setChatRooms(data.data);
+    });
+  }, [authorId]);
 
   useEffect(() => {
     if (user?._id) {
@@ -18,16 +26,16 @@ export const useCreateChat = (authorId: string) => {
   }, [user?._id, authorId]);
 
   const handleCreate = async () => {
-    if (data) {
+    if (!chatRooms) {
       try {
         const response = await createChatRoom(data);
         console.log("Chat created:", response);
-        router.push(`/messages/${response.data._id}`);
+        router.push(`/messages/${authorId}`);
       } catch (error) {
         console.error("Error creating chat:", error);
       }
     } else {
-      console.error("User data not available yet.");
+      router.push(`/messages/${authorId}`);
     }
   };
 

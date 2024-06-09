@@ -2,14 +2,12 @@
 
 import { getNeeds } from "@/lib/need/api";
 import { INeed } from "@/models/need";
-import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { FC, useEffect, useState } from "react";
-import ReactDOMServer from "react-dom/server";
-import { FaMapMarkerAlt } from "react-icons/fa";
 import Loader from "../ui/Loader";
+import L from "leaflet";
 
 interface IGeometry {
   lat: number;
@@ -81,18 +79,8 @@ const Map: FC = () => {
     fetchData();
   }, []);
 
-  if (isLoading) return <Loader />;
+  if (isLoading) return <Loader isFullscreen />;
   if (!needs.length) return <p>No needs data</p>;
-
-  const iconHtml = ReactDOMServer.renderToString(
-    <FaMapMarkerAlt style={{ color: "red", fontSize: "24px" }} />,
-  );
-  const customIcon = new L.DivIcon({
-    html: iconHtml,
-    className: "",
-    iconSize: L.point(24, 24),
-    iconAnchor: L.point(12, 12),
-  });
 
   return (
     <MapContainerDynamic
@@ -105,11 +93,7 @@ const Map: FC = () => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
       {needs.map((need) => (
-        <MarkerDynamic
-          key={need._id}
-          position={[need.lat ?? 0, need.lng ?? 0]}
-          icon={customIcon}
-        >
+        <MarkerDynamic key={need._id} position={[need.lat ?? 0, need.lng ?? 0]}>
           <PopupDynamic>
             <Link href={`/needs/${need._id}`}>{need.title}</Link>
           </PopupDynamic>

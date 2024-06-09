@@ -6,47 +6,23 @@ import {
 import { NeedsShortItem, VolunteersItem, NewsItem, Loader } from "..";
 import Masonry from "react-responsive-masonry";
 import { useState, useEffect } from "react";
+import { useGetRecommendations } from "@/hooks/useGetRecommendations";
 
 const Recommendations = (): React.ReactElement => {
-  const [isClient, setIsClient] = useState(false);
+  const { isLoading, recommendations } = useGetRecommendations();
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  if (isLoading) return <Loader isFullscreen />;
 
-  if (!isClient) {
-    return <Loader />;
-  }
   return (
     <RecommendationsContainer>
       <Masonry columnsCount={3} gutter="10px">
-        <RecommendationItemContainer>
-          <NeedsShortItem />
-        </RecommendationItemContainer>
-        <RecommendationItemContainer>
-          <VolunteersItem />
-        </RecommendationItemContainer>
-        <RecommendationItemContainer>
-          <NewsItem />
-        </RecommendationItemContainer>
-        <RecommendationItemContainer>
-          <NeedsShortItem />
-        </RecommendationItemContainer>
-        <RecommendationItemContainer>
-          <VolunteersItem />
-        </RecommendationItemContainer>
-        <RecommendationItemContainer>
-          <VolunteersItem />
-        </RecommendationItemContainer>
-        <RecommendationItemContainer>
-          <VolunteersItem />
-        </RecommendationItemContainer>
-        <RecommendationItemContainer>
-          <NeedsShortItem />
-        </RecommendationItemContainer>
-        <RecommendationItemContainer>
-          <NewsItem />
-        </RecommendationItemContainer>
+        {recommendations.map((item) => (
+          <RecommendationItemContainer key={item._id}>
+            {item.type === "news" && <NewsItem {...item} />}
+            {item.type === "need" && <NeedsShortItem {...item} />}
+            {item.type === "opportunity" && <VolunteersItem {...item} />}
+          </RecommendationItemContainer>
+        ))}
       </Masonry>
     </RecommendationsContainer>
   );

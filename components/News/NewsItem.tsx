@@ -10,7 +10,6 @@ import { Card, Image, Link } from "@nextui-org/react";
 const NewsItem = ({
   title,
   body,
-  author,
   createdAt,
 }: Partial<INews>): React.ReactElement => {
   return (

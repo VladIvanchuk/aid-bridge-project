@@ -1,6 +1,10 @@
+"use client";
+import { getCategoriesByIds } from "@/lib/category/api";
+import { getUserById } from "@/lib/user/api";
+import { INeed } from "@/models/need";
+import { IUser } from "@/models/user";
 import {
   NeedsItemDate,
-  NeedsItemImage,
   NeedsItemTags,
   NeedsItemText,
   NeedsShortItemBody,
@@ -16,55 +20,77 @@ import {
   Chip,
   User,
 } from "@nextui-org/react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { DateFormatter } from "..";
 
-const NeedsShortItem = (): React.ReactElement => {
+const NeedsShortItem = ({
+  _id,
+  title,
+  body,
+  location,
+  ImageURL,
+  author,
+  createdAt,
+  categories,
+}: Partial<INeed>): React.ReactElement => {
+  const [user, setUser] = useState<IUser | null>(null);
+  const [categoriesData, setCategoriesData] = useState<[]>([]);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      if (author) {
+        const data = await getUserById(author.toString());
+        setUser(data.data);
+      }
+    };
+
+    const fetchCategories = async () => {
+      if (categories && categories.length > 0) {
+        const data = await getCategoriesByIds(categories);
+        setCategoriesData(data.data);
+      }
+    };
+
+    fetchUser();
+    fetchCategories();
+  }, [author, categories]);
+
   return (
-    <Card shadow="sm">
+    <Card shadow="sm" as={Link} href={`/needs/${_id}`}>
       <NeedsShortItemContainer>
         <CardHeader className="justify-between gap-4">
           <User
-            name="Jane Doe"
+            as={Link}
+            href={`profile/${user?._id}`}
+            name={user?.userProfile?.username ?? ""}
             avatarProps={{
-              src: `https://i.pravatar.cc/150?u=${Math.random() * 20}`,
+              src: user?.userProfile.profilePhoto ?? "",
               size: "sm",
             }}
           />
-          <NeedsItemDate>Бахмут - 23 жовтня 2023 р.</NeedsItemDate>
+          <NeedsItemDate>
+            {location} - <DateFormatter date={createdAt} />
+          </NeedsItemDate>
         </CardHeader>
         <CardBody>
-          <NeedsShortItemTitle>
-            Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
-            consectetur, adipisci velit.
-          </NeedsShortItemTitle>
+          <NeedsShortItemTitle>{title}</NeedsShortItemTitle>
           <NeedsShortItemBody>
-            <NeedsShortItemImage $url="https://images.unsplash.com/photo-1710279750007-15bbdcc94033?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHx8" />
-            <NeedsItemText>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-              pharetra diam eget diam imperdiet blandit. Donec a justo semper,
-              fermentum nibh vel, vulputate ex. Curabitur imperdiet diam nec
-              arcu consequat, eu tincidunt ex hendrerit. Ut mauris dui, molestie
-              id purus vel, maximus maximus magna. Quisque lacinia quam aliquet
-              augue malesuada consectetur in eleifend diam. Donec ut dolor
-              laoreet lorem pulvinar pharetra. Nunc iaculis rhoncus eros vel
-              vehicula. Sed sed dolor orci. Proin sed metus ac quam tincidunt
-              scelerisque. Quisque vel quam non nulla tincidunt pellentesque. In
-              erat ipsum, finibus ornare sapien nec, elementum consequat quam.
-              Praesent eu lacinia nulla, eu tincidunt nibh. Morbi pellentesque
-              enim pulvinar, ornare dui congue, suscipit mi.
-            </NeedsItemText>
+            <NeedsShortItemImage $url={ImageURL ?? ""} />
+            <NeedsItemText>{body}</NeedsItemText>
           </NeedsShortItemBody>
         </CardBody>
         <CardFooter className="justify-between rounded-large">
           <NeedsItemTags>
-            <Chip color="warning" variant="flat">
-              Одяг
-            </Chip>
-            <Chip color="secondary" variant="flat">
-              Спорядження
-            </Chip>
-            <Chip color="success" variant="flat">
-              Військові
-            </Chip>
+            {categoriesData.map(({ _id, color, name }) => (
+              <Chip
+                key={_id}
+                color={color as "primary" | "secondary"}
+                variant="flat"
+              >
+                {name}
+              </Chip>
+            ))}
           </NeedsItemTags>
         </CardFooter>
       </NeedsShortItemContainer>

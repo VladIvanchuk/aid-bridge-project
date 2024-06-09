@@ -1,11 +1,11 @@
 "use client";
 import { useAuth } from "@/contexts/AuthContext";
 import { HeaderContainer, UserContainer } from "@/styles/AppStyles";
-import { Button, Card, Input, User } from "@nextui-org/react";
+import { Button, Card, User } from "@nextui-org/react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { CiSearch } from "react-icons/ci";
 import { IoIosLogOut } from "react-icons/io";
+import Search from "./Search";
 
 const Header = (): React.ReactElement => {
   const { handleOpenAuth, isAuthorized, user, handleLogout } = useAuth();
@@ -17,19 +17,7 @@ const Header = (): React.ReactElement => {
 
   return (
     <HeaderContainer>
-      <Input
-        isClearable
-        type="text"
-        radius="lg"
-        variant="bordered"
-        classNames={{
-          inputWrapper: ["bg-[var(--background-light)]", "border-0"],
-        }}
-        placeholder="Type to search..."
-        startContent={
-          <CiSearch className="pointer-events-none flex-shrink-0" />
-        }
-      />
+      <Search />
       {hydrated && (
         <>
           {isAuthorized ? (

@@ -161,3 +161,22 @@ export const NewsItemsContainer = styled.div`
 `;
 
 export const QuestionsContainer = styled.div``;
+
+export const SearchContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+`;
+export const SearchResults = styled.div`
+  width: 100%;
+  min-height: 150px;
+  background-color: #f2f2f2;
+  position: absolute;
+  top: 0;
+  padding: 76px 24px 12px;
+  z-index: 9;
+  border-radius: 15px;
+  border: 1px #030303 solid;
+`;
+export const SearchResultsItem = styled.div``;

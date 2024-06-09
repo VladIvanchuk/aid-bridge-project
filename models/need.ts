@@ -22,6 +22,7 @@ const needSchema = new Schema<INeed>({
   ImageURL: { type: String },
   createdAt: { type: Date, default: Date.now },
 });
+needSchema.index({ title: "text" });
 
 const Need: Model<INeed> =
   mongoose.models.Need || mongoose.model<INeed>("Need", needSchema);

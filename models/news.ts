@@ -16,6 +16,7 @@ const newsSchema = new Schema<INews>({
   ImageURL: { type: String },
   createdAt: { type: Date, default: Date.now },
 });
+newsSchema.index({ title: "text" });
 
 const News: Model<INews> =
   mongoose.models.News || mongoose.model<INews>("News", newsSchema);

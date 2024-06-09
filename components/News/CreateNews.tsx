@@ -2,10 +2,10 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { createNews } from "@/lib/news/api";
 import {
-    CreateNeedContainer,
-    CreateNeedContainerFooter,
-    CreateNeedContainerHeader,
-    ImagePickerContainer,
+  CreateNeedContainer,
+  CreateNeedContainerFooter,
+  CreateNeedContainerHeader,
+  ImagePickerContainer,
 } from "@/styles/NeedsStyles";
 import { Button, Input, Textarea } from "@nextui-org/react";
 import Image from "next/image";

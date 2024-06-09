@@ -15,6 +15,7 @@ const opportunitySchema = new Schema<IOpportunity>({
   location: { type: String, required: true },
   createdAt: { type: Date, default: Date.now, required: true },
 });
+opportunitySchema.index({ title: "text" });
 
 const Opportunity: Model<IOpportunity> =
   mongoose.models.Opportunity ||

@@ -9,7 +9,7 @@ const ProfileBody = ({ user }: { user: IUser | null }): React.ReactElement => {
   return (
     <ProfileBodyWrapper>
       <ProfileBodyContainer>
-        <ProfileTabs />
+        <ProfileTabs {...user} />
       </ProfileBodyContainer>
       <ProfileAside {...user} />
     </ProfileBodyWrapper>

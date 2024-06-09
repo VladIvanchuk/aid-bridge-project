@@ -12,7 +12,7 @@ import {
 } from "@/styles/ProfileStyles";
 import { Avatar, Button } from "@nextui-org/react";
 import Link from "next/link";
-import { FaEnvelope, FaStar } from "react-icons/fa";
+import { FaEnvelope, FaPencilAlt, FaStar } from "react-icons/fa";
 
 const ProfileHeader = ({
   _id,
@@ -53,10 +53,11 @@ const ProfileHeader = ({
             </>
           )}
         </BestVolunteersListRate>
-        {/* <Button color="primary" endContent={<FaPencilAlt />}>
-          Edit Profile
-        </Button> */}
-        {!isCurrentUser && (
+        {isCurrentUser ? (
+          <Button color="primary" endContent={<FaPencilAlt />}>
+            Edit Profile
+          </Button>
+        ) : (
           <Button
             color="primary"
             endContent={<FaEnvelope />}

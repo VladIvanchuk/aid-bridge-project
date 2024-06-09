@@ -3,6 +3,7 @@ import {
   MapBannerContainer,
   MapBannerText,
 } from "@/styles/HomeStyles";
+import Link from "next/link";
 import { MdArrowOutward } from "react-icons/md";
 
 const MapBanner = (): React.ReactElement => {
@@ -11,7 +12,7 @@ const MapBanner = (): React.ReactElement => {
       <MapBannerText>
         Перегляньте найближчі потреби або волонтерські можливості
       </MapBannerText>
-      <MapBannerButton>
+      <MapBannerButton as={Link} href={"/map"}>
         Відкрити карту <MdArrowOutward />
       </MapBannerButton>
     </MapBannerContainer>

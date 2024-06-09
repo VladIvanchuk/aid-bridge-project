@@ -1,42 +1,64 @@
-import { BestVolunteersListRate } from "@/styles/HomeStyles";
+"use client";
+import { getUserById } from "@/lib/user/api";
+import { IReview } from "@/models/review";
+import { IUser } from "@/models/user";
 import { ReviewsRating } from "@/styles/ProfileStyles";
 import {
   VolunteersItemContainer,
-  VolunteersItemLocation,
-  VolunteersItemLocationText,
   VolunteersItemText,
 } from "@/styles/VolunteersStyles";
-import { Card, CardHeader, User, Divider, CardBody } from "@nextui-org/react";
+import { Card, CardBody, CardHeader, User } from "@nextui-org/react";
+import { useEffect, useState } from "react";
 import { FaRegStar, FaStar } from "react-icons/fa6";
-import { MdLocationPin } from "react-icons/md";
 
-const ProfileReviewsItem = (): React.ReactElement => {
+const ProfileReviewsItem = ({
+  author,
+  text,
+  rating,
+  createdAt,
+}: Partial<IReview>): React.ReactElement => {
+  const [user, setUser] = useState<IUser | null>(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      if (author) {
+        const data = await getUserById(author.toString());
+        setUser(data.data);
+      }
+    };
+
+    fetchUser();
+  }, [author]);
+
+  const stars = [...Array(5)].map((_, index) => {
+    return index < Math.round(rating ?? 0) ? (
+      <FaStar key={index} />
+    ) : (
+      <FaRegStar key={index} />
+    );
+  });
   return (
     <Card shadow="sm" className="flex-1">
       <VolunteersItemContainer>
         <CardHeader className="flex gap-3 justify-between">
           <User
-            name="Jane Doe"
-            description="Volunteer"
+            name={user?.userProfile?.username ?? ""}
+            description={user?.userProfile?.role ?? ""}
             avatarProps={{
-              src: `https://i.pravatar.cc/150?u=${Math.random() * 10}`,
+              src: user?.userProfile.profilePhoto ?? "",
             }}
           />
-          10 березня 2024
+          {createdAt
+            ? new Date(createdAt).toLocaleDateString("uk-UA", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+            : "Unknown date"}
         </CardHeader>
         <CardBody>
-          <ReviewsRating>
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaRegStar />
-          </ReviewsRating>
-          <VolunteersItemText>
-            Make beautiful websites regardless of your design experience. Make
-            beautiful websites regardless of your design experience. beautiful
-            websites regardless of your design experience.
-          </VolunteersItemText>
+          <ReviewsRating>{stars}</ReviewsRating>
+          <VolunteersItemText>{text}</VolunteersItemText>
         </CardBody>
       </VolunteersItemContainer>
     </Card>

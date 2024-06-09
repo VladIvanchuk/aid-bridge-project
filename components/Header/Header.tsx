@@ -34,7 +34,7 @@ const Header = (): React.ReactElement => {
         <>
           {isAuthorized ? (
             <UserContainer className="shadow-sm">
-              <Link href="profile">
+              <Link href="/profile">
                 <User
                   name={user?.userProfile.username}
                   description={user?.userProfile.role}

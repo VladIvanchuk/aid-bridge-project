@@ -15,11 +15,13 @@ const PageHeader = ({
   onClick,
   selectedCategoryId,
   setSelectedCategoryId,
+  noFilter,
 }: {
   buttonTitle?: string;
   onClick?: () => void;
   selectedCategoryId?: string;
   setSelectedCategoryId?: React.Dispatch<React.SetStateAction<string>>;
+  noFilter?: boolean;
 }): React.ReactElement => {
   const [categories, setCategories] = useState<ICategory[]>([]);
 
@@ -41,17 +43,18 @@ const PageHeader = ({
   return (
     <ListPageHeaderContainer>
       <ListPageHeaderFilter>
-        {categories.map(({ _id, color, name }) => (
-          <Chip
-            key={_id}
-            color={color as "primary" | "secondary"}
-            variant="flat"
-            onClick={() => handleToggle(_id)}
-            className={selectedCategoryId === _id ? "bg-white" : ""}
-          >
-            {name}
-          </Chip>
-        ))}
+        {!noFilter &&
+          categories.map(({ _id, color, name }) => (
+            <Chip
+              key={_id}
+              color={color as "primary" | "secondary"}
+              variant="flat"
+              onClick={() => handleToggle(_id)}
+              className={selectedCategoryId === _id ? "bg-white" : ""}
+            >
+              {name}
+            </Chip>
+          ))}
       </ListPageHeaderFilter>
       {buttonTitle && (
         <Button color="primary" endContent={<FaPlus />} onClick={onClick}>

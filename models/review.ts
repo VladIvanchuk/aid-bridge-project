@@ -3,6 +3,7 @@ import { Schema, Document, Model } from "mongoose";
 
 export interface IReview extends Document {
   author: mongoose.Types.ObjectId;
+  target: mongoose.Types.ObjectId;
   text: string;
   rating: number;
   createdAt: Date;
@@ -10,6 +11,7 @@ export interface IReview extends Document {
 
 const reviewSchema = new Schema<IReview>({
   author: { type: mongoose.Schema.Types.ObjectId, required: true },
+  target: { type: mongoose.Schema.Types.ObjectId, required: true },
   text: { type: String, required: true },
   rating: { type: Number, required: true },
   createdAt: { type: Date, default: Date.now },

@@ -18,6 +18,10 @@ export async function getNeedById(id: string) {
   const response = await fetch(`/api/needs/${id}`);
   return response.json();
 }
+export async function getNeedsByAuthor(authorId: string) {
+  const response = await fetch(`/api/needs/by-author/${authorId}`);
+  return response.json();
+}
 
 export async function updateNeed(id: string, data: any) {
   const response = await fetch(`/api/needs/${id}`, {

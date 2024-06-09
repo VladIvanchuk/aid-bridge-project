@@ -7,12 +7,14 @@ const ListPageWrapper = ({
   onClick,
   selectedCategoryId,
   setSelectedCategoryId,
+  noFilter,
 }: {
   children: React.ReactNode;
   buttonTitle?: string;
   onClick?: () => void;
   selectedCategoryId?: string;
   setSelectedCategoryId?: React.Dispatch<React.SetStateAction<string>>;
+  noFilter?: boolean;
 }): React.ReactElement => {
   return (
     <ListPageContainer>
@@ -21,6 +23,7 @@ const ListPageWrapper = ({
         onClick={onClick}
         selectedCategoryId={selectedCategoryId}
         setSelectedCategoryId={setSelectedCategoryId}
+        noFilter={noFilter}
       />
       {children}
     </ListPageContainer>

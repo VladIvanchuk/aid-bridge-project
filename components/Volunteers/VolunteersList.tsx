@@ -37,6 +37,7 @@ const VolunteersList = () => {
       <ListPageWrapper
         buttonTitle={isVolunteer ? "Створити можливість" : undefined}
         onClick={onOpen}
+        noFilter
       >
         {isLoading ? (
           <Loader isFullscreen={true} />

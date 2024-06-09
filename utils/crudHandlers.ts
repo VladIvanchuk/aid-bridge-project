@@ -86,3 +86,23 @@ export async function deleteHandler(
     return NextResponse.json({ error: err.message }, { status: 500 });
   }
 }
+export async function getByFieldHandler(
+  req: NextRequest,
+  { params }: { params: { id: string } },
+  Model: Model<any>,
+  field: string,
+) {
+  await dbConnect();
+  try {
+    const { id } = params;
+    const data = await Model.find({ [field]: id });
+
+    if (!data) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({ data }, { status: 200 });
+  } catch (err: any) {
+    return NextResponse.json({ error: err.message }, { status: 500 });
+  }
+}

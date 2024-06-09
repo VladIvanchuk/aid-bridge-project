@@ -18,6 +18,10 @@ export async function getOpportunitiesById(id: string) {
   const response = await fetch(`/api/opportunities/${id}`);
   return response.json();
 }
+export async function getOpportunitiesByAuthor(authorId: string) {
+  const response = await fetch(`/api/opportunities/by-author/${authorId}`);
+  return response.json();
+}
 
 export async function updateOpportunities(id: string, data: any) {
   const response = await fetch(`/api/opportunities/${id}`, {

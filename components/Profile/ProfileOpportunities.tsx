@@ -4,6 +4,7 @@ import { INeed } from "@/models/need";
 import { ProfileOppContainer } from "@/styles/ProfileStyles";
 import { useEffect, useState } from "react";
 import { VolunteersItem } from "..";
+import { useAuth } from "@/contexts/AuthContext";
 
 const ProfileOpportunities = ({
   authorId,
@@ -11,6 +12,11 @@ const ProfileOpportunities = ({
   authorId: string;
 }): React.ReactElement => {
   const [opportunities, setOpportunities] = useState<INeed[]>([]);
+  const [updateList, setUpdateList] = useState(false);
+
+  const { user } = useAuth();
+
+  const isCurrentUser = user?._id === authorId;
 
   useEffect(() => {
     getOpportunitiesByAuthor(authorId).then((data) => {
@@ -20,13 +26,19 @@ const ProfileOpportunities = ({
           new Date(a.createdAt ?? 0).getTime(),
       );
       setOpportunities(sortedOpportunities);
+      setUpdateList(false);
     });
   }, [authorId]);
 
   return (
     <ProfileOppContainer>
       {opportunities.map((need) => (
-        <VolunteersItem key={need._id} {...need} />
+        <VolunteersItem
+          key={need._id}
+          {...need}
+          withMenu={isCurrentUser}
+          setUpdateList={setUpdateList}
+        />
       ))}
     </ProfileOppContainer>
   );

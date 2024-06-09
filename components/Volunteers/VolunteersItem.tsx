@@ -14,12 +14,21 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa6";
 import { MdLocationPin } from "react-icons/md";
+import ProfileItemDropdown from "../Profile/ProfileItemDropdown";
+
+interface VolunteersItemProps {
+  withMenu?: boolean;
+  setUpdateList: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 const VolunteersItem = ({
+  _id,
   title,
   location,
   author,
-}: Partial<IOpportunity>): React.ReactElement => {
+  withMenu,
+  setUpdateList,
+}: Partial<IOpportunity> & VolunteersItemProps): React.ReactElement => {
   const [user, setUser] = useState<IUser | null>(null);
 
   useEffect(() => {
@@ -50,6 +59,13 @@ const VolunteersItem = ({
           <BestVolunteersListRate>
             <p>{user?.userProfile?.rating ?? ""}/5</p>
             <FaStar fill="var(--base-accent)" />
+            {withMenu && (
+              <ProfileItemDropdown
+                id={_id}
+                role={user?.userProfile?.role ?? ""}
+                setUpdateList={setUpdateList}
+              />
+            )}
           </BestVolunteersListRate>
         </CardHeader>
         <Divider />

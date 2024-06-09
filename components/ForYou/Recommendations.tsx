@@ -1,15 +1,16 @@
 "use client";
+import { useGetRecommendations } from "@/hooks/useGetRecommendations";
 import {
   RecommendationItemContainer,
   RecommendationsContainer,
 } from "@/styles/ForYouStyles";
-import { NeedsShortItem, VolunteersItem, NewsItem, Loader } from "..";
+import { useState } from "react";
 import Masonry from "react-responsive-masonry";
-import { useState, useEffect } from "react";
-import { useGetRecommendations } from "@/hooks/useGetRecommendations";
+import { Loader, NeedsShortItem, NewsItem, VolunteersItem } from "..";
 
 const Recommendations = (): React.ReactElement => {
   const { isLoading, recommendations } = useGetRecommendations();
+  const [updateList, setUpdateList] = useState(false);
 
   if (isLoading) return <Loader isFullscreen />;
 
@@ -20,7 +21,9 @@ const Recommendations = (): React.ReactElement => {
           <RecommendationItemContainer key={item._id}>
             {item.type === "news" && <NewsItem {...item} />}
             {item.type === "need" && <NeedsShortItem {...item} />}
-            {item.type === "opportunity" && <VolunteersItem {...item} />}
+            {item.type === "opportunity" && (
+              <VolunteersItem {...item} setUpdateList={setUpdateList} />
+            )}
           </RecommendationItemContainer>
         ))}
       </Masonry>

@@ -34,6 +34,7 @@ const NeedsList = () => {
         );
       setNeeds(filteredAndSortedNeeds);
       setLoading(false);
+      setUpdateList(false);
     });
   }, [updateList, selectedCategoryId]);
 

@@ -27,6 +27,7 @@ const VolunteersList = () => {
       );
       setOpportunities(sortedOpportunities);
       setLoading(false);
+      setUpdateList(false);
     });
   }, [updateList]);
 
@@ -44,7 +45,11 @@ const VolunteersList = () => {
         ) : (
           <VolunteersContainer>
             {opportunities.map((opportunity, idx) => (
-              <VolunteersItem key={idx} {...opportunity} />
+              <VolunteersItem
+                key={idx}
+                {...opportunity}
+                setUpdateList={setUpdateList}
+              />
             ))}
           </VolunteersContainer>
         )}

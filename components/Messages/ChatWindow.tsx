@@ -10,7 +10,7 @@ import {
 } from "@/styles/messagesStyles";
 import { Button, Input } from "@nextui-org/react";
 import mongoose from "mongoose";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { IoSend } from "react-icons/io5";
 
 interface ChatWindowProps {
@@ -32,7 +32,7 @@ const ChatWindow = ({ currentRoomId }: ChatWindowProps): React.ReactElement => {
     scrollToBottom();
   }, [messages]);
 
-  const loadMessages = async () => {
+  const loadMessages = useCallback(async () => {
     try {
       const data = await getMessagesByChatRoom(currentRoomId);
       const sortedMessages = data.data.sort(
@@ -43,7 +43,7 @@ const ChatWindow = ({ currentRoomId }: ChatWindowProps): React.ReactElement => {
     } catch (error) {
       console.error("Error loading messages:", error);
     }
-  };
+  }, [currentRoomId]);
 
   useEffect(() => {
     loadMessages();
@@ -53,7 +53,7 @@ const ChatWindow = ({ currentRoomId }: ChatWindowProps): React.ReactElement => {
     }, POLL_INTERVAL);
 
     return () => clearInterval(interval);
-  }, [currentRoomId]);
+  }, [currentRoomId, loadMessages]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMessageContent(e.target.value);

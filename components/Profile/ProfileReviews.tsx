@@ -31,7 +31,7 @@ const ProfileReviews = ({ _id }: Partial<IUser>): React.ReactElement => {
       );
       setReviews(sortedReviews);
     });
-  }, [updateList]);
+  }, [_id, updateList]);
 
   return (
     <ProfileOppContainer>

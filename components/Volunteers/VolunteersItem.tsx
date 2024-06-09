@@ -25,7 +25,7 @@ const VolunteersItem = ({
   useEffect(() => {
     if (!author) return;
     async function fetchData() {
-      const data = await getUserById(author?.toString());
+      const data = await getUserById(author?.toString() ?? "");
       setUser(data.data);
     }
     if (!user) {

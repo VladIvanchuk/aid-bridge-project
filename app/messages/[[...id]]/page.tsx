@@ -11,6 +11,7 @@ const Messages = ({
 }): React.ReactElement => {
   const [currentRoomId, setCurrentRoomId] = useState("");
 
+  console.log(currentRoomId);
   useEffect(() => {
     if (params.id) {
       getChatRoomsByParticipant(params.id[0]).then((data) => {

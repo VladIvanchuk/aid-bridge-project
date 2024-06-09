@@ -28,13 +28,13 @@ const ChatList = ({
   }, [user?._id]);
 
   useEffect(() => {
-    if (!currentRoomId && chatRooms.length > 0) {
+    if (!currentRoomId && chatRooms && chatRooms.length > 0) {
       setCurrentRoomId(chatRooms[0]._id);
     }
   }, [chatRooms, currentRoomId, setCurrentRoomId]);
 
   if (isLoading) return <Loader />;
-  if (!chatRooms) return <p>No needs data</p>;
+  if (!chatRooms) return <p>У вас немає чатів</p>;
 
   return (
     <ChatListContainer>

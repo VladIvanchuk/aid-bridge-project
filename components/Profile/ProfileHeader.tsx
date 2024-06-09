@@ -14,6 +14,7 @@ import { Avatar, Button, useDisclosure } from "@nextui-org/react";
 import Link from "next/link";
 import { FaEnvelope, FaPencilAlt, FaStar } from "react-icons/fa";
 import EditProfile from "./EditProfile";
+import { useCreateChat } from "@/hooks/useCreateChat";
 
 const ProfileHeader = ({
   _id,
@@ -21,6 +22,8 @@ const ProfileHeader = ({
 }: Partial<IUser>): React.ReactElement => {
   const { user } = useAuth();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  const { handleCreate } = useCreateChat(_id);
 
   const isCurrentUser = user?._id === _id;
 
@@ -63,8 +66,7 @@ const ProfileHeader = ({
           <Button
             color="primary"
             endContent={<FaEnvelope />}
-            as={Link}
-            href={`/messages/${_id}`}
+            onClick={handleCreate}
           >
             Надіслати повідомлення
           </Button>

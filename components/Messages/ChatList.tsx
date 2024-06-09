@@ -33,20 +33,23 @@ const ChatList = ({
     }
   }, [chatRooms, currentRoomId, setCurrentRoomId]);
 
-  if (isLoading) return <Loader />;
   if (!chatRooms) return <p>У вас немає чатів</p>;
 
   return (
     <ChatListContainer>
-      {chatRooms.map((chatRoom) => (
-        <ChatListItem
-          key={chatRoom._id}
-          {...chatRoom}
-          currentUser={user?._id}
-          currentRoomId={currentRoomId}
-          setCurrentRoomId={setCurrentRoomId}
-        />
-      ))}
+      {isLoading ? (
+        <Loader isFullscreen />
+      ) : (
+        chatRooms.map((chatRoom) => (
+          <ChatListItem
+            key={chatRoom._id}
+            {...chatRoom}
+            currentUser={user?._id}
+            currentRoomId={currentRoomId}
+            setCurrentRoomId={setCurrentRoomId}
+          />
+        ))
+      )}
     </ChatListContainer>
   );
 };

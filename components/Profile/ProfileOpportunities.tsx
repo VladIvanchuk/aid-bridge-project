@@ -28,7 +28,7 @@ const ProfileOpportunities = ({
       setOpportunities(sortedOpportunities);
       setUpdateList(false);
     });
-  }, [authorId]);
+  }, [authorId, updateList]);
 
   return (
     <ProfileOppContainer>

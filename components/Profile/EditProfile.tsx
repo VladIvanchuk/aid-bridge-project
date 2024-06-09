@@ -1,25 +1,36 @@
 "use client";
 
+import { updateUserData } from "@/lib/user/api";
+import { IUser } from "@/models/user";
 import {
   CreateNeedContainer,
-  CreateNeedContainerHeader,
-  ImagePickerContainer,
-  CreateNeedContainerRow,
   CreateNeedContainerFooter,
+  CreateNeedContainerHeader,
+  CreateNeedContainerRow,
+  ImagePickerContainer,
 } from "@/styles/NeedsStyles";
-import { Textarea, Select, SelectItem, Button, Input } from "@nextui-org/react";
-import { useRef, useState } from "react";
+import { Button, Input, Select, SelectItem, Textarea } from "@nextui-org/react";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { CreateModal } from "..";
 import { useAuth } from "@/contexts/AuthContext";
-import { updateUserData } from "@/lib/user/api";
 
 export const roles = [
   { value: "Волонтер", label: "Волонтер" },
   { value: "Бенефіціар", label: "Бенефіціар" },
 ];
 
-const CreateProfile = (): React.ReactElement => {
-  const { onOpenChange, fetchUserData } = useAuth();
+interface EditProfileProps {
+  isOpen: boolean;
+  onOpenChange: () => void;
+}
+
+const EditProfile = ({
+  isOpen,
+  onOpenChange,
+  userProfile,
+}: EditProfileProps & Partial<IUser>): React.ReactElement => {
+  const { fetchUserData } = useAuth();
   const [imageURL, setImageURL] = useState<string>("");
   const [formData, setFormData] = useState({
     username: "",
@@ -28,6 +39,19 @@ const CreateProfile = (): React.ReactElement => {
     profilePhoto: "",
     bio: "",
   });
+
+  useEffect(() => {
+    if (userProfile) {
+      setFormData((prev) => ({
+        ...prev,
+        username: userProfile.username,
+        role: userProfile.role,
+        location: userProfile.location,
+        profilePhoto: userProfile.profilePhoto,
+        bio: userProfile.bio,
+      }));
+    }
+  }, [userProfile]);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -71,7 +95,11 @@ const CreateProfile = (): React.ReactElement => {
     }
   };
   return (
-    <div>
+    <CreateModal
+      isOpen={isOpen}
+      onOpenChange={onOpenChange}
+      title="Редагувати профіль"
+    >
       <CreateNeedContainer>
         <CreateNeedContainerHeader>
           <ImagePickerContainer onClick={handleImageSelect}>
@@ -135,8 +163,8 @@ const CreateProfile = (): React.ReactElement => {
           </Button>
         </CreateNeedContainerFooter>
       </CreateNeedContainer>
-    </div>
+    </CreateModal>
   );
 };
 
-export default CreateProfile;
+export default EditProfile;

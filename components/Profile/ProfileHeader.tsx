@@ -10,15 +10,17 @@ import {
   ProfileRole,
   ProfileText,
 } from "@/styles/ProfileStyles";
-import { Avatar, Button } from "@nextui-org/react";
+import { Avatar, Button, useDisclosure } from "@nextui-org/react";
 import Link from "next/link";
 import { FaEnvelope, FaPencilAlt, FaStar } from "react-icons/fa";
+import EditProfile from "./EditProfile";
 
 const ProfileHeader = ({
   _id,
   userProfile,
 }: Partial<IUser>): React.ReactElement => {
   const { user } = useAuth();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const isCurrentUser = user?._id === _id;
 
@@ -54,8 +56,8 @@ const ProfileHeader = ({
           )}
         </BestVolunteersListRate>
         {isCurrentUser ? (
-          <Button color="primary" endContent={<FaPencilAlt />}>
-            Edit Profile
+          <Button color="primary" endContent={<FaPencilAlt />} onClick={onOpen}>
+            Редагувати профіль
           </Button>
         ) : (
           <Button
@@ -68,6 +70,7 @@ const ProfileHeader = ({
           </Button>
         )}
       </ProfileHeaderRight>
+      <EditProfile isOpen={isOpen} onOpenChange={onOpenChange} {...user} />
     </ProfileHeaderWrapper>
   );
 };

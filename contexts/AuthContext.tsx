@@ -6,7 +6,13 @@ import { getUserData } from "@/lib/user/api";
 import { IUser } from "@/models/user";
 import { AuthPage } from "@/types/AuthTypes";
 import { useDisclosure } from "@nextui-org/react";
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 interface AuthContextType {
   isAuthorized: boolean;
@@ -28,6 +34,7 @@ interface AuthContextType {
   createProfile: boolean;
   setCreateProfile: React.Dispatch<React.SetStateAction<boolean>>;
   user: IUser | null;
+  fetchUserData: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -84,26 +91,27 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await getUserData();
-        setUser(data.user);
-      } catch (err: unknown) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError("An unexpected error occurred");
-        }
-        setIsAuthorized(false);
-      } finally {
-        setLoading(false);
+  const fetchUserData = useCallback(async () => {
+    try {
+      const data = await getUserData();
+      setUser(data.user);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unexpected error occurred");
       }
+      setIsAuthorized(false);
+    } finally {
+      setLoading(false);
     }
+  }, [setUser, setError, setIsAuthorized, setLoading]);
+
+  useEffect(() => {
     if (isAuthorized && !user) {
-      fetchData();
+      fetchUserData();
     }
-  }, [isAuthorized, setIsAuthorized, user]);
+  }, [fetchUserData, isAuthorized, setIsAuthorized, user]);
 
   const contextValue = {
     isAuthorized,
@@ -121,6 +129,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     createProfile,
     setCreateProfile,
     user,
+    fetchUserData,
   };
 
   return (

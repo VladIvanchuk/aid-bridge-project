@@ -1,16 +1,7 @@
-import { ListPageWrapper, NewsItem } from "@/components";
-import { NewsContainer } from "@/styles/NewsStyles";
+import NewsList from "@/components/News/NewsList";
 
 const News = (): React.ReactElement => {
-  return (
-    <ListPageWrapper buttonTitle="Створити статтю">
-      <NewsContainer>
-        {[...Array(10)].map((_, index) => (
-          <NewsItem key={index} />
-        ))}
-      </NewsContainer>
-    </ListPageWrapper>
-  );
+  return <NewsList />;
 };
 
 export default News;

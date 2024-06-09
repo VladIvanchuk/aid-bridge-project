@@ -15,7 +15,6 @@ const Home = (): React.ReactElement => {
       </HomeTopContainer>
       <NewOpportunities />
       <MapBanner />
-      <News />
     </HomeContainer>
   );
 };

@@ -38,6 +38,7 @@ const EditProfile = ({
     location: "",
     profilePhoto: "",
     bio: "",
+    rating: 0,
   });
 
   useEffect(() => {
@@ -49,6 +50,7 @@ const EditProfile = ({
         location: userProfile.location,
         profilePhoto: userProfile.profilePhoto,
         bio: userProfile.bio,
+        rating: userProfile.rating,
       }));
     }
   }, [userProfile]);
@@ -149,6 +151,7 @@ const EditProfile = ({
             name="role"
             placeholder="Оберіть свою роль"
             onChange={handleCategoryChange}
+            defaultSelectedKeys={userProfile && [userProfile.role]}
           >
             {roles.map((role) => (
               <SelectItem key={role.value} value={role.value}>

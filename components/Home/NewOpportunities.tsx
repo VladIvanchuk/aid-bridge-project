@@ -1,16 +1,34 @@
+"use client";
+import { getOpportunities } from "@/lib/opportunity/api";
+import { IOpportunity } from "@/models/opportunity";
 import {
   HomeSectionHeader,
   HomeTitle,
   NewOppContainer,
   NewOppItemsContainer,
 } from "@/styles/HomeStyles";
-import { NewOppItem } from "..";
 import { LinkContainer } from "@/styles/UiStyles";
-import Link from "next/link";
 import { Button } from "@nextui-org/react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { MdArrowOutward } from "react-icons/md";
+import { Loader, NewOppItem } from "..";
 
 const NewOpportunities = (): React.ReactElement => {
+  const [opportunities, setOpportunities] = useState<IOpportunity[]>([]);
+  const [isLoading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(true);
+    getOpportunities().then((data) => {
+      const sortedOpportunities = data.data.sort(
+        (a: IOpportunity, b: IOpportunity) =>
+          new Date(b.createdAt ?? 0).getTime() -
+          new Date(a.createdAt ?? 0).getTime(),
+      );
+      setOpportunities(sortedOpportunities);
+      setLoading(false);
+    });
+  }, []);
   return (
     <NewOppContainer>
       <HomeSectionHeader>
@@ -27,9 +45,13 @@ const NewOpportunities = (): React.ReactElement => {
         </LinkContainer>
       </HomeSectionHeader>
       <NewOppItemsContainer>
-        {[...Array(3)].map((_, index) => (
-          <NewOppItem key={index} />
-        ))}
+        {isLoading ? (
+          <Loader isFullscreen />
+        ) : (
+          opportunities.map((opportunity) => (
+            <NewOppItem key={opportunity._id} {...opportunity} />
+          ))
+        )}
       </NewOppItemsContainer>
     </NewOppContainer>
   );

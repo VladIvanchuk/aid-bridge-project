@@ -27,6 +27,7 @@ const CreateProfile = (): React.ReactElement => {
     location: "",
     profilePhoto: "",
     bio: "",
+    rating: 0,
   });
 
   const fileInputRef = useRef<HTMLInputElement>(null);

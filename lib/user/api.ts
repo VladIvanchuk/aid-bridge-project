@@ -45,3 +45,16 @@ export async function getUserById(userId: string) {
 
   return response.json();
 }
+
+export async function getTopVolunteers() {
+  const response = await fetch("/api/user/top-volunteers", {
+    method: "GET",
+    credentials: "include",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch user data");
+  }
+
+  return response.json();
+}

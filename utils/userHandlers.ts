@@ -2,6 +2,7 @@ import dbConnect from "@/lib/mongodb";
 import { Model } from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 import { authenticateToken } from "./authenticateToken";
+import User from "@/models/user";
 
 export async function getUserDataHandler(req: NextRequest, User: Model<any>) {
   await dbConnect();
@@ -18,6 +19,28 @@ export async function getUserDataHandler(req: NextRequest, User: Model<any>) {
     }
 
     return NextResponse.json({ user }, { status: 200 });
+  } catch (err: any) {
+    return NextResponse.json({ error: err.message }, { status: 500 });
+  }
+}
+
+export async function getTopVolunteersHandler(req: NextRequest) {
+  await dbConnect();
+
+  try {
+    const volunteers = await User.find({ "userProfile.role": "Волонтер" })
+      .sort({ "userProfile.rating": -1 })
+      .limit(20)
+      .exec();
+
+    if (!volunteers.length) {
+      return NextResponse.json(
+        { error: "No volunteers found" },
+        { status: 404 },
+      );
+    }
+
+    return NextResponse.json({ volunteers }, { status: 200 });
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });
   }

@@ -1,3 +1,6 @@
+"use client";
+import { getTopVolunteers } from "@/lib/user/api";
+import { IUser } from "@/models/user";
 import {
   BestVolunteersContainer,
   BestVolunteersList,
@@ -6,9 +9,23 @@ import {
   BestVolunteersTitle,
 } from "@/styles/HomeStyles";
 import { Card, CardHeader, User } from "@nextui-org/react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
+import { Loader } from "..";
 
 const BestVolunteers = (): React.ReactElement => {
+  const [topVolunteers, setTopVolunteers] = useState<IUser[]>([]);
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    getTopVolunteers().then((data) => {
+      setTopVolunteers(data.volunteers);
+      setLoading(false);
+    });
+  }, []);
+
   return (
     <Card shadow="sm" className="flex-1 bg-[var(--background-light)] w-10">
       <BestVolunteersContainer>
@@ -16,21 +33,27 @@ const BestVolunteers = (): React.ReactElement => {
           <BestVolunteersTitle>Кращі волонтери</BestVolunteersTitle>
         </CardHeader>
         <BestVolunteersList>
-          {[...Array(13)].map((_, index) => (
-            <BestVolunteersListItem key={index}>
-              <User
-                name="Jane Doe"
-                avatarProps={{
-                  src: `https://i.pravatar.cc/150?u=${Math.random() * 20}`,
-                  size: "sm",
-                }}
-              />
-              <BestVolunteersListRate>
-                <p>{(Math.random() * 5).toFixed(1)}/5</p>
-                <FaStar />
-              </BestVolunteersListRate>
-            </BestVolunteersListItem>
-          ))}
+          {isLoading ? (
+            <Loader isFullscreen={true} />
+          ) : (
+            topVolunteers.map((user, index) => (
+              <BestVolunteersListItem key={index}>
+                <User
+                  as={Link}
+                  href={`/profile/${user?._id}`}
+                  name={user?.userProfile?.username ?? ""}
+                  avatarProps={{
+                    src: user?.userProfile.profilePhoto ?? "",
+                    size: "sm",
+                  }}
+                />
+                <BestVolunteersListRate>
+                  <p>{user?.userProfile?.rating}/5</p>
+                  <FaStar />
+                </BestVolunteersListRate>
+              </BestVolunteersListItem>
+            ))
+          )}
         </BestVolunteersList>
       </BestVolunteersContainer>
     </Card>

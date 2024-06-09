@@ -74,7 +74,7 @@ const NeedsItem = ({
         <CardFooter className="justify-between rounded-large">
           <User
             as={Link}
-            href={`profile/${user?._id}`}
+            href={`/profile/${user?._id}`}
             name={user?.userProfile?.username ?? ""}
             avatarProps={{
               src: user?.userProfile.profilePhoto ?? "",

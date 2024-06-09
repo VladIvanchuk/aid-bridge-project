@@ -8,6 +8,7 @@ import {
 import { Card, Image, Link } from "@nextui-org/react";
 
 const NewsItem = ({
+  _id,
   title,
   body,
   createdAt,
@@ -32,7 +33,7 @@ const NewsItem = ({
         </NewsItemDate>
         <NewsItemTitle>{title} </NewsItemTitle>
         <NewsItemDescription>{body}</NewsItemDescription>
-        <Link isExternal showAnchorIcon href="">
+        <Link showAnchorIcon href={`/news/${_id}`}>
           Дізнатись більше
         </Link>
       </NewsItemContainer>

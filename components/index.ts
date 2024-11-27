@@ -21,6 +21,7 @@ export { default as CreateModal } from "./CreateModal/CreateModal";
 export { default as VolunteersItem } from "./Volunteers/VolunteersItem";
 
 export { default as Header } from "./Header/Header";
+export { default as Search } from "./Header/Search";
 
 export { default as ListPageHeader } from "./ListPage/ListPageHeader";
 export { default as ListPageWrapper } from "./ListPage/ListPageWrapper";

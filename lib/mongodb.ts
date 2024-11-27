@@ -1,7 +1,10 @@
 import mongoose from "mongoose";
+import { MongoMemoryServer } from "mongodb-memory-server";
 
 const MONGODB_URI = process.env.MONGODB_URI || "";
-if (!MONGODB_URI) {
+let mongoServer: MongoMemoryServer | null = null;
+
+if (!MONGODB_URI && process.env.NODE_ENV !== "test") {
   throw new Error(
     "Please define the MONGODB_URI environment variable inside .env.local",
   );
@@ -19,14 +22,32 @@ async function dbConnect() {
   }
 
   if (!cached.promise) {
-    cached.promise = mongoose
-      .connect(MONGODB_URI, { bufferCommands: false })
-      .then((mongoose) => {
-        return mongoose;
-      });
+    if (process.env.NODE_ENV === "test") {
+      // Під час тестування створюємо віртуальний сервер
+      mongoServer = await MongoMemoryServer.create();
+      const uri = mongoServer.getUri();
+
+      cached.promise = mongoose
+        .connect(uri, { bufferCommands: false })
+        .then((mongoose) => mongoose);
+    } else {
+      // У звичайному середовищі підключаємося до реальної бази
+      cached.promise = mongoose
+        .connect(MONGODB_URI, { bufferCommands: false })
+        .then((mongoose) => mongoose);
+    }
   }
+
   cached.conn = await cached.promise;
   return cached.conn;
+}
+
+// Для очищення MongoMemoryServer у тестах
+export async function closeDatabase() {
+  if (mongoServer) {
+    await mongoose.disconnect();
+    await mongoServer.stop();
+  }
 }
 
 export default dbConnect;

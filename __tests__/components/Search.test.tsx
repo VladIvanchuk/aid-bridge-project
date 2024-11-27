@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import Search from "../components/Header/Search";
+import Search from "../../components/Header/Search";
 import * as api from "@/lib/search/api";
 
 jest.mock("@/lib/search/api", () => ({

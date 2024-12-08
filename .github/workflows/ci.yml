@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
@@ -32,3 +32,28 @@ jobs:
 
       - name: Run linting (optional)
         run: npm run lint
+
+      # Аутентифікація в GCP
+      - name: Authenticate with GCP
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+
+      # Налаштування Docker для GCP
+      - name: Set up Docker for GCP
+        run: gcloud auth configure-docker
+
+      # Завантаження образу в Artifact Registry
+      - name: Build and push Docker image
+        run: |
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/nextjs-app:latest .
+          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/nextjs-app:latest
+
+      # Деплой на Cloud Run
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy nextjs-app \
+            --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/nextjs-app:latest \
+            --platform managed \
+            --region ${{ secrets.GCP_REGION }} \
+            --allow-unauthenticated

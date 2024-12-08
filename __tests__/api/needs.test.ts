@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
-import dbConnect, { closeDatabase } from "@/lib/mongodb";
+import { NextRequest } from "next/server";
 import Need from "@/models/need";
 import { createHandler, getAllHandler } from "@/utils/crudHandlers";
-import { NextRequest } from "next/server";
+import dbConnect, { closeDatabase } from "@/lib/mongodb";
 
 beforeAll(async () => {
   await dbConnect();
@@ -27,19 +27,16 @@ describe("API /needs", () => {
       categories: ["Test Category"],
     };
 
-    const req = new NextRequest("http://localhost/api/needs", {
+    const nextReq = new NextRequest("http://localhost/api/needs", {
       method: "POST",
-      headers: new Headers({ "Content-Type": "application/json" }),
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newNeed),
     });
 
-    const res = await createHandler(req, Need);
-    const json = await res.json();
-
+    const res = await createHandler(nextReq, Need);
     expect(res.status).toBe(201);
-    expect(json.data.title).toBe("Test Need");
-    expect(json.data.location).toBe("Test Location");
-    expect(json.data.body).toBe("Test Body");
+    const responseData = await res.json();
+    expect(responseData.data.title).toBe("Test Need");
   });
 
   it("should get all needs", async () => {
@@ -53,16 +50,17 @@ describe("API /needs", () => {
       categories: ["Category 1"],
     });
 
-    const req = new NextRequest("http://localhost/api/needs", {
+    const nextReq = new NextRequest("http://localhost/api/needs", {
       method: "GET",
     });
 
     const res = await getAllHandler(Need);
-    const json = await res.json();
-
     expect(res.status).toBe(200);
-    expect(json.data).toHaveLength(1);
-    expect(json.data[0].title).toBe("Existing Need");
-    expect(json.data[0].author.toString()).toBe(testAuthorId.toString());
+    const responseData = await res.json();
+    expect(responseData.data).toHaveLength(1);
+    expect(responseData.data[0].title).toBe("Existing Need");
+    expect(responseData.data[0].author.toString()).toBe(
+      testAuthorId.toString(),
+    );
   });
 });

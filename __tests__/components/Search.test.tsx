@@ -8,7 +8,7 @@ jest.mock("@/lib/search/api", () => ({
 }));
 
 describe("Search component", () => {
-  const getSearchedData = api.getSearchedData as jest.Mock;
+  const getSearchedData = api.getSearchedData as jest.Mock<any, any>;
 
   afterEach(() => {
     jest.clearAllMocks();

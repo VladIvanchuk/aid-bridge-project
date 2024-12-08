@@ -31,10 +31,11 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.26.0",
-    "@babel/preset-react": "^7.25.9",
+    "@babel/preset-react": "^7.26.3",
     "@babel/preset-typescript": "^7.26.0",
+    "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.0.1",
+    "@testing-library/react": "^16.1.0",
     "@testing-library/user-event": "^14.5.2",
     "@types/bcryptjs": "^2.4.6",
     "@types/jest": "^29.5.14",
@@ -55,11 +56,13 @@
     "mongodb-memory-server": "^10.1.2",
     "mongoose": "^8.8.3",
     "next": "^15.0.3",
+    "node-mocks-http": "^1.16.1",
     "postcss": "^8",
     "prettier": "3.2.5",
     "supertest": "^7.0.0",
     "tailwindcss": "^3.3.0",
     "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }

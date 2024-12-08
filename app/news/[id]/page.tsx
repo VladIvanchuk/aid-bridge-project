@@ -20,11 +20,7 @@ import { User } from "@nextui-org/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const NewsDetail = ({
-  params,
-}: {
-  params: { id: string };
-}): React.ReactElement => {
+const NewsDetail = ({ params }: { params: any }): React.ReactElement => {
   const [need, setData] = useState<INews | null>(null);
   const [user, setUser] = useState<IUser | null>(null);
   const [isLoading, setLoading] = useState(true);

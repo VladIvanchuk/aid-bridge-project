@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function getChatRoomsByParticipant(
   req: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: any },
 ) {
   await dbConnect();
   try {
@@ -24,7 +24,7 @@ export async function getChatRoomsByParticipant(
 
 export async function getMessagesByChatRoom(
   req: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: any },
 ) {
   await dbConnect();
   try {

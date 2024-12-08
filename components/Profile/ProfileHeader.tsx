@@ -23,7 +23,7 @@ const ProfileHeader = ({
   const { user } = useAuth();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const { handleCreate } = useCreateChat(_id);
+  const { handleCreate } = useCreateChat(_id as string);
 
   const isCurrentUser = user?._id === _id;
 

@@ -4,11 +4,7 @@ import { getChatRoomsByParticipant } from "@/lib/chat/api";
 import { MessagesWrapper } from "@/styles/messagesStyles";
 import { useEffect, useState } from "react";
 
-const Messages = ({
-  params,
-}: {
-  params: { id: string[] };
-}): React.ReactElement => {
+const Messages = ({ params }: { params: any }): React.ReactElement => {
   const [currentRoomId, setCurrentRoomId] = useState("");
 
   useEffect(() => {

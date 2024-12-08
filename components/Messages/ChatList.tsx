@@ -21,7 +21,7 @@ const ChatList = ({
 
   useEffect(() => {
     setLoading(true);
-    getChatRoomsByParticipant(user?._id).then((data) => {
+    getChatRoomsByParticipant(user?._id as string).then((data) => {
       setChatRooms(data.data);
       setLoading(false);
     });
@@ -29,7 +29,7 @@ const ChatList = ({
 
   useEffect(() => {
     if (!currentRoomId && chatRooms && chatRooms.length > 0) {
-      setCurrentRoomId(chatRooms[0]._id);
+      setCurrentRoomId(chatRooms[0]._id as string);
     }
   }, [chatRooms, currentRoomId, setCurrentRoomId]);
 
@@ -44,7 +44,7 @@ const ChatList = ({
           <ChatListItem
             key={chatRoom._id}
             {...chatRoom}
-            currentUser={user?._id}
+            currentUser={user?._id as string}
             currentRoomId={currentRoomId}
             setCurrentRoomId={setCurrentRoomId}
           />

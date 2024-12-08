@@ -30,13 +30,13 @@ const ProfileTabs = ({
         {userProfile?.role === "Волонтер" ? (
           <Tab key="opp" title="Опубліковані можливості">
             <ProfileTabItemContainer>
-              <ProfileOpportunities authorId={_id} />
+              <ProfileOpportunities authorId={_id as string} />
             </ProfileTabItemContainer>
           </Tab>
         ) : (
           <Tab key="opp" title="Опубліковані потреби">
             <ProfileTabItemContainer>
-              <ProfileNeeds authorId={_id} />
+              <ProfileNeeds authorId={_id as string} />
             </ProfileTabItemContainer>
           </Tab>
         )}

@@ -58,7 +58,11 @@ const ProfileItemDropdown = ({
   return (
     <>
       <Dropdown>
-        <DropdownTrigger onClick={(e) => e.preventDefault()}>
+        <DropdownTrigger
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+            e.preventDefault()
+          }
+        >
           <Button variant="light" isIconOnly>
             <BsThreeDotsVertical />
           </Button>

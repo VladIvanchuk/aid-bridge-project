@@ -1,6 +1,7 @@
 import mongoose, { Document, Model, Schema } from "mongoose";
 
 export interface IOpportunity extends Document {
+  _id: string;
   title: string;
   author: mongoose.Types.ObjectId;
   body: string;

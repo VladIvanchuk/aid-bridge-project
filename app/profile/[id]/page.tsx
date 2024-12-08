@@ -5,11 +5,7 @@ import { IUser } from "@/models/user";
 import { ProfileContainer } from "@/styles/ProfileStyles";
 import { useEffect, useState } from "react";
 
-const Profile = ({
-  params,
-}: {
-  params: { id: string };
-}): React.ReactElement => {
+const Profile = ({ params }: { params: any }): React.ReactElement => {
   const [user, setUser] = useState<IUser | null>(null);
 
   useEffect(() => {

@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import { Schema, Document, Model } from "mongoose";
 
 export interface INews extends Document {
+  _id: string;
   title: string;
   author: mongoose.Types.ObjectId;
   body: string;

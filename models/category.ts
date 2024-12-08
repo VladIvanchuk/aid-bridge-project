@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import { Schema, Document, Model } from "mongoose";
 
 export interface ICategory extends Document {
+  _id: string;
   name: string;
   color: string;
 }

@@ -6,6 +6,6 @@ interface Params {
 }
 
 export async function GET(req: NextRequest, context: any): Promise<Response> {
-  const { id } = context.params;
-  return searchHandler(req, params.key);
+  const { key } = context.params;
+  return searchHandler(req, key);
 }

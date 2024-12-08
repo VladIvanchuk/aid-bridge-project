@@ -28,7 +28,7 @@ export async function getAllHandler(Model: Model<any>) {
 
 export async function getByIdHandler(
   req: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: any },
   Model: Model<any>,
 ) {
   await dbConnect();
@@ -48,7 +48,7 @@ export async function getByIdHandler(
 
 export async function updateHandler(
   req: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: any },
   Model: Model<any>,
 ) {
   await dbConnect();
@@ -69,7 +69,7 @@ export async function updateHandler(
 
 export async function deleteHandler(
   req: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: any },
   Model: Model<any>,
 ) {
   await dbConnect();
@@ -88,7 +88,7 @@ export async function deleteHandler(
 }
 export async function getByFieldHandler(
   req: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: any },
   Model: Model<any>,
   field: string,
 ) {

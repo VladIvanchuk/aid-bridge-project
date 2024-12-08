@@ -61,9 +61,10 @@ const ChatWindow = ({ currentRoomId }: ChatWindowProps): React.ReactElement => {
 
   const sendMessage = async () => {
     if (!messageContent.trim()) return;
+
     const messageData = {
       chatRoom: new mongoose.Types.ObjectId(currentRoomId),
-      sender: user?._id,
+      sender: user?._id ? new mongoose.Types.ObjectId(user._id) : undefined,
       content: messageContent,
     };
 
@@ -72,7 +73,7 @@ const ChatWindow = ({ currentRoomId }: ChatWindowProps): React.ReactElement => {
       console.log("Message created:", response);
       setMessages((prev) => [
         ...prev,
-        { ...messageData, _id: response.data._id },
+        { ...messageData, _id: response.data._id } as Partial<IMessage>,
       ]);
       setMessageContent("");
     } catch (error) {

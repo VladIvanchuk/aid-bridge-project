@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import { Schema, Document, Model } from "mongoose";
 
 export interface IChatRoom extends Document {
+  _id: string;
   participants: mongoose.Types.ObjectId[];
   createdAt: Date;
 }

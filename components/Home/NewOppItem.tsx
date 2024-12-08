@@ -27,7 +27,7 @@ const NewOppItem = ({
   author,
 }: Partial<IOpportunity>): React.ReactElement => {
   const [user, setUser] = useState<IUser | null>(null);
-  const { handleCreate } = useCreateChat(user?._id);
+  const { handleCreate } = useCreateChat(user?._id as string);
 
   useEffect(() => {
     if (!author) return;

@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import { Schema, Document, Model } from "mongoose";
 
 export interface IMessage extends Document {
+  _id: string;
   chatRoom: mongoose.Types.ObjectId;
   sender: mongoose.Types.ObjectId;
   content: string;

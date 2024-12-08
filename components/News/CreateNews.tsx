@@ -14,7 +14,7 @@ import { CreateModal } from "..";
 
 interface FormData {
   title: string;
-  author: string;
+  author?: string;
   body: string;
   ImageURL: string;
 }
@@ -33,7 +33,7 @@ const CreateNews = ({
   const [formData, setFormData] = useState<FormData>({
     title: "",
     body: "",
-    author: user?._id,
+    author: user?._id as string,
     ImageURL: "",
   });
 

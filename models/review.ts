@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import { Schema, Document, Model } from "mongoose";
 
 export interface IReview extends Document {
+  _id: string;
   author: mongoose.Types.ObjectId;
   target: mongoose.Types.ObjectId;
   text: string;

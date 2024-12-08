@@ -4,6 +4,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { createChatRoom, getChatRoomsByParticipant } from "@/lib/chat/api";
 import { IChatRoom } from "@/models/chatRoom";
 import { useRouter } from "next/navigation";
+import mongoose from "mongoose";
 
 export const useCreateChat = (authorId: string) => {
   const { user } = useAuth();
@@ -21,7 +22,10 @@ export const useCreateChat = (authorId: string) => {
   useEffect(() => {
     if (user?._id) {
       setData({
-        participants: [authorId, user._id],
+        participants: [
+          new mongoose.Types.ObjectId(authorId),
+          new mongoose.Types.ObjectId(user._id),
+        ],
       });
     }
   }, [user?._id, authorId]);

@@ -49,7 +49,7 @@ const PageHeader = ({
               key={_id}
               color={color as "primary" | "secondary"}
               variant="flat"
-              onClick={() => handleToggle(_id)}
+              onClick={() => handleToggle(_id as string)}
               className={selectedCategoryId === _id ? "bg-white" : ""}
             >
               {name}

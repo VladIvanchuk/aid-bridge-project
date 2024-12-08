@@ -61,7 +61,7 @@ const VolunteersItem = ({
             <FaStar fill="var(--base-accent)" />
             {withMenu && (
               <ProfileItemDropdown
-                id={_id}
+                id={_id as string}
                 role={user?.userProfile?.role ?? ""}
                 setUpdateList={setUpdateList}
               />

@@ -51,7 +51,7 @@ const ChatListItem = ({
   return (
     <ChatListItemContainer
       $isActive={currentRoomId === _id}
-      onClick={() => setCurrentRoomId(_id)}
+      onClick={() => setCurrentRoomId(_id as string)}
     >
       <User
         name={userData?.userProfile?.username ?? ""}

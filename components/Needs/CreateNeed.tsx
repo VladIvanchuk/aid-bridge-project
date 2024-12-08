@@ -50,7 +50,7 @@ const CreateNeed = ({
     title: "",
     body: "",
     location: "",
-    author: user?._id,
+    author: user?._id as string,
     categories: [],
     ImageURL: "123",
   });
@@ -111,7 +111,7 @@ const CreateNeed = ({
   useEffect(() => {
     setFormData((prev) => ({
       ...prev,
-      author: user?._id,
+      author: user?._id as string,
     }));
   }, [user]);
 

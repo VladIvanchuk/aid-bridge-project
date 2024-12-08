@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function getCategoriesByIdsHandler(
   req: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: any },
 ) {
   await dbConnect();
   try {

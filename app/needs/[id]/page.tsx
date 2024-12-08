@@ -20,16 +20,12 @@ import {
 import { Button, User } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 
-const NeedDetail = ({
-  params,
-}: {
-  params: { id: string };
-}): React.ReactElement => {
+const NeedDetail = ({ params }: { params: any }): React.ReactElement => {
   const [need, setData] = useState<INeed | null>(null);
   const [user, setUser] = useState<IUser | null>(null);
   const [isLoading, setLoading] = useState(true);
 
-  const { handleCreate } = useCreateChat(user?._id);
+  const { handleCreate } = useCreateChat(user?._id as string);
 
   useEffect(() => {
     getNeedById(params.id).then((data) => {

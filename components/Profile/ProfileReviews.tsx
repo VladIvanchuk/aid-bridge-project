@@ -23,7 +23,7 @@ const ProfileReviews = ({ _id }: Partial<IUser>): React.ReactElement => {
   const isCurrentUser = user?._id === _id;
 
   useEffect(() => {
-    getReviewsByTarget(_id).then((data) => {
+    getReviewsByTarget(_id as string).then((data) => {
       const sortedReviews = data.data.sort(
         (a: IReview, b: IReview) =>
           new Date(b.createdAt ?? 0).getTime() -
@@ -53,7 +53,7 @@ const ProfileReviews = ({ _id }: Partial<IUser>): React.ReactElement => {
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         setUpdateList={setUpdateList}
-        target={_id}
+        target={_id as string}
       />
     </ProfileOppContainer>
   );

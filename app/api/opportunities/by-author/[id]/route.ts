@@ -6,6 +6,7 @@ interface Params {
   id: string;
 }
 
-export async function GET(req: NextRequest, { params }: { params: Params }) {
-  return getByFieldHandler(req, { params }, Opportunity, "author");
+export async function GET(req: NextRequest, context: any): Promise<Response> {
+  const { id } = context.params;
+  return getByFieldHandler(req, { params: { id } }, Opportunity, "author");
 }

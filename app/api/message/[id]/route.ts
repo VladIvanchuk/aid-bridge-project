@@ -5,6 +5,7 @@ interface Params {
   id: string;
 }
 
-export async function GET(req: NextRequest, { params }: { params: Params }) {
-  return getMessagesByChatRoom(req, { params });
+export async function GET(req: NextRequest, context: any): Promise<Response> {
+  const { id } = context.params;
+  return getMessagesByChatRoom(req, { params: { id } });
 }

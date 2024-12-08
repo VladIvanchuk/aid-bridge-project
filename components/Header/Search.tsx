@@ -8,7 +8,7 @@ import {
 import { debounce } from "@/utils/debounce";
 import { Input } from "@nextui-org/react";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 
 interface SearchResult {
@@ -23,21 +23,29 @@ const Search = (): React.ReactElement => {
   const [resultDisplay, setResultDisplay] = useState(false);
   const resultsRef = useRef<HTMLDivElement | null>(null);
 
-  const handleSearch = useCallback(
-    debounce(async (query: string) => {
-      if (query.length > 0) {
-        try {
-          const data = await getSearchedData(query);
-          setSearchResult(data);
-        } catch (error) {
-          console.error("Failed to fetch search data:", error);
+  const debouncedSearch = useMemo(
+    () =>
+      debounce(async (query: string) => {
+        if (query.length > 0) {
+          try {
+            const data = await getSearchedData(query);
+            setSearchResult(data);
+          } catch (error) {
+            console.error("Failed to fetch search data:", error);
+            setSearchResult([]);
+          }
+        } else {
           setSearchResult([]);
         }
-      } else {
-        setSearchResult([]);
-      }
-    }, 300),
+      }, 300),
     [],
+  );
+
+  const handleSearch = useCallback(
+    (query: string) => {
+      debouncedSearch(query);
+    },
+    [debouncedSearch],
   );
 
   const handleFocus = () => {

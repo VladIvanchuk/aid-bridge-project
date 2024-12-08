@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,6 +17,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "20"
+
+      - name: Set environment variables
+        run: echo "MONGODB_URI=${{ secrets.MONGODB_URI }}" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: npm install
